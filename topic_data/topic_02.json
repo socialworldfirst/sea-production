@@ -1,0 +1,530 @@
+[
+  {
+    "id": "P1-A12",
+    "findings": [
+      "On a $50K USD-CNY wire, SEA bank FX margins of 1.4 percent silently extract $700 from the rate alone, before any line-item fee.",
+      "Banks book the margin into the applied rate, not as a separate charge, so it never appears as a fee on your statement.",
+      "Unicorn Currencies audit method: ((Mid-market - Applied) / Mid-market) x 100 = margin percent. A 2.37 percent spread on a $50K wire is $1,185 hidden in the rate.",
+      "Airwallex reports 44 percent of businesses are frustrated by poor exchange rates in international payments. The complaint is universal, the cause is rate margin."
+    ],
+    "angles": [
+      {
+        "video_title": "$1,200 vanished from a $50K wire. We found it.",
+        "approach": "Pain-led",
+        "rating_social": 4.6,
+        "rating_audience": 4.7,
+        "rating_product": 4.4,
+        "hook": "You sent $50K. Your supplier confirmed $48,800. The bank says no fee was charged.",
+        "body": "The $1,200 didn't go to a fee line. It's baked into the rate the bank applied. On screen: receipt rate 7.05, real interbank rate 7.22 same hour. That 2.4 percent gap is the bank's silent take.",
+        "close": "If you can't find the fee on the statement, it's in the rate.",
+        "visual": "Side by side: bank confirmation rate vs Reuters interbank rate at the same timestamp, the gap highlighted in red"
+      },
+      {
+        "video_title": "Where did $1,200 go on this $50K wire?",
+        "approach": "Curiosity-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.3,
+        "hook": "Same wire. $50,000 sent. Supplier received $48,800. Find the missing $1,200.",
+        "body": "It's not the SWIFT fee. It's not the correspondent bank. It's the applied FX rate. Banks build a 1 to 2 percent margin into the rate they show you, so no fee line ever appears.",
+        "close": "Search 'mid-market rate' on Google at the time of your wire. The gap is what your bank kept.",
+        "visual": "Magnifying glass moving across a wire confirmation, stopping on the applied rate, pulling up to Google's mid-market rate, $1,200 gap appearing as a red bar"
+      },
+      {
+        "video_title": "Your bank's biggest profit line you'll never see",
+        "approach": "Math-led",
+        "rating_social": 4.3,
+        "rating_audience": 4.4,
+        "rating_product": 4.5,
+        "hook": "Banks make more on the FX rate than on any fee they charge you.",
+        "body": "On a $50K USD-CNY wire, a 1.4 percent rate margin is $700. Multiply by 12 monthly wires, that's $8,400 a year. No itemised fee for it. Just a slightly worse rate. We checked SEA bank averages: 0.5 to 1.5 percent on the wire rate, every time.",
+        "close": "It's not a fee. It's the rate. That's why you never see it.",
+        "visual": "Calculator UI: $50,000 x 0.014 = $700, then animated multiplication x12 wires = $8,400 annual silent cost"
+      },
+      {
+        "video_title": "The $1,200 question on every $50K wire",
+        "approach": "Document-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.6,
+        "hook": "Pull up your last $50K supplier wire. We'll find the $1,200 in 30 seconds.",
+        "body": "Step one: find the applied rate on the confirmation. Step two: Google the USD-CNY mid-market rate for that date. Step three: subtract, divide, times 100. That percentage is the bank's silent cut. Three numbers, one truth.",
+        "close": "If you can read the receipt, you can read the margin.",
+        "visual": "Three documents stacked on screen: bank confirmation, Google search result, calculator. Yellow highlight on the three numbers being compared"
+      }
+    ]
+  },
+  {
+    "id": "P1-A13",
+    "findings": [
+      "Banks advertise 'no transfer fee' on cross-border wires while embedding 1 to 4 percent margin in the FX rate itself.",
+      "Bancoli case data: on a $10,000 transfer with a 3 percent FX markup, businesses pay $300 hidden in the rate with no line-item disclosure.",
+      "The wire confirmation lists 'no fee' or 'fee waived' while the applied rate is 1 to 3 percent off the mid-market. The two facts coexist legally.",
+      "35 percent of businesses surveyed by Airwallex cite 'high or hidden fees' as their top frustration. Source: cross-border payment industry surveys."
+    ],
+    "angles": [
+      {
+        "video_title": "Bank says no fee. You still paid $300.",
+        "approach": "Pain-led",
+        "rating_social": 4.7,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "Your bank just sent $10,000 to your supplier. Wire fee: zero. You still paid $300.",
+        "body": "The fee isn't on the statement. It's in the exchange rate. Banks add 1 to 3 percent margin to the rate they apply, then charge zero fee. Legal, common, and rarely caught.",
+        "close": "If the rate is bad, the wire is expensive. There's no such thing as a free wire.",
+        "visual": "Wire confirmation zoomed in: 'Fee: $0.00' highlighted in green, then the applied rate highlighted in red with margin calculation overlaid"
+      },
+      {
+        "video_title": "The 'no fee' wire that costs you $300",
+        "approach": "Curiosity-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.5,
+        "rating_product": 4.4,
+        "hook": "Your bank says 'no fee'. So why did $300 disappear?",
+        "body": "On a $10K wire, banks apply a rate 1 to 3 percent below the interbank market. That gap is the fee, just renamed. Zero fee line, full margin take. We pulled a real SEA bank wire: $300 vanished into the rate.",
+        "close": "Free wires aren't free. The cost is in the rate.",
+        "visual": "Cartoon $300 banknote sliding off a 'no fee' wire confirmation and into a bank vault"
+      },
+      {
+        "video_title": "How banks charge you nothing and still keep $300",
+        "approach": "Tutorial",
+        "rating_social": 4.4,
+        "rating_audience": 4.4,
+        "rating_product": 4.6,
+        "hook": "Banks have two ways to charge you. One you see. One you don't.",
+        "body": "The wire fee is visible: $25, $40, whatever. The rate margin is invisible: 1 to 3 percent of the wire amount, embedded in the FX rate. On a $10K wire at 3 percent margin, that's $300 nobody itemises.",
+        "close": "Always check the rate against Google's mid-market rate. That's where the real cost lives.",
+        "visual": "Two-column chart: 'What you see' (wire fee) vs 'What you don't' (rate margin), with checkmark and dollar amounts under each"
+      },
+      {
+        "video_title": "$0 fee. $300 gone. Here's how.",
+        "approach": "Document-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.5,
+        "rating_product": 4.7,
+        "hook": "We sent $10,000. Wire fee: $0. Total cost to us: $300.",
+        "body": "The $300 wasn't a line item. It was the gap between the bank's applied rate (7.05) and the real interbank rate (7.27) at that exact minute. On a $10K wire, that gap is 3 percent. Or $300 the bank kept without saying so.",
+        "close": "Check the rate, not just the fee.",
+        "visual": "Receipt close-up scrolling, highlighting 'Fee: $0.00' then 'Applied rate: 7.05', then Google search 'USD to CNY rate' showing 7.27 at same time"
+      }
+    ]
+  },
+  {
+    "id": "P1-A14",
+    "findings": [
+      "Three SEA operators sending identical $50,000 wires to the same supplier on the same day can see supplier-end amounts vary by $700 to $1,500 depending on provider FX margin.",
+      "Bank A at 1.5 percent margin: supplier receives ~$49,250. Bank B at 0.6 percent: ~$49,700. Specialist FX at 0.3 percent: ~$49,850. Same wire, three outcomes.",
+      "Variation is driven entirely by the applied FX rate, not by the visible wire fee. Most SMEs only compare wire fees, missing the larger spread cost.",
+      "Currency Transfer reports SMEs save 50,000 GBP/year on 2M GBP volume by switching from bank (3 percent) to specialist FX (0.5 percent)."
+    ],
+    "angles": [
+      {
+        "video_title": "Three operators, same wire, three amounts",
+        "approach": "Comparison",
+        "rating_social": 4.7,
+        "rating_audience": 4.8,
+        "rating_product": 4.8,
+        "hook": "Three operators. Same $50K wire to the same supplier. Three different amounts arrived.",
+        "body": "Operator A used a major bank: supplier got $49,250. Operator B used a regional bank: $49,700. Operator C used a specialist provider: $49,850. Same day, same supplier, $600 spread on $50K. All three paid 'no fee'.",
+        "close": "The wire isn't the cost. The rate is.",
+        "visual": "Three split panels of the same wire confirmation page, each showing a different applied rate and supplier-end amount, the gaps highlighted"
+      },
+      {
+        "video_title": "Same $50K wire. $600 difference. Here's why.",
+        "approach": "Comparison",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Three importers wired the same $50K to the same factory yesterday. The factory got three different amounts.",
+        "body": "The difference isn't fee transparency. It's the FX margin built into each provider's rate. Major bank: 1.5 percent margin, $750 lost. Regional bank: 0.6 percent, $300 lost. Specialist provider: 0.3 percent, $150 lost.",
+        "close": "Your wire provider chooses what your supplier sees.",
+        "visual": "Three identical wire forms animated filling out, then three different supplier receipts dropping in, with red bars showing margin loss per provider"
+      },
+      {
+        "video_title": "We compared three banks on a $50K wire. Look at the gap.",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.6,
+        "hook": "$50K wire. Three providers. Supplier-end amounts: $49,250, $49,700, $49,850.",
+        "body": "That $600 gap is pure FX margin. Bank A took 1.5 percent. Bank B took 0.6 percent. Provider C took 0.3 percent. Multiply by 12 wires a year on the same volume: $7,200 difference between best and worst provider.",
+        "close": "Same wire, same supplier, $7K annual gap. The provider is the lever.",
+        "visual": "Bar chart racing animation, three bars growing to $49,250 / $49,700 / $49,850 with margin percentages above each"
+      },
+      {
+        "video_title": "Why your supplier prefers one of your wires over the others",
+        "approach": "Story",
+        "rating_social": 4.3,
+        "rating_audience": 4.4,
+        "rating_product": 4.5,
+        "hook": "Your Yiwu supplier just told you the wire was short. Again.",
+        "body": "Three of your shipments, three different banks, three different shortfalls. The supplier sees the variance every time. The gap isn't random, it's the bank's FX margin choice. We tested three SEA banks on the same $50K wire: results ranged $49,150 to $49,800.",
+        "close": "The supplier doesn't care which bank. They care which arrives.",
+        "visual": "Split screen: WhatsApp message from supplier 'Bro, short again' over three different wire confirmations stacked"
+      },
+      {
+        "video_title": "The $600 you don't know your bank is taking",
+        "approach": "Pain-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.6,
+        "hook": "Three identical wires. Three different supplier amounts. Spread: $600.",
+        "body": "Same $50K, same supplier account, same day. Bank with worst rate margin took $750. Best provider took $150. The difference is yours, if you know to ask. Most operators only ever use one provider, so they never see the gap.",
+        "close": "Compare your applied rate to Google's, just once. You'll be paying attention forever after.",
+        "visual": "Three identical envelopes on a table labelled $50K each, but the cash inside shows visibly different stacks"
+      }
+    ]
+  },
+  {
+    "id": "P1-A15",
+    "findings": [
+      "On a $10K USD-CNY wire, SEA bank FX margins typically cost $100 to $250 silently, even when wire fees are advertised as zero.",
+      "Per $10K to China: 1 percent margin = $100, 1.5 percent = $150, 2 percent = $200. Specialist FX at 0.3 percent = $30.",
+      "Multiply per-wire cost by frequency: $200/wire x 30 wires per year = $6,000 silently extracted on $300K annual sourcing.",
+      "Operators in TH/MY often run 10 to 50 wires a year to factories, each with the same silent margin. The compound effect is the story."
+    ],
+    "angles": [
+      {
+        "video_title": "What 'no fee' really costs per $10K to China",
+        "approach": "Math-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.7,
+        "hook": "Per $10K to your China supplier: $100 to $250 gone. Every wire. Every time.",
+        "body": "Not in a fee line. Not on your statement. In the rate. SEA bank FX margins on USD-CNY run 1 to 2.5 percent. That's $100 to $250 per $10K, paid silently. Run 30 wires a year, that's $6,000 you never accounted for.",
+        "close": "Free wires aren't free. They're $100 to $250 each.",
+        "visual": "Animated stack: $10K wire = $100 to $250 chunk extracted. Then 30 wires = $6,000 stacked alongside"
+      },
+      {
+        "video_title": "The hidden cost in every $10K wire to China",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.6,
+        "hook": "Send $10K to a Chinese supplier. Your bank quietly keeps $100 to $250.",
+        "body": "The mechanic: bank applies an FX rate 1 to 2.5 percent below the interbank rate. The gap goes to the bank. You don't see it because the fee line says zero. Same wire through a specialist FX provider: $30 in margin instead of $250.",
+        "close": "The fee line is theatre. The rate is the real bill.",
+        "visual": "Two side-by-side wire receipts: bank ($10K x 2.5%) vs specialist ($10K x 0.3%). Red bar over the bank receipt, green over the specialist"
+      },
+      {
+        "video_title": "$10K to China. How much does your bank really take?",
+        "approach": "Tutorial",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.5,
+        "hook": "Find the hidden cost on your next $10K wire in 30 seconds.",
+        "body": "Three steps. One: open your last wire confirmation. Two: Google the USD-CNY mid-market rate for that date and time. Three: subtract, divide, multiply by 10,000. That number is what your bank quietly kept.",
+        "close": "Once you see it, you can't unsee it.",
+        "visual": "Phone screen tutorial: wire confirmation open, Google search USD-CNY rate, calculator app showing the subtraction. Big number reveal at the end"
+      },
+      {
+        "video_title": "Per $10K to China: $100 you can't find on the statement",
+        "approach": "Curiosity-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "There's $100 missing from every $10K wire you send to China. Want to find it?",
+        "body": "It's hidden in the FX rate the bank applied. Bank rate 7.04, interbank rate 7.11, gap is 1 percent. On $10K, that's $100. On 30 wires a year, $3,000. Nobody asked you to sign for it.",
+        "close": "$100 per wire. $3,000 a year. Hidden in plain sight.",
+        "visual": "Wire confirmation showing 'Fee: $0.00' in big green. Camera zooms past it to the applied rate, which morphs into red showing -$100"
+      }
+    ]
+  },
+  {
+    "id": "P1-A16",
+    "findings": [
+      "Operator sees invoice for $50,000 USD. Bank statement debit: $51,200. The $1,200 difference is FX margin + correspondent fees, none of which appear as named charges.",
+      "Common pattern: invoice in USD or CNY, statement debited in local currency (THB/MYR) at a rate marked up 1.5 to 2.5 percent above the interbank rate.",
+      "Wire confirmations often hide the FX margin behind the 'applied rate' field, while the statement only shows the local-currency debit total.",
+      "Operators rarely reconcile invoice-to-statement because the currencies differ, which is exactly where the bank's margin lives."
+    ],
+    "angles": [
+      {
+        "video_title": "Receipt says $50K. Statement says $51.2K.",
+        "approach": "Document-led",
+        "rating_social": 4.8,
+        "rating_audience": 4.7,
+        "rating_product": 4.6,
+        "hook": "Your invoice says $50,000. Your bank statement says $51,200 debited. Where's the gap?",
+        "body": "The invoice was in USD. The statement was in THB or MYR. The bank applied an FX rate 2.4 percent off the interbank rate to convert it. That's $1,200, silently, on one wire. No itemised fee. Just two numbers that shouldn't match.",
+        "close": "Reconcile the invoice to the statement. The gap is the margin.",
+        "visual": "Two paper documents on a table: supplier invoice ($50,000 USD) and bank statement debit ($51,200 equivalent). A red highlighter circles both numbers"
+      },
+      {
+        "video_title": "The $1,200 between your invoice and your statement",
+        "approach": "Document-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.6,
+        "hook": "Invoice: $50,000. Statement: $51,200. What's the $1,200?",
+        "body": "It's not a fee line. It's the FX margin built into the rate your bank used to convert from local currency to USD. We see this on every SEA bank wire confirmation: invoice currency one side, debit currency the other, 2 to 3 percent gap in between.",
+        "close": "Where the currencies change, the margin hides.",
+        "visual": "Split-screen documents with a clear $1,200 gap between them, annotated 'FX margin' with an arrow"
+      },
+      {
+        "video_title": "Why your books never match your bank statement",
+        "approach": "Pain-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.7,
+        "rating_product": 4.5,
+        "hook": "Your accountant keeps asking why the supplier invoice and your bank statement don't match.",
+        "body": "It's not a mistake. It's the rate. Invoice in USD, statement in THB, conversion rate set by the bank with a 2 percent margin built in. The $1,200 difference isn't lost, it went to the bank's FX desk.",
+        "close": "Now you know what to tell your accountant.",
+        "visual": "Spreadsheet showing rows that don't reconcile, accountant scratching head, then animation revealing the FX rate as the missing column"
+      },
+      {
+        "video_title": "Same wire, two numbers, $1,200 difference",
+        "approach": "Curiosity-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Your supplier invoice and your bank statement should match. They don't.",
+        "body": "Supplier: $50,000 USD owed. Bank statement: $51,200 USD-equivalent debited from your local account. The $1,200 is FX margin. Spread out over 12 wires a year on the same scale, that's $14,400 silently extracted.",
+        "close": "Two numbers, one mechanic, $14K a year.",
+        "visual": "Two ledger entries side by side, the $1,200 gap appearing as a third hidden row labelled 'bank's FX margin'"
+      }
+    ]
+  },
+  {
+    "id": "P2-A1",
+    "findings": [
+      "A 2 percent gap between bank wire rate and specialist FX rail rate compounds across every wire in a year. On $500K annual sourcing, that's $10,000 silently lost.",
+      "Banks at 2 percent FX margin vs specialist providers at 0.3 to 0.5 percent = a 1.5 to 1.7 percentage point gap per wire, every wire.",
+      "Bancoli case: importer with $200K quarterly inventory at 3.5 percent margin = $28,000 annual hidden cost. At specialist 0.5 percent margin, it's $4,000.",
+      "Effective margin spread (bank vs specialist FX rail) tends to be 1.5 to 3 percentage points, with no fee line on either side to show it."
+    ],
+    "angles": [
+      {
+        "video_title": "How a 2% gap compounds over a year of sourcing",
+        "approach": "Math-led",
+        "rating_social": 4.6,
+        "rating_audience": 4.7,
+        "rating_product": 4.8,
+        "hook": "A 2 percent gap on one wire feels small. Run 12 wires a year. Watch what happens.",
+        "body": "$50K per wire, 12 wires a year, 2 percent gap = $12,000. That's not fees. That's just the rate margin difference between your bank and a specialist FX rail. Same supplier, same wires, $12K never accounted for.",
+        "close": "Two percent looks small per wire. It's $12K a year on $600K of sourcing.",
+        "visual": "Calendar animation, 12 wires fly across the months, each with a small red 2% chunk peeled off, stacking into a $12K pile at year end"
+      },
+      {
+        "video_title": "$10,000 you lost this year and didn't know",
+        "approach": "Pain-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.7,
+        "hook": "You spent $500K on Chinese sourcing this year. Your bank quietly kept $10K of it.",
+        "body": "Every wire carried 2 percent FX margin in the rate. That's $10K across the year, silent and unaccounted. Specialist FX rails sit at 0.3 to 0.5 percent. The gap is real, the compound is annual.",
+        "close": "$10K a year, no fee line, no notification.",
+        "visual": "Sourcing budget bar: $500K, watch a 2 percent slice peel off and float into a bank's pocket"
+      },
+      {
+        "video_title": "The 2 percent that becomes $12K a year",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Two percent per wire. 12 wires. Run the math.",
+        "body": "Wire 1: $50K x 2 percent = $1,000 silent. Wire 2: same. By December, $12,000 leaked, no fee anyone can point at. The bank just used a slightly worse rate, twelve times.",
+        "close": "Per wire it's quiet. Per year it's loud.",
+        "visual": "Counter ticking up: $1,000, $2,000, $3,000 ... $12,000 over a 12-month timeline"
+      },
+      {
+        "video_title": "The annual cost of using your bank for supplier wires",
+        "approach": "Math-led",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.8,
+        "hook": "If you wire $500K to China a year through your bank, you're paying $10K extra. Quietly.",
+        "body": "Bank FX margin: 2 percent. Specialist FX rail margin: 0.3 percent. Gap: 1.7 percent. On $500K annual volume, that's $8,500 you didn't have to spend. Not a fee. Just a rate choice the bank makes for you.",
+        "close": "The rail you pick is the bill you pay.",
+        "visual": "Two columns rising side by side over a year: bank ($10K leak) vs specialist FX rail ($1.5K leak), gap shaded in red"
+      }
+    ]
+  },
+  {
+    "id": "P2-A7",
+    "findings": [
+      "On $500K annual sourcing at 4 percent bank FX margin (high-end SEA bank), the silent leak is $20,000. Over 3 years, $60,000 compounds.",
+      "If sourcing budget grows 10 percent a year, the FX leak grows with it. Year 1: $20K. Year 3: $24K. Compound effect on a growing book.",
+      "WorldFirst effective margin is ~0.3 to 0.5 percent. Switching halves to thirds the silent leak immediately, without changing supplier or volume.",
+      "Cross-border payment industry data shows SMEs commonly lose 3 to 5 percent of total cross-border volume to hidden FX margin annually."
+    ],
+    "angles": [
+      {
+        "video_title": "Your sourcing budget shrinks 4% a year (you don't see it)",
+        "approach": "Math-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.8,
+        "hook": "Your sourcing budget loses 4 percent a year. Not to suppliers. To the bank's FX rate.",
+        "body": "$500K annual at 4 percent bank FX margin = $20K silently extracted. Year 2: $22K (budget grew). Year 3: $24K. Three-year leak: $66K. None of it shows up as a fee.",
+        "close": "Your budget isn't shrinking from inflation. It's shrinking from the rate.",
+        "visual": "Sourcing budget bar shrinking 4 percent each year over a 3-year timeline, red slice peeling away annually"
+      },
+      {
+        "video_title": "The 4% you'll never get back",
+        "approach": "Pain-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Four percent of your sourcing spend goes to your bank, not your supplier. Every year.",
+        "body": "On $500K a year that's $20K. Over three years, $60K. Compound it with budget growth, it gets worse. The fix isn't negotiating with the supplier, it's swapping the wire rail.",
+        "close": "You can't supplier-negotiate your way out of FX margin.",
+        "visual": "Two paths on screen: 'negotiate harder with supplier' (no impact on bank margin) vs 'switch FX rail' (4 percent recovered)"
+      },
+      {
+        "video_title": "Multi-year cost of bank wires to China",
+        "approach": "Math-led",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.8,
+        "hook": "Three years of bank wires. $60K silently gone. Same supplier. Same volume.",
+        "body": "Year 1: 500K sourcing, 4 percent FX margin, $20K leak. Year 2: budget grows 10 percent, leak grows to $22K. Year 3: $24.2K. Cumulative silent extraction: $66K, no fee anywhere on the statement.",
+        "close": "Multi-year compound. No fee, no record, no negotiation.",
+        "visual": "Three-year compound chart: bars rising for sourcing budget, red slice growing each year, totaling $66K leak"
+      },
+      {
+        "video_title": "$66K gone over 3 years and your books look fine",
+        "approach": "Story",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Three years of clean books. Three years of wires. $66K missing.",
+        "body": "Operator A wired $500K, $550K, $605K to suppliers over three years. Books reconciled every month. But every wire carried 4 percent FX margin in the rate. Total silent leak: $66K. Books never flagged it because no fee line existed.",
+        "close": "Clean books can hide expensive rails.",
+        "visual": "Spreadsheet of 36 months of perfectly reconciled wires, then a magnifying glass revealing the 4 percent rate margin in each row, totalling $66K"
+      },
+      {
+        "video_title": "Your sourcing margin is eaten by your bank, not your supplier",
+        "approach": "Curiosity-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.7,
+        "rating_product": 4.8,
+        "hook": "You think suppliers eat your margin. Your bank eats more.",
+        "body": "Supplier raises price 2 percent, you negotiate. Bank takes 4 percent on the wire, you never ask. Over $500K annual, that's $20K to the bank vs $10K to the supplier. Different lever, bigger lever.",
+        "close": "Negotiate with the rail, not just the factory.",
+        "visual": "Pie chart of total sourcing cost: supplier price, freight, FX margin slice highlighted in red as the largest 'silent' cost"
+      }
+    ]
+  },
+  {
+    "id": "P2-A8",
+    "findings": [
+      "Reading FX margin from a wire confirmation requires three numbers: applied rate (on the confirmation), interbank rate (Google/XE/Reuters at the same time), and wire amount.",
+      "Formula: ((Interbank rate - Applied rate) / Interbank rate) x 100 = margin percent. Multiply by wire amount = silent cost.",
+      "Example: applied 7.05, interbank 7.22 at 10:15am same day. Spread = (7.22-7.05)/7.22 x 100 = 2.35 percent. On $50K = $1,175.",
+      "Most SEA bank wire confirmations include the applied rate but never list the mid-market reference, by design."
+    ],
+    "angles": [
+      {
+        "video_title": "How to read FX margin off your wire confirmation",
+        "approach": "Tutorial",
+        "rating_social": 4.4,
+        "rating_audience": 4.7,
+        "rating_product": 4.7,
+        "hook": "Three numbers tell you what your bank really charged. Here's how to find them.",
+        "body": "Number one: the applied rate on your wire confirmation. Number two: the interbank rate from Google for the same date and time. Number three: subtract, divide by interbank, times 100. That's your margin percent.",
+        "close": "Three numbers, thirty seconds, real cost.",
+        "visual": "Phone tutorial: wire confirmation in left hand, Google search in right hand, calculator showing the formula filling in step by step"
+      },
+      {
+        "video_title": "Find the hidden FX margin in 30 seconds",
+        "approach": "Tutorial",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Open your last wire confirmation. We'll find the hidden fee right now.",
+        "body": "Step one: locate the 'applied rate' field, usually near the bottom. Step two: Google 'USD to CNY' and check the rate for the wire's date and time. Step three: subtract applied from interbank, divide by interbank, times 100. That's your bank's margin percent.",
+        "close": "If applied is 7.05 and interbank was 7.22, the bank took 2.35 percent.",
+        "visual": "Live walkthrough on a phone screen: confirmation, Google, calculator, big reveal of percent figure"
+      },
+      {
+        "video_title": "Your wire confirmation has a hidden line. Here it is.",
+        "approach": "Document-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "The most expensive number on your wire confirmation isn't a fee. It's the applied rate.",
+        "body": "Compare it to the interbank rate at the same minute. The gap is what your bank kept. Bank applied 7.05, interbank was 7.22, gap is 2.35 percent. On a $50K wire, that's $1,175 silently extracted.",
+        "close": "Read the applied rate. Always compare to interbank.",
+        "visual": "Annotated wire confirmation: yellow box around 'applied rate', red arrow pointing to Google search of interbank rate, gap circled"
+      },
+      {
+        "video_title": "The math your bank doesn't show you",
+        "approach": "Math-led",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "Your wire confirmation has all the numbers. Your bank just didn't connect them.",
+        "body": "Take the applied rate. Take the interbank rate. The formula is ((interbank minus applied) divided by interbank) times 100. Result is the margin percent. Multiply by your wire amount, that's the dollar cost. Three lines, full transparency.",
+        "close": "Your bank knew this number. They just didn't print it.",
+        "visual": "Whiteboard animation of the formula, then plugging in real SEA bank numbers, big dollar amount revealed"
+      },
+      {
+        "video_title": "Audit your bank's FX margin in three steps",
+        "approach": "Tutorial",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "You can audit your bank's FX margin in three steps. Most operators never bother.",
+        "body": "Step one: open your wire confirmation, find the applied rate. Step two: Google the interbank rate for that exact date and time. Step three: spread percentage = ((interbank - applied) / interbank) x 100. Save the result. Now you know.",
+        "close": "Three steps to see what you're paying.",
+        "visual": "Three-step infographic with real numbers filling in at each step, ending with a bold margin percent reveal"
+      }
+    ]
+  },
+  {
+    "id": "P2-A9",
+    "findings": [
+      "Bank quotes you a 'good' rate of 7.05 USD-CNY. Reuters interbank rate at the same minute: 7.22. The 'good rate' carries a 2.4 percent margin.",
+      "Banks rarely quote a rate that's actually competitive with interbank. The spread between 'good rate' marketing and real cost is the FX margin.",
+      "On $10K, a 'good rate' that's 2.4 percent off interbank costs $240. On $100K, $2,400. Same percent, scales with wire size.",
+      "Tools to verify: XE.com, Google search 'USD to CNY', Reuters terminal, Wise mid-market quote. All free, all real-time."
+    ],
+    "angles": [
+      {
+        "video_title": "Good rate quoted vs real interbank rate",
+        "approach": "Math-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Your bank said the rate was good. Compared to what?",
+        "body": "Bank quote: 7.05 USD-CNY. Real interbank rate at the same minute: 7.22. The bank's 'good rate' is 2.4 percent off the real market. On $10K, that's $240. The word 'good' carries no math.",
+        "close": "Compare every quoted rate to the interbank rate. The word 'good' isn't a number.",
+        "visual": "Speech bubble from a banker: 'we'll give you a good rate, 7.05', then Google search reveals interbank 7.22, gap highlighted"
+      },
+      {
+        "video_title": "What 'we'll give you a good rate' actually means",
+        "approach": "Curiosity-led",
+        "rating_social": 4.6,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "When your bank says 'good rate', they mean good for them.",
+        "body": "Real interbank USD-CNY at 10am: 7.22. Bank's 'good rate' for your wire: 7.05. The gap, 2.4 percent, is the bank's silent margin. The rate isn't bad. It's just not what they implied.",
+        "close": "Banks compete on 'good'. You should compete on numbers.",
+        "visual": "Side by side: bank's marketing 'best rates' on the left, real interbank rate ticker on the right, gap pulsing in red"
+      },
+      {
+        "video_title": "The rate they quote vs the rate that exists",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.7,
+        "hook": "There's a real interbank rate, and there's the rate your bank quotes you. They're not the same.",
+        "body": "Interbank USD-CNY: 7.22. Bank quote: 7.05. Spread: 2.4 percent. The interbank rate is what banks pay each other. The quoted rate is what they sell you. On $10K, that's $240. On $50K, $1,200.",
+        "close": "Always check the interbank rate before saying yes to a quote.",
+        "visual": "Two clocks at the same time: one showing the real interbank rate ticking on Reuters, the other showing the bank's static quoted rate, gap highlighted"
+      },
+      {
+        "video_title": "How to know if a quoted rate is actually good",
+        "approach": "Tutorial",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "Bank quotes a rate. Is it good? Here's the 10-second check.",
+        "body": "Open Google. Type 'USD to CNY'. Compare to the rate you were just quoted. Calculate the gap percent. If it's under 0.5 percent, that's a real good rate. If it's 1 to 3 percent off, that's a marketing rate, not a real one.",
+        "close": "Under 0.5 percent is good. Two percent is the bank winning.",
+        "visual": "Quick checklist appearing on screen: 'open Google', 'compare', 'calculate', with thumbs up/down on the gap result"
+      }
+    ]
+  }
+]

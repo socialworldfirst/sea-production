@@ -1,0 +1,315 @@
+[
+  {
+    "id": "P2-A12",
+    "findings": [
+      "PayPal averages ~4.4% on cross-border transactions plus ~3-4% FX markup on currency conversion, totalling 7-10% on a typical international B2B order before any supplier-side cost is added",
+      "Wise personal account terms (Section 1.4): 'You may not use your personal Wise account to receive business payments.' Personal accounts are explicitly limited to personal purposes",
+      "~95% of Chinese suppliers transact domestically via Alipay or WeChat Pay; credit cards and PayPal sit at the edge of acceptance, mostly for samples or small first orders",
+      "Wise has tightened compliance: small business owners report payments frozen for invoice/contract proof; account closures cited for 'too high balance' or business volume on personal accounts",
+      "B2B-built tools (WF, Airwallex Business, OFX) include bulk payment workflows, beneficiary verification, FX forwards (3-12mo lock), and accounting export. Personal-tool apps stop at send-money UI"
+    ],
+    "angles": [
+      {
+        "video_title": "Why your travel money app cracks at $20K",
+        "approach": "Category",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.6,
+        "hook": "Your travel money app is doing $20K supplier payments. It wasn't designed for this.",
+        "body": "Personal apps were built for one user, one trip, one currency. Volume limits sit around $50K to $100K a year. Compliance dragnets pull random transfers for invoice review. There's no bulk pay, no FX forward, no accounting export. The product is doing the wrong job, well.",
+        "close": "Personal tool, business volume. Something has to give.",
+        "visual": "Split frame: holiday photo with travel app on the left, weekly $20K supplier wire list on the right. Same app icon. One breaks."
+      },
+      {
+        "video_title": "The four things consumer apps don't have",
+        "approach": "Category",
+        "rating_social": 4.2,
+        "rating_audience": 4.4,
+        "rating_product": 4.7,
+        "hook": "If your payments tool doesn't have these four things, it's a consumer app.",
+        "body": "One: bulk pay. Twenty suppliers in one upload, not twenty single transfers. Two: beneficiary verification. Account name matched to business registration before money leaves. Three: FX forwards. Lock 3 months of CNY rate today. Four: accounting export. Reconciled rows into your books, not screenshots.",
+        "close": "You're not failing the tool. The tool was built for someone else.",
+        "visual": "Four checkbox rows fill in: bulk pay, supplier verification, FX forward, accounting export. Tick each one. End frame: 'This is a B2B tool.'"
+      },
+      {
+        "video_title": "Personal app limits caught up to you",
+        "approach": "Pain-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.5,
+        "rating_product": 4.4,
+        "hook": "Your personal account just got flagged for the third time this month.",
+        "body": "When the same login does holiday transfers and supplier wires, the platform's risk system can't tell them apart. So it freezes. It asks for invoices. It caps you at $50K a year. The product isn't broken. It's working as designed, for a different user.",
+        "close": "If business is moving through it, business tools should hold it.",
+        "visual": "Phone screen showing: 'Transfer paused. We need some checks.' Compliance email overlay. Same app, same user, two roles colliding."
+      },
+      {
+        "video_title": "Why the same app costs you double the rate",
+        "approach": "Comparison",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.7,
+        "hook": "Same app. Same currency pair. Two different rates.",
+        "body": "Personal tier and business tier on the same platform run different pricing. Personal: 0.5 to 1% on CNY. Business: tighter rate, plus FX forwards and bulk pay you can't access from the personal side. The platform isn't tricking you. You're on the wrong product.",
+        "close": "Check which tier you're on before you check the rate.",
+        "visual": "Two phones side by side, same brand app, same THB to CNY screen. Different rates highlighted. Caption: 'personal' vs 'business'."
+      }
+    ]
+  },
+  {
+    "id": "P2-A13",
+    "findings": [
+      "PayPal international B2B fees typically sit at ~4.4% transaction + 3-4% FX margin = ~7-8% total on a cross-border supplier payment. Industry estimates put a $10K order at $700-1000 in total cost",
+      "On $20K: ~$880 transaction fee (4.4%) + ~$700 FX margin (3.5%) = ~$1,580 visible cost, ~7.9% of payment value",
+      "Most Chinese suppliers are reluctant to accept PayPal and often add a price surcharge to absorb their own receiving fee. Some 'add 4-5%' to PI when PayPal is the rail",
+      "Supplier-side cost: PayPal charges receivers ~4.4% + fixed fee for cross-border commercial. Suppliers either eat it or pass it back",
+      "21-day fund holds and 180-day chargeback windows on PayPal create operational risk on the supplier side, which they price in"
+    ],
+    "angles": [
+      {
+        "video_title": "What a $20K PayPal supplier payment actually costs",
+        "approach": "Math-led",
+        "rating_social": 4.7,
+        "rating_audience": 4.7,
+        "rating_product": 4.6,
+        "hook": "You sent $20,000 by PayPal. The receipt says $20,000. The real cost was higher.",
+        "body": "Cross-border transaction fee: 4.4%, that's $880. FX conversion margin to CNY: roughly 3.5%, another $700. Many Chinese suppliers absorb a receiving fee, so they quote you 4 to 5% higher on the PI. Add it up: visible cost $1,580, plus a quiet price uplift baked into your invoice.",
+        "close": "PayPal works. It's just priced for retail, not for $20K weekly orders.",
+        "visual": "Receipt-style breakdown stacking line by line. $20,000 at top. $880 added. $700 added. $800 supplier markup added. Bottom line: $22,380."
+      },
+      {
+        "video_title": "PayPal fee receipt: line by line",
+        "approach": "Math-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "Let's open the actual PayPal receipt on a $20K supplier payment.",
+        "body": "Line one: cross-border fee, around 4.4%. Line two: PayPal's FX rate, about 3.5% off mid-market. Line three: fixed transaction fee, 49 cents. Line four, invisible: the supplier may have raised the PI price 4 to 5% to cover their own PayPal receiving fee. The single transfer carries three or four layers of cost.",
+        "close": "One transfer. Four costs. Worth knowing before you pick the rail.",
+        "visual": "Animated receipt unfurls. Each fee line appears with a small icon. Final 'total cost' label at bottom in red."
+      },
+      {
+        "video_title": "Why your supplier raised the PI 5%",
+        "approach": "Story",
+        "rating_social": 4.6,
+        "rating_audience": 4.7,
+        "rating_product": 4.4,
+        "hook": "You asked your supplier to accept PayPal. The next PI came back 5% higher.",
+        "body": "PayPal charges the receiver too. On a $20K order, your supplier loses roughly 4.4% just to access the money, plus a 21-day hold window. They cover it the only way they can: by repricing your next order. The cost didn't go away. It moved.",
+        "close": "Convenience for you can become a markup on you.",
+        "visual": "Two PI documents side by side. Old PI vs new PI. Unit price ticking up 5%. Note in supplier handwriting: 'PayPal fee included.'"
+      },
+      {
+        "video_title": "PayPal costs 4 to 8 percent. Here's where",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "PayPal isn't 2.9%. Not on a cross-border $20K payment.",
+        "body": "The 2.9% you remember is for domestic card payments. Cross-border B2B sits closer to 4.4% plus an FX margin of 3 to 4%. Total visible cost: 7 to 8% before your supplier's quiet uplift. On a $20K wire, that's $1,400 to $1,600 disappearing inside one transaction.",
+        "close": "The number depends on which PayPal you're using. Check before you send.",
+        "visual": "Big number ticker: 2.9% gets crossed out. Replaced by 4.4% + 3.5%. Final stacked total ~7.9%. Calculator UI vibe."
+      },
+      {
+        "video_title": "PayPal at $200 vs PayPal at $20K",
+        "approach": "Comparison",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.5,
+        "hook": "PayPal at $200 feels cheap. PayPal at $20,000 doesn't.",
+        "body": "At $200 the fixed-fee portion absorbs most of the pain. At $20,000 the percentage takes over. 4.4% on $200 is $9. 4.4% on $20,000 is $880, before FX. The product didn't change. The math did. Personal-volume apps are priced for personal volumes.",
+        "close": "If you wouldn't pay a bank $880, don't pay an app $880.",
+        "visual": "Two phone screens. Left: $200 transfer, $5.80 fee. Right: $20,000 transfer, $880 fee. Same UI. Same brand. Different reality."
+      }
+    ]
+  },
+  {
+    "id": "P2-A14",
+    "findings": [
+      "Only ~3-5% of Chinese suppliers accept credit cards directly; ~95% transact domestically via Alipay or WeChat Pay",
+      "Card transactions on Alibaba carry ~2.95-2.99% processing fee, capped at $12,000 per order, plus FX margin from the issuing bank (1-3%)",
+      "Suppliers reject cards primarily due to: 180-day chargeback window (high risk on already-shipped goods), 2-3% fee they'd absorb, and Alipay/WeChat being the standard domestic rail",
+      "Card workarounds: Trade Assurance (escrows the payment, supplier accepts because Alibaba holds the dispute risk), sourcing agents (agent takes card, settles to supplier in CNY)",
+      "Bank card terminals are rare in Chinese B2B; most factories have never been set up to accept Visa or Mastercard"
+    ],
+    "angles": [
+      {
+        "video_title": "Why your supplier said no to the card",
+        "approach": "Category",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.4,
+        "hook": "You offered Visa. Your supplier asked for T/T. Here's why.",
+        "body": "Only about 3 to 5% of Chinese suppliers accept cards directly. The other 95% run on Alipay or WeChat Pay domestically. Plus, a card transaction gives the buyer 180 days to dispute, on goods that already shipped. For the supplier, that's not payment. That's a loan with a return policy.",
+        "close": "The card isn't the problem. The category was built for retail, not factory orders.",
+        "visual": "Map of China overlaid with payment icons: Alipay everywhere, WeChat everywhere, tiny Visa logos in maybe 3 cities. Caption: 3 to 5% acceptance."
+      },
+      {
+        "video_title": "Cards work for buyers. Not for sellers in China",
+        "approach": "Comparison",
+        "rating_social": 4.3,
+        "rating_audience": 4.5,
+        "rating_product": 4.4,
+        "hook": "A credit card is a buyer's tool. That's the problem.",
+        "body": "Cards exist to protect the buyer: chargeback, dispute, fraud reversal. All risk lives with the merchant. A Chinese factory selling $20K of goods on a 30 day production cycle can't carry 180 days of chargeback risk on 2% margins. They say no. It's not about you. It's about how cards are built.",
+        "close": "The rail matters. Cards aren't a supplier rail.",
+        "visual": "Card slid across a table, factory owner shaking head. Side-by-side: buyer protections list (long) vs seller protections (short). Imbalance is the visual."
+      },
+      {
+        "video_title": "What 2.95% on a card actually buys you",
+        "approach": "Math-led",
+        "rating_social": 4.2,
+        "rating_audience": 4.4,
+        "rating_product": 4.5,
+        "hook": "Paying suppliers by card sounds simple. The 2.95% has layers.",
+        "body": "Alibaba's card fee is 2.95 to 2.99% on the payment, capped at $12,000 per order. Your issuing bank adds 1 to 3% FX margin. Some suppliers pass back another 2 to 4% to absorb their side. So the 'card convenience' tier sits around 6 to 8% all in, with a $12K ceiling per order.",
+        "close": "Cards are fine for samples. They get expensive at scale.",
+        "visual": "Stacked bar chart: 2.95% Alibaba + 2% FX + 3% supplier surcharge = ~8% total. Each layer fades in. $12K cap shown as a wall."
+      },
+      {
+        "video_title": "Cards have no rail to a Chinese factory",
+        "approach": "Category",
+        "rating_social": 4.1,
+        "rating_audience": 4.3,
+        "rating_product": 4.4,
+        "hook": "There is no Visa terminal in a Foshan factory.",
+        "body": "When you 'pay by card', someone in the middle, often Alibaba or a sourcing agent, takes the card on their side and settles to the supplier in CNY via bank transfer or Alipay. The card never actually reached the supplier. You're paying a middleman for the bridge. The bridge is the cost.",
+        "close": "The card isn't talking to the factory. Something else is.",
+        "visual": "Animated flow: your card to Alibaba/agent to T/T to supplier. Highlight the middleman node. Caption: 'this layer is the fee'."
+      }
+    ]
+  },
+  {
+    "id": "P2-A18",
+    "findings": [
+      "Major bank FX margin on consumer transfers sits around 2-4% off mid-market; specialist business platforms typically run 0.3-1% on the same pair",
+      "On a $20K supplier wire at 2% personal vs 0.5% business FX spread = $400 vs $100. The 'spread' alone is $300 in your favour on one transfer",
+      "Mid-market rate = the rate banks use among themselves. Personal tools and bank apps quote a 'retail rate' that already has the margin baked in",
+      "For an SME doing $50K/month in CNY payments, a 1.5% spread difference = $750/mo = $9,000/yr disappearing inside the rate, never appearing on a line item",
+      "Personal accounts on the same provider as a business account often pay a different rate. Personal tier sees retail spread; business tier sees institutional spread"
+    ],
+    "angles": [
+      {
+        "video_title": "The rate you see isn't the rate that exists",
+        "approach": "Math-led",
+        "rating_social": 4.6,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "Open Google. Type 'THB to CNY'. That rate doesn't exist for your wallet.",
+        "body": "Google shows the mid-market rate. Banks use it among themselves. Your wallet sees a 'retail' rate, which already has 2 to 4% baked in. That's the spread. It never appears as a line item. It just shows up as 'this conversion came out lower than I expected'.",
+        "close": "The rate you see and the rate you get aren't the same currency.",
+        "visual": "Google search bar typing 'THB to CNY'. Mid-market rate displayed big. Then crossfade to wallet UI showing the worse rate. Difference highlighted."
+      },
+      {
+        "video_title": "Personal vs business FX: the same currency, two prices",
+        "approach": "Comparison",
+        "rating_social": 4.5,
+        "rating_audience": 4.5,
+        "rating_product": 4.7,
+        "hook": "Same currency pair. Same day. Two different rates. Why?",
+        "body": "Personal-tier FX on most platforms runs 1.5 to 2% off mid-market. Business-tier runs 0.3 to 1%. That gap is the spread. On a $20K supplier wire, 1.5% of difference is $300. Times four weeks: $1,200 a month gone, inside the rate, no line item, no notification.",
+        "close": "If you're paying suppliers weekly, the tier change pays for itself in one transfer.",
+        "visual": "Two FX rate cards. Personal: 0.245 THB/CNY. Business: 0.247. Tiny gap. Annotated: 'this gap = $1,200/mo on $20K weekly'."
+      },
+      {
+        "video_title": "A 1.5% spread on $50K/month is $9,000 a year",
+        "approach": "Math-led",
+        "rating_social": 4.5,
+        "rating_audience": 4.6,
+        "rating_product": 4.7,
+        "hook": "1.5% sounds tiny. On supplier volumes, it isn't.",
+        "body": "An SME doing $50,000 a month in CNY supplier payments at a 1.5% spread loses $750 a month. That's $9,000 a year. Inside the FX rate. Nowhere on any invoice. Nowhere in your accounting export. You can't see it unless you compare your conversion rate to the mid-market rate on the same day.",
+        "close": "It's not a fee. It's the gap. The gap is real money.",
+        "visual": "Calculator UI. $50,000 × 1.5% × 12 = $9,000. Number scales up dramatically. Bottom caption: 'inside the rate, invisible'."
+      },
+      {
+        "video_title": "How to spot the spread on any transfer",
+        "approach": "Tutorial",
+        "rating_social": 4.3,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "You can check the FX spread on any transfer in 10 seconds.",
+        "body": "Step one: look at the rate your app quoted you, say 0.245 THB to CNY. Step two: Google 'THB to CNY' on the same day, get the mid-market, say 0.249. Step three: divide the gap by mid-market: 0.004 over 0.249 = 1.6%. That's your spread. Multiply by your transfer to see what you actually paid.",
+        "close": "If you've never done this, do it on your last wire. The number will surprise you.",
+        "visual": "Three quick steps shown as phone screen recordings. App rate, Google rate, calculator. Final number: '1.6% spread' highlighted."
+      },
+      {
+        "video_title": "Why retail FX exists at all",
+        "approach": "Category",
+        "rating_social": 4.1,
+        "rating_audience": 4.4,
+        "rating_product": 4.6,
+        "hook": "There's no law that says banks should charge you 2% to convert money.",
+        "body": "The spread exists because retail FX is a profit centre, not an infrastructure service. Banks set retail rates based on what they think you'll accept, not what the currency actually moves at. Business-tier exists because volume customers know what mid-market is and walk if you mark it up. Information gap is the entire product.",
+        "close": "If you know the mid-market rate, you stop being the retail customer.",
+        "visual": "Two windows: 'retail FX desk' (no questions asked) vs 'institutional desk' (visible mid-market screen). Same building, two doors."
+      }
+    ]
+  },
+  {
+    "id": "P2-A24",
+    "findings": [
+      "Cards work cleanly for: samples and small first orders under ~$1,000, agent payments, and Alibaba Trade Assurance orders where escrow holds the dispute risk",
+      "Alibaba Trade Assurance card cap: ~$12,000 per order. Above that, you're back on T/T or specialist rails",
+      "Card via sourcing agent: agent accepts your card on their side, settles to factory in CNY via Alipay or T/T. Agent takes a fee (typically 3-5%) for the bridge",
+      "Cards do NOT work for: bulk production orders >$12K, factories without Trade Assurance, ongoing weekly volumes, FX-locked payments, or any scenario where the supplier needs CNY directly",
+      "Buyer-side protection via card chargeback is the actual reason to use a card for samples: 180-day window catches bad samples that T/T can't recover"
+    ],
+    "angles": [
+      {
+        "video_title": "When CAN you pay a Chinese supplier by card?",
+        "approach": "Tutorial",
+        "rating_social": 4.6,
+        "rating_audience": 4.7,
+        "rating_product": 4.6,
+        "hook": "Cards don't always fail with Chinese suppliers. They work in three scenarios.",
+        "body": "One: samples and small first orders under $1,000, where the 2.95% fee is small and chargeback protects you. Two: Alibaba Trade Assurance orders up to $12K, where Alibaba escrows the money. Three: through a sourcing agent, who takes the card and settles to the factory in CNY. Outside those three, T/T or a B2B rail is the path.",
+        "close": "Cards have a use. Just know which one.",
+        "visual": "Three card icons appear with green checkmarks: samples, Trade Assurance, agent. Then a fourth (bulk production) appears with red X."
+      },
+      {
+        "video_title": "The $12,000 wall on credit cards",
+        "approach": "Math-led",
+        "rating_social": 4.4,
+        "rating_audience": 4.5,
+        "rating_product": 4.6,
+        "hook": "Alibaba card payments cap at $12,000 per order. That's not arbitrary.",
+        "body": "Above $12K, the chargeback risk on a single order is too large for Alibaba to escrow against the supplier. So they push you to T/T. The $12K ceiling is roughly where samples become production. Cards live below the wall. Production orders live above it. Same factory, different rail.",
+        "close": "Cards are a sample tool. Above $12K, it's a different game.",
+        "visual": "Bar chart with a hard ceiling drawn at $12,000. Sample orders below the line in green. Production orders above in grey, with arrow pointing 'T/T zone'."
+      },
+      {
+        "video_title": "Why cards are perfect for sample orders",
+        "approach": "Tutorial",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.5,
+        "hook": "For a $500 sample order, the credit card is doing real work.",
+        "body": "Sample order risk is high: you don't know if the factory is real, if quality matches the listing, if it ships at all. A card gives you a 180 day chargeback window. If the sample's wrong, you dispute. T/T at $500 has no recovery. The 2.95% fee on $500 is $15. Cheap insurance.",
+        "close": "Use the card where chargeback protection is the actual product.",
+        "visual": "Sample box arriving, quality check fails, chargeback button pressed, money returns. Compare to T/T scenario where money is just gone."
+      },
+      {
+        "video_title": "The sourcing agent card trick",
+        "approach": "Tutorial",
+        "rating_social": 4.2,
+        "rating_audience": 4.4,
+        "rating_product": 4.3,
+        "hook": "Your factory doesn't take cards. Your sourcing agent does.",
+        "body": "Most sourcing agents in Yiwu, Shenzhen, Guangzhou take Visa or Mastercard. You pay the agent by card. They settle to the factory in CNY by Alipay or T/T. The agent's fee is typically 3 to 5%. Add card fee plus agent fee and you're at 6 to 8%. Worth it for one-off orders. Expensive at weekly cadence.",
+        "close": "Useful escape hatch. Not a long-term rail.",
+        "visual": "Flow chart: you to agent (card icon) to factory (Alipay icon). Annotated fees: 2.95% + 3-5% = 6-8% total. Caption: 'escape hatch'."
+      },
+      {
+        "video_title": "Three times the card was the wrong tool",
+        "approach": "Story",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "Three real scenarios where the card was the wrong choice.",
+        "body": "One: $40K production order, hit the $12K Alibaba cap, had to split across four cards, paid 2.95% on every one. Two: weekly $8K orders, accumulated 3% card fee plus 3% FX = $480 a week, $25K a year. Three: factory wanted CNY directly, no Trade Assurance, card never reached them, paid an agent 5% to bridge. Same order, three different cost stacks.",
+        "close": "Cards have a slot. Knowing the slot saves the spend.",
+        "visual": "Three mini case cards stacked, each with the dollar amount of waste highlighted in red. End with: 'card is a tool, not the tool'."
+      }
+    ]
+  }
+]
