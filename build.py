@@ -399,7 +399,7 @@ PENDING_CARDS = [
     pending("P2-A6", "P2", "07", "The break-even: when should you switch providers?", "KOL distributed · math/decision-led", fmt="KOL"),
 ]
 
-CARDS = [LF_P1_A1] + SF_TOPIC_01 + PENDING_CARDS
+CARDS = SF_TOPIC_01 + [c for c in PENDING_CARDS if c['format'] != 'LF']
 
 
 def render_rating_bar(label, value, color_class):
