@@ -1,378 +1,551 @@
 #!/usr/bin/env python3
-"""SEA brand channel — unified production cards page.
-Each banked piece = one card with brainstorm hooks + research findings + writing angles + draft action.
+"""SEA brand channel — production cards v2.
+Each card shows 5 writing angles (mini-scripts) with multi-select + per-angle rating.
+Research findings collapsed below. Per-card comment box. Sticky bottom panel aggregates picks.
 """
 import os, json
 from html import escape
 
-# Topic 01 is researched. The rest have placeholder content until run.
+VERSION = "v2"
 
-CARDS = [
-    # ===== Topic 01 — CNY rails (RESEARCHED) =====
+TOPIC_NAMES = {
+    "01": "CNY rails + money flow to/from China",
+    "02": "FX margin + hidden costs",
+    "03": "WorldFirst product mechanics",
+    "04": "Personal vs business tools",
+    "05": "Paying in CNY economics",
+    "06": "Wire rejection failure modes",
+    "07": "Switch-point math (KOL)",
+}
+
+# Topic 01 — 6 SF cards with full 5-angle mini-scripts + 1 LF anchor with structural directions
+SF_TOPIC_01 = [
     {
-        "id": "P1-A1", "format": "LF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
-        "title": "Money in and out of China: the operator's full picture",
-        "format_spec": "Long-form 15-20 min · bilingual EN + Mandarin · Hui Mei lead",
-        "hooks": [
-            "How money actually enters and leaves China when you're an operator. The full picture, end to end.",
-            "Most explainers cover one direction. Operators need both: paying in, getting paid out.",
-            "China money flow for operators: 4 inbound channels, 3 outbound, and the rules for each.",
-        ],
-        "findings": [
-            "CIPS processed ¥175.49 trillion in 2024 (+42.6% YoY). The CNY rail is now real-scale infrastructure, not theoretical.",
-            "80% of CIPS transactions still use SWIFT for messaging — mixed-rail reality, not a clean replacement.",
-            "ASEAN remittance used to cost >6% in fees; PromptPay-PayNow now seconds at fraction of cost. The SEA backdrop has shifted.",
-            "Bidirectional flow (in + out) is rarely covered as one piece — SEO + audience gap.",
-            "WF SG public page does NOT name MYbank partnership. Script around this. Use 'dedicated CNY rail' / 'specialised cross-border infrastructure' framing.",
-        ],
-        "angles": [
-            {"name": "Sequential — in then out", "blurb": "Pay suppliers (8 min) → marketplace payouts (6 min) → synthesis (2 min). Best for SEO; ranks for both directions."},
-            {"name": "Problem-led — 3 things break", "blurb": "Wire rejections, FX gaps, routing delays. Each as an act. Strongest emotional pull."},
-            {"name": "Day-in-the-life — 24 hours", "blurb": "9am marketplace payout, 10am supplier wire, 11am FX check, 2pm bulk transfer, 4pm receivables. Most relatable; needs an operator case."},
-            {"name": "Cost-decomposition — $100K/month leaks", "blurb": "Leak 1 ($1,800 FX margin), leak 2 ($150-400 wire+intermediary), leak 3 ($1,500 payout conversion). Total $3,500-5,000/month."},
-            {"name": "Question-led — 5 operator questions", "blurb": "How to pay, why supplier asks for more, how fast, marketplace payouts in CNY, when to switch off your bank. Each Q = one SF cut."},
-        ],
-    },
-    {
-        "id": "P1-A2", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A2", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "3 ways CNY actually reaches your supplier",
         "format_spec": "Short-form 60s · bilingual",
-        "hooks": [
-            "There are 3 ways your CNY reaches a Chinese supplier. Only one is same-day.",
-            "Same wire, three possible paths, three different speeds.",
-            "Three definitions of 'CNY transfer' in banking. Only one means CNY actually moves CNY.",
-        ],
         "findings": [
             "The 3 ways: SWIFT-routed via correspondent banks; CIPS direct clearing; MYbank/Alipay corporate (for 1688).",
-            "Most operators treat all three as one mechanism. The differences are speed, cost, and supplier-side amount received.",
-            "1688's bank-transfer route uses MYbank cooperation for 'large-amount fund collection.'",
+            "CIPS processed $24.47T USD equivalent in 2024 (+42.6% YoY) — real-scale infrastructure.",
+            "Most operators treat the three as one mechanism. The differences are speed, cost, and amount supplier actually receives.",
+            "WF SG public page doesn't name MYbank explicitly — script needs to say 'dedicated CNY rail' not 'MYbank partnership'.",
         ],
         "angles": [
-            {"name": "Curiosity-led", "blurb": "Open with 'There are 3 ways...'. Reveal each. Best hook for TikTok."},
-            {"name": "Pain-led", "blurb": "Open with 'Your supplier received USD when you sent CNY.' Then explain it's the rail."},
-            {"name": "Mechanism-led demo", "blurb": "Visual: trace a $10K CNY payment through each of the 3 rails. Strongest for IG carousel + reel."},
-            {"name": "Comparison-led", "blurb": "Two banks, same 'CNY transfer' label, two different outcomes."},
-            {"name": "Authority-led", "blurb": "'CIPS processed $24T in 2024. Here's what it actually does.' Numbers-first."},
+            {
+                "name": "Curiosity-led — the 3 paths reveal",
+                "rating": 4.5,
+                "snippet": "Your CNY can take three different paths to reach a Chinese supplier. Only one is same-day. Most banks won't tell you which path they put you on.",
+                "hook": "Your CNY can take three different paths to reach a Chinese supplier. Only one is same-day.",
+                "body": "Path one: SWIFT through correspondent banks — 3 to 5 days. Path two: CIPS, China's own clearing system — 1 to 2 days. Path three: MYbank routing for 1688 — same-day when set up right. Most banks don't tell you which one you're on.",
+                "close": "Check your wire confirmation. The routing's on it. Follow for more.",
+                "visual": "Animated 3-rail diagram, money moving on each at different speeds",
+            },
+            {
+                "name": "Pain-led — sent CNY, got USD",
+                "rating": 4.7,
+                "snippet": "You sent CNY. Your supplier received USD. The bank converted at their rate without telling you. This happens because of the rail.",
+                "hook": "You sent CNY. Your supplier received USD. The bank converted at their rate.",
+                "body": "This happens because not every bank labelled 'CNY transfer' uses a CNY-direct rail. Some route through SWIFT to a USD-clearing correspondent. Conversion happens in the middle. Your supplier gets USD. Same wire, different bank, different outcome.",
+                "close": "Check the routing before you send. Follow for the test.",
+                "visual": "Split screen — sent CNY (clean) vs received USD (red highlight)",
+            },
+            {
+                "name": "Demo-led — same $10K, three rails",
+                "rating": 4.3,
+                "snippet": "Same $10K, three rails. Three supplier-side receipts. Watch the difference. This is what your bank doesn't show you.",
+                "hook": "Watch what happens to your CNY at each of three different rails.",
+                "body": "Same $10K, three rails. Rail one — SWIFT with intermediary fees: supplier gets $9,800 USD. Rail two — CIPS direct: supplier gets 70,000 CNY clean. Rail three — MYbank for 1688: supplier gets 70,000 CNY same-day. The rail decides the receipt.",
+                "close": "Three rails. Three receipts. Pick the right one.",
+                "visual": "Three-panel demo on screen, money flow on each",
+            },
+            {
+                "name": "Comparison-led — two banks, same label",
+                "rating": 4.2,
+                "snippet": "Two banks both say 'CNY transfer'. Bank A routes via SWIFT. Bank B routes via CIPS. Watch what your supplier sees from each.",
+                "hook": "Two banks both say 'CNY transfer'. Watch what each actually does.",
+                "body": "Bank A: sends through SWIFT, your CNY routes via USD-clearing correspondent, supplier gets converted USD. Bank B: sends through CIPS direct, CNY stays CNY, supplier receives the exact amount you sent. Same label, different infrastructure.",
+                "close": "Same words, different outcomes. Read the rail.",
+                "visual": "Side-by-side bank screen recordings + supplier-side receipts",
+            },
+            {
+                "name": "Authority-led — CIPS scale",
+                "rating": 4.0,
+                "snippet": "CIPS processed $24 trillion in 2024. Most operators don't know what CIPS is. It's why your supplier can receive real CNY.",
+                "hook": "CIPS processed $24 trillion in 2024. Most operators don't know what CIPS is.",
+                "body": "CIPS is China's own cross-border clearing system. Unlike SWIFT which just sends messages, CIPS actually moves the CNY. 1,600 banks across 180 countries connect to it. When your CNY rides CIPS, it stays CNY all the way to your supplier.",
+                "close": "Learn what your money actually does.",
+                "visual": "Data viz of CIPS volume bars year-over-year",
+            },
         ],
     },
     {
-        "id": "P1-A7", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A7", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "Two banks offer 'CNY transfer'. Only one moves CNY.",
         "format_spec": "Short-form 45s · bilingual",
-        "hooks": [
-            "Two banks both say 'CNY transfer'. Only one actually sends CNY. Your supplier knows the difference.",
-            "Your bank said 'CNY transfer'. Your supplier received USD. Here's what went wrong.",
-            "Two definitions of 'CNY transfer' in banking. Only one matches what your supplier needs.",
-        ],
         "findings": [
-            "Bank A: routes via SWIFT to USD-clearing correspondent; conversion happens at correspondent end → supplier receives USD.",
+            "Bank A: routes via SWIFT to USD-clearing correspondent; supplier receives USD.",
             "Bank B: routes via CIPS or MYbank direct; supplier receives true CNY.",
-            "Same label, different infrastructure. Marketing claims don't match operational reality.",
+            "Same label ('CNY transfer'), different infrastructure, different outcomes.",
+            "Marketing claims don't match operational reality.",
         ],
         "angles": [
-            {"name": "Pain-first", "blurb": "Open with 'You sent CNY. Your supplier got USD. Both banks called it CNY transfer.'"},
-            {"name": "Comparison split-screen", "blurb": "Visual: same wire animated through both bank flows. End frame: supplier-side amounts differ."},
-            {"name": "Curiosity-led", "blurb": "'There are two definitions of CNY transfer floating around in banking.' Reveal each."},
-            {"name": "Authority-led", "blurb": "'What a supplier's bank actually sees when you send CNY.' Banking-insider tone."},
-            {"name": "Demo-led", "blurb": "Live screen-share: same wire, two banks, supplier-side receipt comparison."},
+            {
+                "name": "Pain-first — supplier-side surprise",
+                "rating": 4.6,
+                "snippet": "Your supplier just opened the wire and saw USD. You sent CNY. Both banks called it 'CNY transfer'. The labels lie.",
+                "hook": "You sent CNY. Your supplier got USD. Both banks called it 'CNY transfer'.",
+                "body": "One bank routed your money through SWIFT to a USD-clearing correspondent. Conversion happened mid-flight. The other bank would have routed via CIPS direct, keeping CNY all the way through. Same label. Different rail. Different supplier-side amount.",
+                "close": "Read the rail, not the label. Follow for the rest.",
+                "visual": "Two wire confirmations side by side; supplier opens both, sees different currencies",
+            },
+            {
+                "name": "Comparison split-screen",
+                "rating": 4.5,
+                "snippet": "Same $50K wire, two banks. Bank A: $48,800 USD lands at supplier. Bank B: 350,000 CNY lands at supplier. Same label, different reality.",
+                "hook": "Same wire, two banks, two outcomes. Which one moved real CNY.",
+                "body": "Bank A — SWIFT routing, USD-clearing intermediary, supplier receives $48,800 USD. Bank B — CIPS direct, supplier receives 350,000 CNY. Same wire instruction, two different infrastructures, two different receipts.",
+                "close": "Same labels mean different things. Confirm the rail.",
+                "visual": "Animated split screen following both wires from send to supplier",
+            },
+            {
+                "name": "Curiosity-led — two definitions",
+                "rating": 4.3,
+                "snippet": "There are two definitions of 'CNY transfer' in banking. Only one means CNY actually moves CNY. You probably don't know which one your bank uses.",
+                "hook": "There are two definitions of 'CNY transfer' in banking. Only one means CNY actually moves CNY.",
+                "body": "Definition one: send CNY label, route via SWIFT, conversion happens at correspondent. Definition two: send CNY label, route via CIPS direct, no conversion. Your bank picks the definition for you. The label doesn't change. The outcome does.",
+                "close": "Check which definition your bank uses.",
+                "visual": "Two dictionary-style definitions overlaid on bank logos",
+            },
+            {
+                "name": "Authority-led — what your supplier's bank sees",
+                "rating": 4.0,
+                "snippet": "What does your supplier's bank actually see when you send 'CNY'? Sometimes CNY. Sometimes USD that needs converting. Both are common.",
+                "hook": "What a supplier's bank actually sees when you send 'CNY'.",
+                "body": "On the supplier side, an incoming SWIFT message may show CNY or may show USD with a CNY conversion request. CIPS-routed transfers always arrive as CNY. SWIFT-routed CNY may arrive as USD if the correspondent doesn't hold CNY. Banker-side view explains the gap.",
+                "close": "Insider literacy on cross-border CNY.",
+                "visual": "Mock bank-side admin screen showing incoming message details",
+            },
+            {
+                "name": "Demo-led — live wire test",
+                "rating": 3.8,
+                "snippet": "Live: same wire, two banks. Send button at the same time. Watch which supplier-side account fills with CNY, which with USD.",
+                "hook": "Live: same wire, two banks. Watch the difference at the supplier end.",
+                "body": "I'm sending $20K-equivalent CNY via Bank A and Bank B simultaneously. Same supplier, same amount, same currency instruction. In two minutes, two notifications hit the supplier's phone. One says CNY 140,000. One says USD 19,400. Same wire on paper, two outcomes.",
+                "close": "The rail decided this, not the label.",
+                "visual": "Live screen recording on two banking apps + supplier WeChat notifications",
+            },
         ],
     },
     {
-        "id": "P1-A8", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A8", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "The 3-letter code that decides if your wire is same-day",
         "format_spec": "Short-form 45s · bilingual",
-        "hooks": [
-            "There's a 3-letter code on your wire that decides if it clears same-day or in 5 business days.",
-            "Your wire's SWIFT message has a routing code 99% of senders never see.",
-            "One field on your wire confirmation predicts whether your supplier sees the money today or Friday.",
-        ],
         "findings": [
             "Field 71A of SWIFT MT103 holds the OUR/SHA/BEN code.",
-            "OUR = sender pays all; supplier gets full amount. SHA = shared; intermediaries deduct. BEN = beneficiary pays.",
-            "Each intermediary bank can charge $15-50. Multiple intermediaries possible per wire.",
-            "Priority SWIFT before 14:00 GMT can clear same-day; otherwise 1-5 days.",
+            "OUR = sender pays all → supplier gets full amount.",
+            "SHA = shared → intermediaries deduct from amount (default at most banks).",
+            "BEN = beneficiary pays → unpredictable arrival amount.",
+            "Each intermediary bank charges $15-50. Multiple intermediaries possible.",
+            "Priority SWIFT before 14:00 GMT can clear same-day.",
         ],
         "angles": [
-            {"name": "Curiosity-led", "blurb": "'There's a 3-letter code...'. Reveal it. Show how to find it on your confirmation."},
-            {"name": "Pain-led", "blurb": "'Your supplier got $200 less. The reason is a code you didn't choose.'"},
-            {"name": "Tutorial-led", "blurb": "How to switch from SHA to OUR — supplier receives full amount. Step by step."},
-            {"name": "Comparison-led", "blurb": "OUR vs SHA vs BEN on a real $50K wire to Shenzhen. Three outcomes, three amounts."},
-            {"name": "Authority-led", "blurb": "'Field 71A of SWIFT MT103.' Banking literacy framing. Builds trust."},
+            {
+                "name": "Curiosity-led — the hidden code",
+                "rating": 4.4,
+                "snippet": "There's a 3-letter code on every China wire your bank picks for you. It changes everything. Field 71A — OUR, SHA, or BEN.",
+                "hook": "There's a 3-letter code on every China wire. Your bank picks it for you.",
+                "body": "Field 71A of SWIFT MT103. Three options. OUR — sender pays all intermediary fees, supplier gets full amount. SHA — shared, intermediaries deduct from amount, supplier gets less. BEN — beneficiary pays, supplier covers everything. Your bank's default is usually SHA.",
+                "close": "Change the code, change the outcome.",
+                "visual": "Zoom into a real SWIFT MT103 message, highlight field 71A",
+            },
+            {
+                "name": "Pain-led — supplier short again",
+                "rating": 4.5,
+                "snippet": "Your supplier just got $200 less than you sent. Not because of fees you can see. Because of a 3-letter code you didn't choose.",
+                "hook": "Your supplier got $200 less. The reason is a code you didn't choose.",
+                "body": "You sent $10,000. They got $9,800. The bank set Field 71A to SHA — shared fees. Two intermediary banks took $100 each in transit. If you'd set it to OUR, you'd have paid those fees upfront and your supplier would have received the full amount.",
+                "close": "Ask your bank to set OUR on next China wire.",
+                "visual": "Wire confirmation zoom showing SHA, then supplier receipt showing shortfall",
+            },
+            {
+                "name": "Tutorial-led — how to switch to OUR",
+                "rating": 4.0,
+                "snippet": "How to switch your China wires from SHA to OUR in 60 seconds. Your supplier will receive the full amount. Here's how to ask.",
+                "hook": "How to switch from SHA to OUR — supplier receives full amount.",
+                "body": "When initiating a wire, look for 'Details of Charges' or 'Fee instruction'. Most banking apps default to SHA. Change it to OUR. The cost of intermediary fees ($30-100 typically) is added upfront to your wire amount. Your supplier receives exactly what you intended.",
+                "close": "One field on the form. Big difference at the other end.",
+                "visual": "Screen recording of online banking, highlighting the fee field",
+            },
+            {
+                "name": "Comparison-led — three real wires",
+                "rating": 4.2,
+                "snippet": "OUR vs SHA vs BEN on the same $50K wire to Shenzhen. Three different supplier-side amounts: $50,000, $49,800, $49,650. Same wire, three outcomes.",
+                "hook": "OUR vs SHA vs BEN on a real $50K wire to Shenzhen.",
+                "body": "Same $50K, same supplier, three different fee instructions. OUR: supplier receives full $50,000; sender paid $80 extra in fees upfront. SHA: supplier receives $49,800; intermediaries took $200 in transit. BEN: supplier receives $49,650; all fees stripped from amount. Three codes, three outcomes.",
+                "close": "Pick the code that matches what you want.",
+                "visual": "Three receipts side by side with code labels",
+            },
+            {
+                "name": "Authority-led — banker literacy",
+                "rating": 3.8,
+                "snippet": "Field 71A of SWIFT MT103. If you can read this field, you know what happens to your wire. Most operators have never heard of it.",
+                "hook": "Field 71A of SWIFT MT103. Read this field, you know what happens.",
+                "body": "SWIFT MT103 is the standard message format for international wires. Field 71A — Details of Charges — controls fee allocation. The values are OUR, SHA, BEN. This isn't insider trivia. It's the literal mechanism that decides what your supplier sees. Banks rarely surface it.",
+                "close": "Banker literacy. Your wires deserve it.",
+                "visual": "Annotated MT103 diagram with arrows pointing to 71A",
+            },
         ],
     },
     {
-        "id": "P1-A9", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A9", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "Supplier said wire didn't arrive. Bank says it did.",
         "format_spec": "Short-form 60s · bilingual",
-        "hooks": [
-            "Your supplier says the wire didn't arrive. Your bank's confirmation says it did. Both can be true. Here's why.",
-            "Three places your wire can sit between 'sent' and 'received'. Most operators check none of them.",
-            "When your supplier and your bank disagree on whether the money arrived, here's where to actually look.",
-        ],
         "findings": [
             "Wires can sit between intermediary correspondents for hours to days.",
             "Currency conversion windows add up to 2 working days.",
             "Local bank holidays in CN or SEA cause silent delays.",
-            "AML/fraud thresholds can hold wires above certain amounts without notifying sender.",
-            "Sender confirmation ≠ supplier receipt. The bank confirms when it sent. Receiving bank confirms when it received.",
+            "AML/fraud thresholds can hold wires above certain amounts without sender notification.",
+            "Sender confirmation ≠ supplier receipt. Two different events.",
         ],
         "angles": [
-            {"name": "Pain-first", "blurb": "Open with 'Your bank says sent. Your supplier says nothing. Both right.'"},
-            {"name": "Mechanism-led", "blurb": "Three places your wire can sit. Walk through each."},
-            {"name": "Tutorial-led", "blurb": "How to track a missing wire to China step by step."},
-            {"name": "Story-led", "blurb": "'I sent $42K Friday. Supplier got nothing by Monday. Here's what I found.'"},
-            {"name": "Authority-led", "blurb": "'What sent actually means on a SWIFT wire.'"},
+            {
+                "name": "Pain-first — the disagreement",
+                "rating": 4.7,
+                "snippet": "Your bank says sent. Your supplier says nothing. You check your account — it's gone. You call the bank — they confirm. Both are right.",
+                "hook": "Your bank says sent. Your supplier says nothing. Both are right.",
+                "body": "When a bank says 'sent,' it means the wire left their system. When a supplier says 'nothing,' it means nothing has arrived in their account. The space between is where intermediary banks sit. Hours. Sometimes days. Especially with conversion or AML holds in the chain.",
+                "close": "Track the wire by SWIFT reference, not by 'sent.'",
+                "visual": "Split screen: bank app showing 'sent', supplier WhatsApp saying 'nothing'",
+            },
+            {
+                "name": "Mechanism-led — three places wires sit",
+                "rating": 4.4,
+                "snippet": "Three places your wire can sit between sent and received. Most operators check none of them. I'll show you each one.",
+                "hook": "Three places your wire can sit between 'sent' and 'received'.",
+                "body": "Place one: sending bank's outbound queue, especially after-hours. Place two: intermediary correspondent — conversion or AML hold. Place three: receiving bank's inbound clearance, especially during local holidays. Each adds 1-3 business days. Bank confirms 'sent'; reality is 'in transit at place X.'",
+                "close": "Know the three places. Track them.",
+                "visual": "Map-style flow diagram with three waypoints highlighted",
+            },
+            {
+                "name": "Tutorial-led — how to track a wire",
+                "rating": 4.2,
+                "snippet": "How to track a missing wire to China. Step one: get the SWIFT reference. Step two: ask your bank for the MT199. Step three: trace correspondents.",
+                "hook": "How to track a missing wire to China step by step.",
+                "body": "Step one: get the SWIFT reference number from your bank. Step two: ask for an MT199 status request — banks can query intermediaries. Step three: check correspondent bank list, see which one has the holdup. Step four: ask receiving bank to confirm arrival or query intermediary. Takes 1-2 business days.",
+                "close": "Don't wait for the bank to chase. Drive it.",
+                "visual": "Phone screen overlay showing each tracking step",
+            },
+            {
+                "name": "Story-led — the Friday wire",
+                "rating": 4.6,
+                "snippet": "I sent $42K to a Shenzhen supplier on a Friday. By Monday: nothing. I checked. Three days lost. Here's what I found.",
+                "hook": "I sent $42K Friday. Supplier got nothing by Monday. Here's what I found.",
+                "body": "Friday 3pm Sydney time: I hit send. Bank confirmed sent at 3:02pm. Monday 9am Shenzhen: supplier said nothing arrived. I called my bank — they showed sent. I asked for the correspondent chain. The wire was sitting at an intermediary in Singapore on AML hold over the weekend. Released Tuesday. Supplier received Wednesday.",
+                "close": "Wires don't follow your calendar. Track them.",
+                "visual": "Timeline animation: Friday → Monday → Tuesday → Wednesday with the wire travelling",
+            },
+            {
+                "name": "Authority-led — what sent means",
+                "rating": 3.9,
+                "snippet": "When your bank says 'sent', they mean the wire left their system. That's it. It doesn't mean received. Those are two different events.",
+                "hook": "What 'sent' actually means on a SWIFT wire. It doesn't mean 'received.'",
+                "body": "In SWIFT messaging, 'sent' triggers when the originating bank releases the MT103 to the correspondent network. That's a system event. Receipt is a separate event — when the beneficiary bank credits the supplier's account. The two can be hours or days apart. Banks track separately. Most operators conflate them.",
+                "close": "Sent is not received. Two different events.",
+                "visual": "Clean diagram showing 'sent event' vs 'received event' with timeline gap",
+            },
         ],
     },
     {
-        "id": "P1-A10", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A10", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "The routing decision that quietly changes your fee 1%",
         "format_spec": "Short-form 45s · bilingual",
-        "hooks": [
-            "Your bank makes one decision on every China wire that changes your fee by up to 1%. They don't tell you.",
-            "There's a routing fork on every cross-border wire. Wrong fork = 1% more.",
-            "One silent backend choice can cost you $1,000 on a $100K wire to China.",
-        ],
         "findings": [
             "Banks choose correspondent routing path per wire, silently.",
             "Wrong correspondent = extra intermediary = extra fee.",
             "1% on $100K = $1,000 silently extracted.",
-            "Each intermediary in the chain can charge $15-50; multiple intermediaries compound.",
+            "Each intermediary in the chain charges $15-50; multiple intermediaries compound.",
         ],
         "angles": [
-            {"name": "Curiosity-led", "blurb": "'Your bank makes one silent decision...'"},
-            {"name": "Pain-led", "blurb": "'Where did $1,000 go on your $100K wire?'"},
-            {"name": "Authority-led", "blurb": "'The correspondent banks your money passes through. Most banks won't show you.'"},
-            {"name": "Mechanism-led", "blurb": "Animation: wire routes through correspondents; fees deduct in real time."},
-            {"name": "Comparison-led", "blurb": "Same $100K wire, two routing paths, $1,000 difference at the supplier end."},
+            {
+                "name": "Curiosity-led — the silent decision",
+                "rating": 4.5,
+                "snippet": "Your bank makes one silent decision on every China wire. It changes your fee by up to 1%. They don't show it. Here's the decision.",
+                "hook": "Your bank makes one silent decision on every China wire. It changes your fee 1%.",
+                "body": "When you initiate a wire, your bank picks the correspondent path. Sometimes one intermediary. Sometimes three. Each intermediary takes $15-50. On a $100K wire, the difference between one and three intermediaries is roughly $100. Add FX correspondent spread, and you're at 1%.",
+                "close": "Ask your bank for the correspondent chain.",
+                "visual": "Wire flow diagram, highlight the routing fork",
+            },
+            {
+                "name": "Pain-led — where $1,000 went",
+                "rating": 4.6,
+                "snippet": "Where did $1,000 go on your $100K wire to China? The routing fork your bank took without telling you. Three intermediaries. $1,000 lost.",
+                "hook": "Where did $1,000 go on your $100K wire? The routing fork you never saw.",
+                "body": "Your $100K wire passed through three intermediary correspondents. Each took fees: $25, $35, $40 = $100 in flat fees. Plus the correspondent FX spread on the conversion leg added 0.9% — another $900. Total: $1,000 silently extracted. None of it on the wire confirmation.",
+                "close": "Demand a correspondent chain before you send.",
+                "visual": "$100K wire with three deduction stops, each labelled",
+            },
+            {
+                "name": "Authority-led — banks know the path",
+                "rating": 4.0,
+                "snippet": "Banks know exactly which correspondents your wire passes through. They just don't show you. That information exists. It's hidden from operators.",
+                "hook": "The correspondent banks your money passes through. Most banks won't show you.",
+                "body": "Every SWIFT wire generates an audit trail of intermediary correspondents. Your bank has it. Compliance teams use it. But customer-facing banking apps don't surface it. Operators are flying blind on cost. Specialised cross-border rails publish the routing chain upfront.",
+                "close": "Banker information asymmetry. Close it.",
+                "visual": "Mock compliance dashboard showing full wire route, then customer app showing nothing",
+            },
+            {
+                "name": "Mechanism-led — animated route",
+                "rating": 4.1,
+                "snippet": "Watch a $100K wire route across correspondents. Each one takes fees. Visualised live. This is what your bank doesn't show you.",
+                "hook": "Watch a wire route across correspondents and see fee deductions live.",
+                "body": "Sending bank → correspondent 1 ($25 fee) → correspondent 2 ($35) → correspondent 3 ($40) → receiving bank. Plus FX spread of 0.9% on the conversion correspondent. Total deductions: $1,000. Animated flow shows where each fee taken.",
+                "close": "Visualise the route. Demand the same from your bank.",
+                "visual": "Animated map-style routing with fee popups",
+            },
+            {
+                "name": "Comparison-led — two routes, $1K difference",
+                "rating": 4.2,
+                "snippet": "Same $100K wire, two routing paths. Path one: $99,000 lands. Path two: $99,950 lands. $950 difference. Same wire. Different correspondents.",
+                "hook": "Same wire, two routing paths, $1,000 difference at the end.",
+                "body": "Path one: 3 intermediaries, multiple correspondent spreads, supplier receives $99,000. Path two: 1 direct correspondent, single spread, supplier receives $99,950. Same wire instruction. Different chain. $950 lost or kept depending on routing.",
+                "close": "Cross-border rail vs SWIFT chain. The difference is in the chain.",
+                "visual": "Two routing paths side by side, end totals highlighted",
+            },
         ],
     },
     {
-        "id": "P1-A11", "format": "SF", "pillar": "P1", "topic": "01",
-        "topic_name": "CNY rails + money flow to/from China", "status": "ready",
+        "id": "P1-A11", "format": "SF", "pillar": "P1", "topic": "01", "status": "ready",
         "title": "Why your CNY payment sometimes arrives in USD",
         "format_spec": "Short-form 60s · bilingual",
-        "hooks": [
-            "You sent CNY. Your supplier received USD. The bank quietly converted at their rate.",
-            "Sending CNY doesn't always mean your supplier gets CNY. There's a rail dependency most operators miss.",
-            "When 'CNY transfer' becomes 'USD transfer' mid-flight: the routing trap.",
-        ],
         "findings": [
             "Conversion can happen at sender side, correspondent, or beneficiary bank.",
             "If no CNY-direct correspondent in chain, USD conversion happens by default.",
             "Supplier ends up holding USD when expecting CNY.",
             "Supplier then converts USD → CNY at their bank → double conversion cost.",
-            "Cost gets pushed back to the operator on the next quote.",
+            "Cost gets pushed back to operator on next quote.",
         ],
         "angles": [
-            {"name": "Pain-first", "blurb": "'You sent CNY. Your supplier got USD. Their bank converted at their rate.'"},
-            {"name": "Mechanism-led", "blurb": "Three places where your CNY can become USD. Visual: trace the conversion points."},
-            {"name": "Curiosity-led", "blurb": "'When CNY transfer becomes USD transfer mid-flight.'"},
-            {"name": "Cost-led", "blurb": "'Double conversion: who pays? Spoiler: your supplier, then you on the next order.'"},
-            {"name": "Authority-led", "blurb": "'Why CIPS exists — to keep CNY as CNY end-to-end.'"},
+            {
+                "name": "Pain-first — supplier got USD",
+                "rating": 4.7,
+                "snippet": "You sent CNY. Your supplier received USD. Their bank converted at their rate. Now they're asking you to cover the gap. The rail did this.",
+                "hook": "You sent CNY. Your supplier received USD. Their bank converted at their rate.",
+                "body": "When a wire labelled CNY routes through a correspondent that only holds USD, conversion happens mid-flight at the correspondent's rate. The supplier receives USD. Their local bank converts USD back to CNY at another rate. Two conversions. Two costs. Your supplier ate both. Now they're quoting you higher next time.",
+                "close": "Avoid the double conversion. Use a CNY-direct rail.",
+                "visual": "Wire confirmation says CNY; supplier receipt says USD; supplier statement shows USD→CNY conversion",
+            },
+            {
+                "name": "Mechanism-led — three conversion points",
+                "rating": 4.4,
+                "snippet": "Three places where your CNY can become USD between you and your supplier. Each one is a routing choice your bank made without telling you.",
+                "hook": "Three places where your CNY can become USD between you and your supplier.",
+                "body": "Point one: sender's bank converts to USD before sending (cheaper for them). Point two: intermediary correspondent converts because they only hold USD. Point three: receiving bank converts because they can't accept CNY directly. Each conversion point adds a spread. The routing decides how many points your money hits.",
+                "close": "Map the conversion points. Eliminate them.",
+                "visual": "Pipeline diagram with three conversion stops highlighted",
+            },
+            {
+                "name": "Curiosity-led — mid-flight transformation",
+                "rating": 4.3,
+                "snippet": "When 'CNY transfer' becomes 'USD transfer' mid-flight. The routing trap. The label on the wire doesn't survive the journey.",
+                "hook": "When 'CNY transfer' becomes 'USD transfer' mid-flight: the routing trap.",
+                "body": "Your wire leaves marked CNY. Halfway through the correspondent chain, it hits a bank that doesn't hold CNY. The bank converts to USD to keep the wire moving. The receiving end gets USD, even though the original instruction was CNY. Routing transparency exists; it's just not customer-facing.",
+                "close": "Routing transparency. Demand it.",
+                "visual": "Wire travelling, CNY label visible, then morphs into USD label at correspondent",
+            },
+            {
+                "name": "Cost-led — who pays double conversion",
+                "rating": 4.6,
+                "snippet": "Double conversion: who pays? Your supplier converts back, eats the cost. Then quotes you higher next time. You pay it anyway.",
+                "hook": "Double conversion: who pays? Spoiler: your supplier, then you on the next order.",
+                "body": "Round one: your CNY converts to USD mid-flight (correspondent spread, ~0.3%). Round two: supplier converts USD back to CNY at their bank (~0.5%). Supplier ate 0.8% total. They factor it into the next price. You pay it on the second invoice. Then the next. Compounding.",
+                "close": "Stop the loop. CNY-direct rail.",
+                "visual": "Cost accumulation animation across rounds",
+            },
+            {
+                "name": "Authority-led — why CIPS exists",
+                "rating": 4.0,
+                "snippet": "Why CIPS exists — to keep CNY as CNY end-to-end. China built it specifically to solve this problem. Most operators don't know that.",
+                "hook": "Why CIPS exists — to keep CNY as CNY end-to-end.",
+                "body": "CIPS was launched by the People's Bank of China in 2015 specifically because SWIFT-routed CNY kept getting converted mid-flight. CIPS is purpose-built to clear CNY end-to-end, no intermediate conversion. 80% of cross-border RMB clearance now goes through CIPS. When you use a CIPS-direct rail, your CNY stays CNY.",
+                "close": "CIPS-routed CNY. The infrastructure exists.",
+                "visual": "PBOC building / CIPS logo with explanation text overlay",
+            },
         ],
     },
-
-    # ===== Topic 02 — FX margin + hidden costs (PENDING, 9 cards) =====
-    {"id": "P1-A12", "format": "SF", "pillar": "P1", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "$1,200 gone from a $50K supplier wire. Where.",
-     "format_spec": "Short-form 45s · bilingual",
-     "hooks": ["You sent $50,000. Your supplier received $48,800. The $1,200 wasn't on the wire confirmation.",
-               "$1,200 silently extracted from a $50K supplier payment. Not as a fee. As FX margin.",
-               "The 'no fee' wire that cost $1,200."]},
-    {"id": "P1-A13", "format": "SF", "pillar": "P1", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "Bank says no fee. You still paid $300.",
-     "format_spec": "Short-form 30s · bilingual",
-     "hooks": ["Your bank confirmed 'no transfer fee'. Your statement shows $300 less than expected.",
-               "'No fee' is one of the most expensive phrases in international banking.",
-               "Fee-free transfers cost more than fee-included ones, in most cases."]},
-    {"id": "P1-A14", "format": "SF", "pillar": "P1", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "Three operators, same $50K wire, three different supplier-end amounts",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Same supplier, same $50K send, three providers. Supplier received $48,800, $49,100, $49,650.",
-               "We ran the same supplier payment with three banks. The difference at the supplier end was $850.",
-               "How three providers process the same wire and produce three different totals."]},
-    {"id": "P1-A15", "format": "SF", "pillar": "P1", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "What 'no fee' costs you per $10K to China",
-     "format_spec": "Short-form 60s · bilingual",
-     "hooks": ["'No transfer fee' on a $10K wire to China typically costs $80-$120 in FX margin.",
-               "The cost of free: what 'no fee' wires actually take from you per $10K.",
-               "Three banks all market 'no fee' on China transfers. None are free."]},
-    {"id": "P1-A16", "format": "SF", "pillar": "P1", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "Receipt says $50K. Statement says $51.2K.",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Your wire receipt says you sent $50,000. Your account statement says $51,200 left. The $1,200 isn't a fee.",
-               "When wire receipt and statement disagree by $1,200, here's which is closer to the truth.",
-               "Why your wire confirmation and account statement don't match."]},
-    {"id": "P2-A1", "format": "SF", "pillar": "P2", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "How a 2% bank-to-rail gap compounds over a year",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Your local bank vs a dedicated cross-border rail: 2% gap per transaction. Run it 12 times.",
-               "2% sounds small. Annual compounding on $1M of cross-border payments makes it $24K.",
-               "Bank-to-rail FX gap of 2% means: a year of imports costs you a hire."]},
-    {"id": "P2-A7", "format": "SF", "pillar": "P2", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "Your sourcing budget shrinks 4% a year (silent compound)",
-     "format_spec": "Short-form 60s",
-     "hooks": ["If you import $500K/year on a 0.4% FX margin, you're losing $2,000 silently. Per year.",
-               "Three FX margin levels, same import volume. Year 3 = a holiday. Year 5 = a hire.",
-               "Why every Chinese-sourcing SME should run the FX-margin math once a year."]},
-    {"id": "P2-A8", "format": "SF", "pillar": "P2", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "How to read FX margin off your wire confirmation",
-     "format_spec": "Short-form 60s tutorial",
-     "hooks": ["Your bank's FX margin is hidden in plain sight on every wire confirmation.",
-               "Two numbers on your wire confirmation can be combined to reveal your bank's FX margin.",
-               "The 60-second test to see if your bank is making 0.5% or 2% on your wire FX."]},
-    {"id": "P2-A9", "format": "SF", "pillar": "P2", "topic": "02", "topic_name": "FX margin + hidden costs", "status": "pending",
-     "title": "Good rate quoted vs real interbank rate",
-     "format_spec": "Short-form 45s",
-     "hooks": ["Your bank quoted you a 'competitive rate'. The real rate was 1.4% better.",
-               "How to check your bank's FX quote against the real interbank rate.",
-               "The free tool that tells you if your bank's 'good rate' is actually good."]},
-
-    # ===== Topic 03 — WF product mechanics + financial stack (PENDING, 3 cards incl. 2nd LF) =====
-    {"id": "P3-A2", "format": "LF", "pillar": "P3", "topic": "03", "topic_name": "WorldFirst product mechanics", "status": "pending",
-     "title": "World Account setup, end-to-end in 8 minutes",
-     "format_spec": "Long-form 8-10 min tutorial · Hui Mei lead",
-     "hooks": ["How to set up your World Account for cross-border payouts. 8 minutes, end-to-end.",
-               "From sign-up to first payout: every step, in order.",
-               "Set this up once and your marketplace payouts stop costing you 2.5%."]},
-    {"id": "P3-A10", "format": "SF", "pillar": "P3", "topic": "03", "topic_name": "WorldFirst product mechanics", "status": "pending",
-     "title": "Why SMEs are building a financial stack (not relying on one bank)",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Modern SMEs don't have one bank. They have a financial stack. Here's what's in it.",
-               "Local bank + cross-border specialist + marketplace tool + hedging instrument = standard 2026 setup.",
-               "The 5-piece financial stack every cross-border SME should have."]},
-    {"id": "P2-A3", "format": "SF", "pillar": "P2", "topic": "03", "topic_name": "WorldFirst product mechanics", "status": "pending",
-     "title": "Bank wire vs WorldFirst on the same $50K payment",
-     "format_spec": "Short-form 60s comparison",
-     "hooks": ["Bank wire vs WorldFirst on the same $50K supplier payment. Apples to apples.",
-               "Two operators, same $50K payment, two providers. Side by side.",
-               "We ran the same payment with three providers. Where each one extracts cost."]},
-
-    # ===== Topic 04 — Personal vs business tools (PENDING, 5 cards) =====
-    {"id": "P2-A12", "format": "SF", "pillar": "P2", "topic": "04", "topic_name": "Personal vs business tools", "status": "pending",
-     "title": "Personal cross-border tools weren't built for business",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Cross-border money apps were built for travellers and freelancers. Once you're paying suppliers weekly, the design gaps show.",
-               "Personal-tier FX tools work fine when you send money abroad sometimes.",
-               "Three categories of features your business cross-border setup needs that personal tools don't offer."]},
-    {"id": "P2-A13", "format": "SF", "pillar": "P2", "topic": "04", "topic_name": "Personal vs business tools", "status": "pending",
-     "title": "How much PayPal actually costs you on a $20K supplier payment",
-     "format_spec": "Short-form 60s",
-     "hooks": ["PayPal's 'flat fee' on a $20K supplier payment is closer to 5% once you add cross-border and FX.",
-               "Use PayPal for B2B and you pay three times: visible fee, cross-border surcharge, FX margin.",
-               "PayPal for collecting client payments: fine. PayPal for paying suppliers: expensive."]},
-    {"id": "P2-A14", "format": "SF", "pillar": "P2", "topic": "04", "topic_name": "Personal vs business tools", "status": "pending",
-     "title": "Credit cards for international supplier payments: the gap",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Why your credit card mostly doesn't work for paying Chinese suppliers.",
-               "3% credit card fee on a $20K supplier order = $600. Before FX.",
-               "The credit card workaround SEA importers use, and the better path."]},
-    {"id": "P2-A18", "format": "SF", "pillar": "P2", "topic": "04", "topic_name": "Personal vs business tools", "status": "pending",
-     "title": "Personal vs business FX rate: the spread",
-     "format_spec": "Short-form 60s",
-     "hooks": ["Personal cross-border tools quote retail rates. Business tools quote near-interbank. The spread can be 1.5%.",
-               "Why the FX rate on a personal app is different from what your business should expect.",
-               "1.5% spread × $500K cross-border = $7,500/year."]},
-    {"id": "P2-A24", "format": "SF", "pillar": "P2", "topic": "04", "topic_name": "Personal vs business tools", "status": "pending",
-     "title": "When CAN you pay a Chinese supplier by card?",
-     "format_spec": "Short-form 60s",
-     "hooks": ["There are 4 scenarios where a credit card actually works for paying a Chinese supplier.",
-               "Card payment to China: small set of cases where it's an option.",
-               "Trading companies that accept cards: a checklist."]},
-
-    # ===== Topic 05 — Paying in CNY economics (PENDING, 1 card) =====
-    {"id": "P1-A6", "format": "SF", "pillar": "P1", "topic": "05", "topic_name": "Paying in CNY economics", "status": "pending",
-     "title": "Why paying your supplier in CNY actually wins",
-     "format_spec": "Short-form 60s · bilingual",
-     "hooks": ["Paying in USD feels safer. Paying in CNY costs less and lands faster.",
-               "Three reasons your supplier prefers CNY. One quietly lowers your unit cost.",
-               "USD to your supplier means two conversions. CNY means one."]},
-
-    # ===== Topic 06 — Wire rejection / failure modes (PENDING, 2 cards) =====
-    {"id": "P1-A4", "format": "SF", "pillar": "P1", "topic": "06", "topic_name": "Wire rejection failure modes", "status": "pending",
-     "title": "Your supplier asked you to pay the $200 they didn't receive",
-     "format_spec": "Short-form 60s · bilingual",
-     "hooks": ["Your supplier received $200 less than you sent. They're asking you to pay the difference.",
-               "Sent $10K. Supplier got $9,800. The bank took fee on both ends of the same payment.",
-               "Why does anyone pay the bank's FX margin in the first place?"]},
-    {"id": "P1-A5", "format": "SF", "pillar": "P1", "topic": "06", "topic_name": "Wire rejection failure modes", "status": "pending",
-     "title": "SWIFT vs the alternatives: which actually pays your supplier faster",
-     "format_spec": "Short-form 60s · bilingual",
-     "hooks": ["SWIFT is the bank's default for international payments. Here's how it works, then here's what beats it.",
-               "Your bank sends through SWIFT. That's why your payment takes 3-5 days.",
-               "First, what SWIFT actually does. Then, why faster rails exist."]},
-
-    # ===== Topic 07 — Switch-point math KOL (PENDING, 1 card) =====
-    {"id": "P2-A6", "format": "KOL", "pillar": "P2", "topic": "07", "topic_name": "Switch-point math (KOL)", "status": "pending",
-     "title": "The break-even: when should you switch providers?",
-     "format_spec": "KOL distributed · math/decision-led",
-     "hooks": ["At what monthly import volume does staying with your bank cost more than switching?",
-               "Below $X/month in supplier payments, your bank is fine. Above $X, you're paying for sticking.",
-               "The break-even point where 'inconvenience of switching' costs more than 'price of staying'."]},
 ]
 
-TOPIC_STATUS = {
-    "01": ("done", "CNY rails + money flow", "https://socialworldfirst.github.io/sea-listen-cny-rails/"),
-    "02": ("pending", "FX margin + hidden costs", None),
-    "03": ("pending", "WorldFirst product mechanics", None),
-    "04": ("pending", "Personal vs business tools", None),
-    "05": ("pending", "Paying in CNY economics", None),
-    "06": ("pending", "Wire rejection failure modes", None),
-    "07": ("pending", "Switch-point math (KOL)", None),
+# LF Topic 01 anchor (5 structural directions)
+LF_P1_A1 = {
+    "id": "P1-A1", "format": "LF", "pillar": "P1", "topic": "01", "status": "ready",
+    "title": "Money in and out of China: the operator's full picture",
+    "format_spec": "Long-form 15-20 min · bilingual EN + Mandarin · Hui Mei lead · 6-8 SF micro-cuts pulled from this shoot",
+    "findings": [
+        "CIPS processed ¥175.49 trillion in 2024 (+42.6% YoY). The CNY rail is now real-scale infrastructure.",
+        "80% of CIPS transactions still use SWIFT for messaging — mixed-rail reality.",
+        "ASEAN remittance used to cost >6% in fees; PromptPay-PayNow now seconds at fraction of cost.",
+        "Bidirectional flow (in + out) is rarely covered as one piece — SEO + audience gap.",
+        "WF SG public page doesn't name MYbank partnership — script around this; use 'dedicated CNY rail' framing.",
+    ],
+    "angles": [
+        {
+            "name": "Sequential — in then out (SEO play)",
+            "rating": 4.0,
+            "snippet": "Most operators understand one direction. The full picture has two. Inbound for 8 minutes, outbound for 6, synthesis. Ranks for both directions.",
+            "hook": "Most operators know one direction of money with China. The full picture has two.",
+            "structure": "Act 1 (0:00-1:00) Frame · Act 2 (1:00-9:00) Inbound: paying suppliers · Act 3 (9:00-15:00) Outbound: marketplace payouts · Act 4 (15:00-17:00) Synthesis",
+            "close": "Master both directions, you're operating. Master one, you're partial.",
+        },
+        {
+            "name": "Problem-led — 3 things break (emotional)",
+            "rating": 4.6,
+            "snippet": "Three things go wrong with operator money flow to China. Wire rejections, FX gaps, routing delays. Each as an act. Strongest emotional pull.",
+            "hook": "Three things go wrong with operator money flow to China.",
+            "structure": "Act 1 Hook + frame · Act 2 Break 1 (rejections) · Act 3 Break 2 (FX gaps) · Act 4 Break 3 (routing delays) · Act 5 Cross-cutting fix",
+            "close": "Real operator wins from operators who fixed all three.",
+        },
+        {
+            "name": "Day-in-the-life — 24 hours (relatable)",
+            "rating": 4.3,
+            "snippet": "Walk through 24 hours of an operator. 9am payout. 10am supplier wire. 11am FX check. 2pm bulk transfer. 4pm receivables. Documentary register.",
+            "hook": "One operator's 24 hours of money to and from China.",
+            "structure": "Open at 9am · Walk forward through the day · Each timestamp = one money-flow moment · Synthesis at 17:00",
+            "close": "This is the actual rhythm of operator money. Leverage points throughout.",
+        },
+        {
+            "name": "Cost-decomposition — where money leaks (margin-led)",
+            "rating": 4.4,
+            "snippet": "On $100K monthly: leak 1 (FX margin $1,800), leak 2 (wire+intermediary fees), leak 3 (payout conversion). Total ~$3,500-5,000/month. Annualised savings reframe at close.",
+            "hook": "On a $100K monthly import + payout cycle, here's where money actually leaks.",
+            "structure": "Open with leak total · Leak 1 inbound FX · Leak 2 intermediary fees · Leak 3 outbound conversion · Annualise · Fix",
+            "close": "Annualised: a hire / a holiday / next year's working capital.",
+        },
+        {
+            "name": "Question-led — 5 operator questions (modular)",
+            "rating": 4.2,
+            "snippet": "Five questions every operator asks about money + China. Five answers. Most modular structure. Each Q = one SF cut.",
+            "hook": "Five questions every operator asks about money + China. Here are the answers.",
+            "structure": "Q1 How to pay a Chinese supplier · Q2 Why supplier asks for more · Q3 How fast it can land · Q4 Marketplace payouts in CNY · Q5 When to switch off your local bank",
+            "close": "If you're asking these, you're already operator-grade.",
+        },
+    ],
 }
+
+# Pending cards (Topics 02-07): simpler placeholder structure
+def pending(id_, pillar, topic, title, format_spec, fmt="SF"):
+    return {
+        "id": id_, "format": fmt, "pillar": pillar, "topic": topic, "status": "pending",
+        "title": title, "format_spec": format_spec,
+        "findings": [], "angles": [],
+    }
+
+PENDING_CARDS = [
+    # Topic 02 — FX margin (9)
+    pending("P1-A12", "P1", "02", "$1,200 gone from a $50K supplier wire. Where.", "Short-form 45s · bilingual"),
+    pending("P1-A13", "P1", "02", "Bank says no fee. You still paid $300.", "Short-form 30s · bilingual"),
+    pending("P1-A14", "P1", "02", "Three operators, same $50K wire, three different supplier-end amounts", "Short-form 60s"),
+    pending("P1-A15", "P1", "02", "What 'no fee' costs you per $10K to China", "Short-form 60s · bilingual"),
+    pending("P1-A16", "P1", "02", "Receipt says $50K. Statement says $51.2K.", "Short-form 60s"),
+    pending("P2-A1", "P2", "02", "How a 2% bank-to-rail gap compounds over a year", "Short-form 60s"),
+    pending("P2-A7", "P2", "02", "Your sourcing budget shrinks 4% a year (silent compound)", "Short-form 60s"),
+    pending("P2-A8", "P2", "02", "How to read FX margin off your wire confirmation", "Short-form 60s tutorial"),
+    pending("P2-A9", "P2", "02", "Good rate quoted vs real interbank rate", "Short-form 45s"),
+    # Topic 03 — WF product (3, incl LF)
+    pending("P3-A2", "P3", "03", "World Account setup, end-to-end in 8 minutes", "Long-form 8-10 min tutorial · Hui Mei lead", fmt="LF"),
+    pending("P3-A10", "P3", "03", "Why SMEs are building a financial stack", "Short-form 60s"),
+    pending("P2-A3", "P2", "03", "Bank wire vs WorldFirst on the same $50K payment", "Short-form 60s comparison"),
+    # Topic 04 — Personal vs business (5)
+    pending("P2-A12", "P2", "04", "Personal cross-border tools weren't built for business", "Short-form 60s"),
+    pending("P2-A13", "P2", "04", "How much PayPal actually costs you on a $20K supplier payment", "Short-form 60s"),
+    pending("P2-A14", "P2", "04", "Credit cards for international supplier payments: the gap", "Short-form 60s"),
+    pending("P2-A18", "P2", "04", "Personal vs business FX rate: the spread", "Short-form 60s"),
+    pending("P2-A24", "P2", "04", "When CAN you pay a Chinese supplier by card?", "Short-form 60s"),
+    # Topic 05 — CNY economics (1)
+    pending("P1-A6", "P1", "05", "Why paying your supplier in CNY actually wins", "Short-form 60s · bilingual"),
+    # Topic 06 — Wire rejection (2)
+    pending("P1-A4", "P1", "06", "Your supplier asked you to pay the $200 they didn't receive", "Short-form 60s · bilingual"),
+    pending("P1-A5", "P1", "06", "SWIFT vs the alternatives: which actually pays your supplier faster", "Short-form 60s · bilingual"),
+    # Topic 07 — KOL (1)
+    pending("P2-A6", "P2", "07", "The break-even: when should you switch providers?", "KOL distributed · math/decision-led", fmt="KOL"),
+]
+
+CARDS = [LF_P1_A1] + SF_TOPIC_01 + PENDING_CARDS
+
+
+def render_angle(card_id, idx, a, is_lf=False):
+    """Render one angle as a checkbox-selectable mini-script preview."""
+    angle_id = f"{card_id}-a{idx+1}"
+    rating_full = int(a.get('rating', 0))
+    rating_half = 1 if (a.get('rating', 0) - rating_full) >= 0.5 else 0
+    rating_empty = 5 - rating_full - rating_half
+    rating_display = "★" * rating_full + ("½" if rating_half else "") + "·" * rating_empty
+    if is_lf:
+        full_html = f"""<div class="angle-full">
+          <div class="full-section"><span class="full-label">Hook</span><span class="full-text">{escape(a.get('hook',''))}</span></div>
+          <div class="full-section"><span class="full-label">Structure</span><span class="full-text">{escape(a.get('structure',''))}</span></div>
+          <div class="full-section"><span class="full-label">Close</span><span class="full-text">{escape(a.get('close',''))}</span></div>
+        </div>"""
+    else:
+        full_html = f"""<div class="angle-full">
+          <div class="full-section"><span class="full-label">Hook (0-5s)</span><span class="full-text">{escape(a.get('hook',''))}</span></div>
+          <div class="full-section"><span class="full-label">Body (5-50s)</span><span class="full-text">{escape(a.get('body',''))}</span></div>
+          <div class="full-section"><span class="full-label">Close (50-60s)</span><span class="full-text">{escape(a.get('close',''))}</span></div>
+          <div class="full-section"><span class="full-label">Visual</span><span class="full-text">{escape(a.get('visual',''))}</span></div>
+        </div>"""
+    return f"""
+<div class="angle" data-angle-id="{angle_id}">
+  <div class="angle-head">
+    <label class="angle-check">
+      <input type="checkbox" class="angle-pick" data-card="{card_id}" data-idx="{idx+1}" data-name="{escape(a['name'])}">
+      <span class="checkmark"></span>
+    </label>
+    <div class="angle-meta">
+      <div class="angle-name">{escape(a['name'])}</div>
+      <div class="angle-rating" title="Audience fit rating ({a.get('rating', 0)}/5)">{rating_display} <span class="rating-num">{a.get('rating', 0)}/5</span></div>
+    </div>
+    <button class="angle-expand" data-target="{angle_id}-full">Expand</button>
+  </div>
+  <div class="angle-snippet">{escape(a.get('snippet',''))}</div>
+  <div class="angle-full-wrap" id="{angle_id}-full" hidden>
+    {full_html}
+  </div>
+</div>
+"""
 
 
 def render_card(c):
     fmt_class = f"fmt-{c['format'].lower()}"
-    status_class = "ready" if c['status'] == 'ready' else "pending"
-    hooks_html = "\n".join(f'<li>{escape(h)}</li>' for h in c['hooks'])
+    is_lf = c['format'] == 'LF'
+    is_kol = c['format'] == 'KOL'
+    is_pending = c['status'] == 'pending'
 
-    if c['status'] == 'ready':
-        findings_html = "\n".join(f'<li>{escape(f)}</li>' for f in c.get('findings', []))
-        findings_block = f'''
-        <div class="card-section findings-block">
-          <h4 class="section-h">Research findings</h4>
-          <ul class="findings">{findings_html}</ul>
-        </div>'''
-        angles_html = "\n".join(
-            f'''<div class="angle">
-              <div class="angle-name">{escape(a['name'])}</div>
-              <div class="angle-blurb">{escape(a['blurb'])}</div>
-            </div>'''
-            for a in c.get('angles', [])
-        )
-        angles_block = f'''
-        <div class="card-section angles-block">
-          <h4 class="section-h">Writing angles ({len(c.get('angles', []))})</h4>
-          <div class="angles">{angles_html}</div>
-        </div>'''
-        action_text = f"Draft script ({c['format']})"
-        action_disabled = ""
-    else:
-        topic_info = TOPIC_STATUS.get(c['topic'])
-        topic_label = topic_info[1] if topic_info else c['topic']
-        findings_block = f'''
-        <div class="card-section findings-pending">
-          <h4 class="section-h">Research findings</h4>
-          <p class="pending-note">Pending — research run for Topic {c['topic']} ({escape(topic_label)}) not yet executed. Findings will appear here when the topic batch completes.</p>
-        </div>'''
+    if is_pending:
         angles_block = f'''
         <div class="card-section angles-pending">
-          <h4 class="section-h">Writing angles</h4>
-          <p class="pending-note">Generated after research run.</p>
+          <div class="pending-msg">
+            <strong>Awaiting research</strong>
+            <p>Writing angles will appear here after Topic {c['topic']} research run completes ({escape(TOPIC_NAMES.get(c['topic'], ''))}).</p>
+          </div>
         </div>'''
-        action_text = "Awaiting research"
-        action_disabled = " disabled"
+        findings_block = ""
+    else:
+        angles_html = "\n".join(render_angle(c['id'], i, a, is_lf=is_lf) for i, a in enumerate(c.get('angles', [])))
+        angles_block = f'''
+        <div class="card-section angles-block">
+          <div class="section-head">
+            <h4 class="section-h">Writing angles ({len(c.get('angles', []))}) · pick one or more</h4>
+            <span class="section-hint">Click "Expand" to see full mini-script</span>
+          </div>
+          {angles_html}
+        </div>'''
+        findings_list = "\n".join(f'<li>{escape(f)}</li>' for f in c.get('findings', []))
+        findings_block = f'''
+        <details class="findings-details">
+          <summary class="findings-summary">Research findings ({len(c.get('findings', []))}) · click to expand</summary>
+          <ul class="findings">{findings_list}</ul>
+        </details>'''
 
     return f'''
-<article class="card status-{status_class}" id="{c['id']}" data-format="{c['format'].lower()}" data-status="{c['status']}" data-topic="{c['topic']}">
+<article class="card status-{c['status']}" id="{c['id']}" data-format="{c['format'].lower()}" data-status="{c['status']}" data-topic="{c['topic']}">
   <header class="card-head">
     <div class="card-meta">
       <span class="card-id">{escape(c['id'])}</span>
@@ -385,54 +558,36 @@ def render_card(c):
     <div class="card-format-spec">{escape(c['format_spec'])}</div>
   </header>
 
-  <div class="card-section hooks-block">
-    <h4 class="section-h">Hook variants ({len(c['hooks'])})</h4>
-    <ul class="hooks">{hooks_html}</ul>
-  </div>
-
-  {findings_block}
   {angles_block}
 
-  <footer class="card-foot">
-    <button class="draft-btn{action_disabled}">{action_text}</button>
-  </footer>
+  {'' if is_pending else '''<div class="card-section comment-block">
+    <h4 class="section-h">Your comment on this card</h4>
+    <textarea class="card-comment" data-card="''' + c['id'] + '''" placeholder="Notes / red flags / direction for this card. If you have major rework concerns, flag them; otherwise this auto-routes to script drafting."></textarea>
+  </div>'''}
+
+  {findings_block}
 </article>
 '''
 
 
-def render_template_sample(format_type):
-    if format_type == "LF":
-        return '''
-<div class="template-card">
-  <div class="template-head"><span class="template-tag fmt-lf">LF</span><h4>Long-form script template</h4></div>
-  <div class="template-body">
-    <div class="template-row"><span class="template-time">0:00-0:30</span><span class="template-beat"><strong>Hook</strong> — opening line, frame the piece, why watch</span></div>
-    <div class="template-row"><span class="template-time">0:30-X:XX</span><span class="template-beat"><strong>Act 1</strong> — section name · 3-4 beats · transition</span></div>
-    <div class="template-row"><span class="template-time">X:XX-X:XX</span><span class="template-beat"><strong>Act 2</strong> — section name · 3-4 beats · transition</span></div>
-    <div class="template-row"><span class="template-time">X:XX-X:XX</span><span class="template-beat"><strong>Act 3 / Synthesis</strong> — section name · bring it together</span></div>
-    <div class="template-row"><span class="template-time">X:XX-end</span><span class="template-beat"><strong>Close + CTA</strong> — final takeaway · subscribe / follow</span></div>
-  </div>
-  <div class="template-extras">
-    <div class="template-extra"><strong>B-roll cues:</strong> per beat</div>
-    <div class="template-extra"><strong>On-screen text:</strong> per beat</div>
-    <div class="template-extra"><strong>Bilingual notes:</strong> EN + Mandarin same-day record where flagged</div>
-  </div>
-</div>'''
-    else:  # SF
-        return '''
-<div class="template-card">
-  <div class="template-head"><span class="template-tag fmt-sf">SF</span><h4>Short-form script template</h4></div>
-  <div class="template-body">
-    <div class="template-row"><span class="template-time">0-5s</span><span class="template-beat"><strong>Hook</strong> — opening line · scroll-stop visual</span></div>
-    <div class="template-row"><span class="template-time">5-50s</span><span class="template-beat"><strong>Body</strong> — beat 1 · beat 2 · beat 3 (max) · payoff</span></div>
-    <div class="template-row"><span class="template-time">50-60s</span><span class="template-beat"><strong>Close</strong> — one-line tag · CTA</span></div>
-  </div>
-  <div class="template-extras">
-    <div class="template-extra"><strong>Hook variants:</strong> 3 alternatives drafted, pick on test</div>
-    <div class="template-extra"><strong>Visual direction:</strong> shot list, on-screen text moments</div>
-    <div class="template-extra"><strong>Caption:</strong> platform-native variants (TikTok / IG / FB)</div>
-  </div>
-</div>'''
+TOPIC_STATUS = {"01": "done", "02": "pending", "03": "pending", "04": "pending", "05": "pending", "06": "pending", "07": "pending"}
+
+
+def render_topic_strip():
+    counts = {}
+    for c in CARDS:
+        counts[c['topic']] = counts.get(c['topic'], 0) + 1
+    out = []
+    for tnum, name in TOPIC_NAMES.items():
+        status = TOPIC_STATUS[tnum]
+        out.append(f'''
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC {tnum}</div>
+  <div class="topic-strip-name">{escape(name)}</div>
+  <div class="topic-strip-status {status}">{status.upper()}</div>
+  <div class="topic-strip-count">{counts.get(tnum, 0)} cards</div>
+</div>''')
+    return "\n".join(out)
 
 
 CSS = r"""
@@ -447,19 +602,30 @@ CSS = r"""
   --hairline-soft: rgba(0,0,0,0.05);
   --dot: #0a6d2f;
   --pending: rgba(0,0,0,0.06);
+  --pick: #0a6d2f;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 html, body { margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; line-height: 1.6; font-size: 16px; }
 a { color: var(--fg); }
 
-.layout { max-width: 1200px; margin: 0 auto; padding: 32px 24px 120px; }
+.layout { max-width: 1200px; margin: 0 auto; padding: 32px 24px 130px; }
 
 .hero { padding-bottom: 28px; border-bottom: 1px solid var(--hairline); margin-bottom: 32px; }
 .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-soft); margin-bottom: 14px; }
 .hero h1 { font-size: 32px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 14px; }
 .lede { font-size: 16px; line-height: 1.55; color: var(--fg-muted); max-width: 720px; margin: 0 0 18px; }
 .meta { display: flex; flex-wrap: wrap; gap: 14px 28px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); }
+
+/* Topic strip */
+.topic-strip { margin-bottom: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.topic-strip-card { padding: 12px 14px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--bg-paper); font-size: 13px; }
+.topic-strip-num { font-family: var(--mono); font-size: 10px; color: var(--fg-soft); letter-spacing: 0.06em; }
+.topic-strip-name { font-weight: 600; margin-top: 2px; font-size: 13px; line-height: 1.3; }
+.topic-strip-status { font-family: var(--mono); font-size: 9px; padding: 3px 7px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin-top: 6px; display: inline-block; }
+.topic-strip-status.done { background: var(--dot); color: #fff; }
+.topic-strip-status.pending { background: var(--pending); color: var(--fg-soft); }
+.topic-strip-count { font-family: var(--mono); font-size: 10px; color: var(--fg-soft); margin-top: 4px; letter-spacing: 0.04em; }
 
 /* Filters */
 .filters { position: sticky; top: 0; z-index: 40; background: var(--bg); padding: 12px 0 14px; margin: 0 -24px 24px; padding-left: 24px; padding-right: 24px; border-bottom: 1px solid var(--hairline); }
@@ -470,23 +636,14 @@ a { color: var(--fg); }
 .chip:hover { border-color: rgba(0,0,0,0.3); color: var(--fg); }
 .chip-active { background: var(--fg); color: #fff; border-color: var(--fg); }
 
-/* Topic strip */
-.topic-strip { margin-bottom: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
-.topic-strip-card { padding: 14px 16px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--bg-paper); font-size: 13px; }
-.topic-strip-num { font-family: var(--mono); font-size: 10px; color: var(--fg-soft); letter-spacing: 0.06em; }
-.topic-strip-name { font-weight: 600; margin-top: 2px; font-size: 14px; }
-.topic-strip-status { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin-top: 6px; display: inline-block; }
-.topic-strip-status.done { background: var(--dot); color: #fff; }
-.topic-strip-status.pending { background: var(--pending); color: var(--fg-soft); }
-
-/* Cards grid */
-.cards-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.card { background: var(--bg-paper); border: 1px solid var(--hairline); border-radius: 10px; padding: 22px 20px; }
+/* Cards */
+.cards-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.card { background: var(--bg-paper); border: 1px solid var(--hairline); border-radius: 12px; padding: 22px 20px; }
 .card.hidden { display: none; }
-.card.status-ready { border-color: rgba(10,109,47,0.25); }
+.card.status-ready { border-color: rgba(10,109,47,0.22); }
 .card-head { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--hairline-soft); }
 .card-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
-.card-id { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); font-weight: 600; letter-spacing: 0.03em; }
+.card-id { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); font-weight: 600; }
 .card-fmt, .card-pillar, .card-topic, .card-status { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.05em; }
 .card-fmt.fmt-lf { background: rgba(148,97,0,0.08); color: #946100; }
 .card-fmt.fmt-sf { background: rgba(10,109,47,0.08); color: var(--dot); }
@@ -497,57 +654,77 @@ a { color: var(--fg); }
 .card-title { margin: 6px 0 6px; font-size: 18px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
 .card-format-spec { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.04em; }
 
-.card-section { padding: 14px 0 4px; border-top: 1px solid var(--hairline-soft); margin-top: 12px; }
-.card-section:first-of-type { border-top: none; padding-top: 4px; margin-top: 0; }
-.section-h { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); margin: 0 0 10px; font-weight: 600; }
+.card-section { padding: 18px 0 4px; }
+.section-head { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.section-h { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); margin: 0; font-weight: 600; }
+.section-hint { font-size: 11px; color: var(--fg-soft); }
 
-.hooks, .findings { padding-left: 22px; margin: 0; }
-.hooks li, .findings li { font-size: 13px; color: var(--fg); line-height: 1.55; margin-bottom: 6px; }
-.findings li { color: var(--fg-muted); }
+/* Angle */
+.angle { padding: 14px 16px; border: 1px solid var(--hairline-soft); border-radius: 8px; margin-bottom: 10px; transition: border-color 0.15s, background 0.15s; }
+.angle.picked { border-color: var(--pick); background: rgba(10,109,47,0.03); }
+.angle:last-child { margin-bottom: 0; }
+.angle-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 8px; }
+.angle-check { position: relative; display: inline-flex; cursor: pointer; padding-top: 2px; }
+.angle-check input { position: absolute; opacity: 0; cursor: pointer; }
+.checkmark { display: block; width: 20px; height: 20px; border: 2px solid var(--hairline); border-radius: 5px; background: var(--bg-paper); transition: all 0.15s; flex-shrink: 0; }
+.angle-check input:checked ~ .checkmark { background: var(--pick); border-color: var(--pick); }
+.angle-check input:checked ~ .checkmark::after { content: '✓'; display: block; color: #fff; font-size: 14px; line-height: 16px; text-align: center; font-weight: 700; }
+.angle-meta { flex: 1; min-width: 0; }
+.angle-name { font-size: 14px; font-weight: 600; color: var(--fg); margin-bottom: 4px; line-height: 1.35; }
+.angle-rating { font-family: var(--mono); font-size: 11px; color: #946100; letter-spacing: 0.5px; }
+.angle-rating .rating-num { color: var(--fg-soft); margin-left: 4px; font-size: 10px; }
+.angle-expand { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid var(--hairline); border-radius: 100px; background: var(--bg-paper); cursor: pointer; color: var(--fg-muted); text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0; align-self: flex-start; min-height: 26px; }
+.angle-expand:hover { border-color: var(--fg); color: var(--fg); }
+.angle-expand.expanded { background: var(--fg); color: #fff; border-color: var(--fg); }
 
-.angles { display: grid; grid-template-columns: 1fr; gap: 10px; }
-.angle { padding: 10px 12px; background: rgba(0,0,0,0.025); border-radius: 6px; }
-.angle-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 3px; }
-.angle-blurb { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+.angle-snippet { font-size: 13px; color: var(--fg-muted); line-height: 1.55; padding-left: 32px; font-style: italic; }
+.angle-full-wrap { padding: 12px 16px 12px 32px; margin-top: 10px; background: rgba(0,0,0,0.025); border-radius: 6px; }
+.full-section { padding: 6px 0; border-bottom: 1px dashed var(--hairline-soft); display: grid; grid-template-columns: 110px 1fr; gap: 12px; align-items: start; }
+.full-section:last-child { border-bottom: none; }
+.full-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-soft); padding-top: 2px; }
+.full-text { font-size: 13px; color: var(--fg); line-height: 1.55; }
 
-.pending-note { font-size: 12px; color: var(--fg-soft); font-style: italic; margin: 4px 0 0; line-height: 1.5; padding: 8px 12px; background: rgba(0,0,0,0.02); border-radius: 6px; border-left: 2px dashed var(--hairline); }
+/* Comment */
+.comment-block { padding-top: 14px; border-top: 1px solid var(--hairline-soft); }
+.card-comment { width: 100%; min-height: 60px; padding: 10px 12px; border: 1px solid var(--hairline); border-radius: 8px; font-family: inherit; font-size: 13px; line-height: 1.5; resize: vertical; box-sizing: border-box; background: var(--bg-paper); }
+.card-comment:focus { outline: 1px solid var(--fg); border-color: var(--fg); }
+.card-comment::placeholder { color: rgba(0,0,0,0.3); }
 
-.card-foot { padding-top: 16px; margin-top: 14px; border-top: 1px solid var(--hairline-soft); }
-.draft-btn { padding: 9px 16px; font-size: 13px; font-family: inherit; background: var(--fg); color: #fff; border: none; border-radius: 8px; cursor: pointer; min-height: 38px; font-weight: 500; }
-.draft-btn:hover { background: #333; }
-.draft-btn:disabled, .draft-btn.disabled { background: var(--pending); color: var(--fg-soft); cursor: not-allowed; }
+/* Findings collapsed */
+.findings-details { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--hairline-soft); }
+.findings-summary { cursor: pointer; font-family: var(--mono); font-size: 11px; color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.06em; user-select: none; padding: 4px 0; }
+.findings-summary:hover { color: var(--fg); }
+.findings { padding-left: 22px; margin: 12px 0 4px; }
+.findings li { font-size: 13px; color: var(--fg-muted); line-height: 1.55; margin-bottom: 6px; }
 
-/* TEMPLATES SECTION */
-.templates { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--hairline); }
-.templates h2 { font-size: 24px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.015em; }
-.templates p { font-size: 14px; color: var(--fg-muted); margin: 0 0 22px; max-width: 640px; line-height: 1.55; }
-.templates-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.template-card { background: var(--bg-paper); border: 1px solid var(--hairline); border-radius: 10px; padding: 22px 20px; }
-.template-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-.template-head h4 { margin: 0; font-size: 15px; font-weight: 600; }
-.template-tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.05em; font-weight: 600; }
-.template-tag.fmt-lf { background: rgba(148,97,0,0.12); color: #946100; }
-.template-tag.fmt-sf { background: rgba(10,109,47,0.12); color: var(--dot); }
-.template-body { border: 1px solid var(--hairline-soft); border-radius: 6px; overflow: hidden; }
-.template-row { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 10px 14px; border-bottom: 1px solid var(--hairline-soft); }
-.template-row:last-child { border-bottom: none; }
-.template-time { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); padding-top: 2px; }
-.template-beat { font-size: 13px; line-height: 1.5; }
-.template-extras { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--hairline); display: grid; grid-template-columns: 1fr; gap: 6px; }
-.template-extra { font-size: 12px; color: var(--fg-muted); }
-.template-extra strong { color: var(--fg); }
+/* Pending state */
+.pending-msg { padding: 16px 18px; background: rgba(0,0,0,0.025); border-radius: 8px; border-left: 2px dashed var(--hairline); }
+.pending-msg strong { display: block; font-size: 13px; color: var(--fg); margin-bottom: 4px; }
+.pending-msg p { font-size: 12px; color: var(--fg-soft); margin: 0; line-height: 1.5; }
 
-/* FOOT */
+/* Sticky bottom panel */
+.bottom-panel { position: fixed; bottom: 0; left: 0; right: 0; background: var(--fg); color: #fff; z-index: 100; box-shadow: 0 -2px 16px rgba(0,0,0,0.18); }
+.bottom-panel.collapsed .panel-body { display: none; }
+.panel-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; cursor: pointer; gap: 12px; min-height: 56px; }
+.panel-count { font-size: 14px; font-weight: 500; }
+.panel-count .count-zero { color: #888; font-weight: 400; }
+.panel-toggle { font-family: var(--mono); font-size: 11px; color: #aaa; text-transform: uppercase; letter-spacing: 0.05em; }
+.panel-body { padding: 6px 18px 18px; max-height: 60vh; overflow-y: auto; }
+.panel-label { display: block; font-family: var(--mono); font-size: 10px; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; margin: 12px 0 6px; }
+.panel-prompt { width: 100%; min-height: 200px; padding: 12px; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; background: rgba(255,255,255,0.05); color: #fff; font-family: var(--mono); font-size: 12px; line-height: 1.55; resize: vertical; white-space: pre-wrap; box-sizing: border-box; }
+.panel-actions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.panel-btn { padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 500; cursor: pointer; border: none; min-height: 40px; font-family: inherit; }
+.btn-copy { background: #fff; color: #111; }
+.btn-copy.copied { background: var(--dot); color: #fff; }
+
 .foot { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--hairline); font-family: var(--mono); font-size: 11px; color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.06em; }
 .foot p { margin: 4px 0; }
 
 @media (min-width: 720px) {
-  .layout { padding: 40px 32px 140px; }
+  .layout { padding: 40px 32px 150px; }
   .hero h1 { font-size: 38px; }
-  .cards-grid { grid-template-columns: 1fr; }
   .topic-strip { grid-template-columns: repeat(4, 1fr); }
-  .templates-grid { grid-template-columns: 1fr 1fr; }
-  .angles { grid-template-columns: 1fr 1fr; }
+  .bottom-panel { max-width: 800px; left: 50%; transform: translateX(-50%); border-radius: 12px 12px 0 0; }
 }
 @media (min-width: 1024px) {
   .topic-strip { grid-template-columns: repeat(7, 1fr); }
@@ -555,50 +732,34 @@ a { color: var(--fg); }
 """
 
 
-def render_topic_strip():
-    cards_per_topic = {}
-    for c in CARDS:
-        cards_per_topic.setdefault(c["topic"], 0)
-        cards_per_topic[c["topic"]] += 1
-    out = []
-    for topic_num, (status, name, _) in TOPIC_STATUS.items():
-        count = cards_per_topic.get(topic_num, 0)
-        status_class = "done" if status == "done" else "pending"
-        out.append(f'''
-<div class="topic-strip-card">
-  <div class="topic-strip-num">TOPIC {topic_num}</div>
-  <div class="topic-strip-name">{escape(name)}</div>
-  <div class="topic-strip-status {status_class}">{status.upper()}</div>
-  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">{count} cards</div>
-</div>''')
-    return "\n".join(out)
-
-
 def render_html():
     cards_html = "\n".join(render_card(c) for c in CARDS)
     n_total = len(CARDS)
-    n_ready = sum(1 for c in CARDS if c["status"] == "ready")
+    n_ready = sum(1 for c in CARDS if c['status'] == 'ready')
     n_pending = n_total - n_ready
+    # Build card-meta JSON for prompt generator
+    card_meta = {c['id']: {'title': c['title'], 'angles': [a['name'] for a in c.get('angles', [])]} for c in CARDS}
+    card_meta_json = json.dumps(card_meta)
     return f'''<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>SEA brand channel — production cards</title>
+<title>SEA brand channel — production cards v2</title>
 <style>{CSS}</style>
 </head>
 <body>
 <div class="layout">
 
   <header class="hero">
-    <div class="eyebrow">Sparkloop · production cards · SEA v4</div>
+    <div class="eyebrow">Sparkloop · production cards · {VERSION} · SEA</div>
     <h1>SEA brand channel — production cards</h1>
-    <p class="lede">All 30 banked pieces in one place. Each card has its hooks (from brainstorm), research findings (from /spark_listen), writing angles (suggested approaches), and a draft button. When research lands for a topic, every card in that topic unlocks. Two script templates at the bottom — Long-form and Short-form drafting paths.</p>
+    <p class="lede">Each card has 5 writing angles. Each angle is a mini-script preview with an audience-fit rating. Click "Expand" to read the full hook + body + close. Pick one or more angles per card. Drop a comment if anything needs rework. The sticky panel at the bottom builds the prompt to send back.</p>
     <div class="meta">
       <span>2026-05-13</span>
-      <span>{n_total} pieces</span>
-      <span>{n_ready} ready · {n_pending} awaiting research</span>
+      <span>{n_ready * 5 if n_ready else 0} angles ready · {n_pending} cards awaiting research</span>
+      <span>Multi-select OK · same idea different format months apart</span>
     </div>
   </header>
 
@@ -620,67 +781,234 @@ def render_html():
       <button class="chip" data-filter-format="sf">Short-form</button>
       <button class="chip" data-filter-format="kol">KOL</button>
     </div>
-    <div class="filter-row">
-      <span class="filter-label">Topic</span>
-      <button class="chip chip-active" data-filter-topic="all">All</button>
-      <button class="chip" data-filter-topic="01">01</button>
-      <button class="chip" data-filter-topic="02">02</button>
-      <button class="chip" data-filter-topic="03">03</button>
-      <button class="chip" data-filter-topic="04">04</button>
-      <button class="chip" data-filter-topic="05">05</button>
-      <button class="chip" data-filter-topic="06">06</button>
-      <button class="chip" data-filter-topic="07">07</button>
-    </div>
   </div>
 
   <div class="cards-grid">
     {cards_html}
   </div>
 
-  <section class="templates">
-    <h2>Script templates</h2>
-    <p>When you click "Draft script" on a card, it routes into one of these two templates. Long-form needs structural acts, pacing, B-roll. Short-form needs tight hook + body + payoff. Different drafting flows for each.</p>
-    <div class="templates-grid">
-      {render_template_sample("LF")}
-      {render_template_sample("SF")}
-    </div>
-  </section>
-
   <footer class="foot">
-    <p>SEA brand channel · production cards · v0</p>
-    <p>Generated 2026-05-13 · Hooks from brainstorm · Findings + angles from /spark_listen runs</p>
+    <p>SEA brand channel · production cards · {VERSION}</p>
+    <p>Generated 2026-05-13 · pick angles, drop comments, copy prompt → I respond</p>
   </footer>
 
 </div>
 
+<div class="bottom-panel collapsed" id="bottom-panel">
+  <div class="panel-bar" onclick="togglePanel()">
+    <span class="panel-count"><span id="pick-count" class="count-zero">0 angles picked</span> across <span id="card-count">0</span> cards</span>
+    <span class="panel-toggle" id="panel-toggle">tap to expand</span>
+  </div>
+  <div class="panel-body">
+    <label class="panel-label">Generated prompt (auto-updates as you pick + comment)</label>
+    <textarea class="panel-prompt" id="panel-prompt" readonly></textarea>
+    <div class="panel-actions">
+      <button class="panel-btn btn-copy" onclick="copyPrompt()" id="btn-copy">Copy prompt</button>
+    </div>
+  </div>
+</div>
+
+<script type="application/json" id="card-meta">{card_meta_json}</script>
+
 <script>
-  const statusChips = document.querySelectorAll('[data-filter-status]');
-  const formatChips = document.querySelectorAll('[data-filter-format]');
-  const topicChips = document.querySelectorAll('[data-filter-topic]');
-  let activeStatus = 'all', activeFormat = 'all', activeTopic = 'all';
-  function apply() {{
-    document.querySelectorAll('.card').forEach(card => {{
-      let show = true;
-      if (activeStatus !== 'all' && card.dataset.status !== activeStatus) show = false;
-      if (activeFormat !== 'all' && card.dataset.format !== activeFormat) show = false;
-      if (activeTopic !== 'all' && card.dataset.topic !== activeTopic) show = false;
-      card.classList.toggle('hidden', !show);
+  let cardMeta = {{}};
+  let picks = {{}}; // {{ cardId: [angleIdx, ...] }}
+  let comments = {{}}; // {{ cardId: text }}
+  const STATE_KEY = 'sea_production_cards_v2';
+
+  function loadMeta() {{
+    try {{ cardMeta = JSON.parse(document.getElementById('card-meta').textContent); }} catch(_) {{}}
+  }}
+  function loadState() {{
+    try {{
+      const s = JSON.parse(localStorage.getItem(STATE_KEY) || '{{}}');
+      picks = s.picks || {{}};
+      comments = s.comments || {{}};
+    }} catch(_) {{}}
+  }}
+  function saveState() {{
+    try {{ localStorage.setItem(STATE_KEY, JSON.stringify({{picks, comments}})); }} catch(_) {{}}
+  }}
+
+  function initUI() {{
+    // Apply picks
+    document.querySelectorAll('.angle-pick').forEach(cb => {{
+      const card = cb.dataset.card;
+      const idx = parseInt(cb.dataset.idx);
+      if ((picks[card] || []).includes(idx)) {{
+        cb.checked = true;
+        cb.closest('.angle').classList.add('picked');
+      }}
+    }});
+    // Apply comments
+    document.querySelectorAll('.card-comment').forEach(ta => {{
+      const card = ta.dataset.card;
+      if (comments[card]) ta.value = comments[card];
     }});
   }}
-  function attach(chips, key) {{
-    chips.forEach(c => c.addEventListener('click', () => {{
-      chips.forEach(x => x.classList.remove('chip-active'));
+
+  function onPickChange(e) {{
+    const cb = e.target;
+    const card = cb.dataset.card;
+    const idx = parseInt(cb.dataset.idx);
+    if (!picks[card]) picks[card] = [];
+    if (cb.checked) {{
+      if (!picks[card].includes(idx)) picks[card].push(idx);
+      cb.closest('.angle').classList.add('picked');
+    }} else {{
+      picks[card] = picks[card].filter(i => i !== idx);
+      if (picks[card].length === 0) delete picks[card];
+      cb.closest('.angle').classList.remove('picked');
+    }}
+    saveState();
+    updatePanel();
+  }}
+
+  function onCommentChange(e) {{
+    const card = e.target.dataset.card;
+    const v = e.target.value;
+    if (v.trim()) comments[card] = v;
+    else delete comments[card];
+    saveState();
+    updatePanel();
+  }}
+
+  function onExpandClick(e) {{
+    const btn = e.target;
+    const targetId = btn.dataset.target;
+    const target = document.getElementById(targetId);
+    if (target) {{
+      target.hidden = !target.hidden;
+      btn.classList.toggle('expanded', !target.hidden);
+      btn.textContent = target.hidden ? 'Expand' : 'Collapse';
+    }}
+  }}
+
+  function attachHandlers() {{
+    document.querySelectorAll('.angle-pick').forEach(cb => cb.addEventListener('change', onPickChange));
+    document.querySelectorAll('.card-comment').forEach(ta => ta.addEventListener('input', onCommentChange));
+    document.querySelectorAll('.angle-expand').forEach(btn => btn.addEventListener('click', onExpandClick));
+  }}
+
+  function attachFilters() {{
+    const filterChips = document.querySelectorAll('[data-filter-status], [data-filter-format]');
+    let activeStatus = 'all', activeFormat = 'all';
+    function apply() {{
+      document.querySelectorAll('.card').forEach(card => {{
+        let show = true;
+        if (activeStatus !== 'all' && card.dataset.status !== activeStatus) show = false;
+        if (activeFormat !== 'all' && card.dataset.format !== activeFormat) show = false;
+        card.classList.toggle('hidden', !show);
+      }});
+    }}
+    document.querySelectorAll('[data-filter-status]').forEach(c => c.addEventListener('click', () => {{
+      document.querySelectorAll('[data-filter-status]').forEach(x => x.classList.remove('chip-active'));
       c.classList.add('chip-active');
-      const val = c.dataset[key];
-      if (key === 'filterStatus') activeStatus = val;
-      else if (key === 'filterFormat') activeFormat = val;
-      else if (key === 'filterTopic') activeTopic = val;
+      activeStatus = c.dataset.filterStatus;
+      apply();
+    }}));
+    document.querySelectorAll('[data-filter-format]').forEach(c => c.addEventListener('click', () => {{
+      document.querySelectorAll('[data-filter-format]').forEach(x => x.classList.remove('chip-active'));
+      c.classList.add('chip-active');
+      activeFormat = c.dataset.filterFormat;
       apply();
     }}));
   }}
-  attach(statusChips, 'filterStatus');
-  attach(formatChips, 'filterFormat');
-  attach(topicChips, 'filterTopic');
+
+  function generatePrompt() {{
+    const lines = [];
+    lines.push('SEA production cards v2 — picks + comments:');
+    lines.push('');
+
+    // Picks section
+    const pickedCards = Object.keys(picks).filter(c => picks[c].length > 0).sort();
+    let totalAngles = 0;
+    pickedCards.forEach(c => totalAngles += picks[c].length);
+
+    if (pickedCards.length === 0) {{
+      lines.push('== PICKED ANGLES (none yet) ==');
+    }} else {{
+      lines.push(`== PICKED ANGLES (${{totalAngles}} across ${{pickedCards.length}} cards) ==`);
+      lines.push('');
+      pickedCards.forEach(c => {{
+        const meta = cardMeta[c] || {{}};
+        lines.push(`${{c}} — ${{meta.title || ''}}`);
+        picks[c].sort((a,b) => a-b).forEach(idx => {{
+          const angleName = meta.angles && meta.angles[idx-1] ? meta.angles[idx-1] : `Angle ${{idx}}`;
+          lines.push(`  ${{idx}}. ${{angleName}}`);
+        }});
+        lines.push('');
+      }});
+    }}
+
+    // Comments section
+    const commentCards = Object.keys(comments).filter(c => (comments[c] || '').trim()).sort();
+    if (commentCards.length > 0) {{
+      lines.push('== CARD COMMENTS ==');
+      lines.push('');
+      commentCards.forEach(c => {{
+        const meta = cardMeta[c] || {{}};
+        lines.push(`${{c}} — ${{meta.title || ''}}:`);
+        comments[c].trim().split('\\n').forEach(l => lines.push(`  ${{l}}`));
+        lines.push('');
+      }});
+    }}
+
+    lines.push('(paste back to me)');
+    lines.push('- If comments are minor / no red flags → I auto-route to script drafting for the picked angles');
+    lines.push('- If comments flag major rework → I produce v3 cards with revised angles');
+    return lines.join('\\n');
+  }}
+
+  function updatePanel() {{
+    let totalAngles = 0;
+    let cardsWithPicks = 0;
+    Object.keys(picks).forEach(c => {{
+      if (picks[c].length > 0) {{ totalAngles += picks[c].length; cardsWithPicks++; }}
+    }});
+    const countEl = document.getElementById('pick-count');
+    const cardCountEl = document.getElementById('card-count');
+    countEl.textContent = `${{totalAngles}} angle${{totalAngles === 1 ? '' : 's'}} picked`;
+    countEl.classList.toggle('count-zero', totalAngles === 0);
+    cardCountEl.textContent = cardsWithPicks;
+    document.getElementById('panel-prompt').value = generatePrompt();
+  }}
+
+  function togglePanel() {{
+    const panel = document.getElementById('bottom-panel');
+    const toggle = document.getElementById('panel-toggle');
+    panel.classList.toggle('collapsed');
+    toggle.textContent = panel.classList.contains('collapsed') ? 'tap to expand' : 'tap to collapse';
+  }}
+
+  function copyPrompt() {{
+    const ta = document.getElementById('panel-prompt');
+    const btn = document.getElementById('btn-copy');
+    const txt = ta.value;
+    const flash = () => {{
+      btn.textContent = 'Copied';
+      btn.classList.add('copied');
+      setTimeout(() => {{ btn.textContent = 'Copy prompt'; btn.classList.remove('copied'); }}, 1500);
+    }};
+    if (navigator.clipboard && navigator.clipboard.writeText) {{
+      navigator.clipboard.writeText(txt).then(flash).catch(() => {{
+        ta.select(); try {{ document.execCommand('copy'); flash(); }} catch(_) {{}}
+      }});
+    }} else {{
+      ta.select(); try {{ document.execCommand('copy'); flash(); }} catch(_) {{}}
+    }}
+  }}
+
+  function init() {{
+    loadMeta();
+    loadState();
+    initUI();
+    attachHandlers();
+    attachFilters();
+    updatePanel();
+  }}
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 </script>
 
 </body>
@@ -694,7 +1022,11 @@ def main():
         f.write(html)
     print(f"Built: {out_path}")
     print(f"Total HTML size: {len(html)} chars")
-    print(f"Cards: {len(CARDS)} ({sum(1 for c in CARDS if c['status']=='ready')} ready, {sum(1 for c in CARDS if c['status']=='pending')} pending)")
+    n_ready = sum(1 for c in CARDS if c['status'] == 'ready')
+    n_pending = sum(1 for c in CARDS if c['status'] == 'pending')
+    print(f"Cards: {len(CARDS)} ({n_ready} ready, {n_pending} pending)")
+    n_angles = sum(len(c.get('angles', [])) for c in CARDS)
+    print(f"Total angles drafted: {n_angles}")
 
 
 if __name__ == "__main__":
