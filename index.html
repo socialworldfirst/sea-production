@@ -1,0 +1,1489 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>SEA brand channel — production cards</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; }
+:root {
+  --fg: #111;
+  --fg-muted: #5b5b5b;
+  --fg-soft: #888;
+  --bg: #fafafa;
+  --bg-paper: #fff;
+  --hairline: rgba(0,0,0,0.09);
+  --hairline-soft: rgba(0,0,0,0.05);
+  --dot: #0a6d2f;
+  --pending: rgba(0,0,0,0.06);
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+html, body { margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--fg); -webkit-font-smoothing: antialiased; line-height: 1.6; font-size: 16px; }
+a { color: var(--fg); }
+
+.layout { max-width: 1200px; margin: 0 auto; padding: 32px 24px 120px; }
+
+.hero { padding-bottom: 28px; border-bottom: 1px solid var(--hairline); margin-bottom: 32px; }
+.eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-soft); margin-bottom: 14px; }
+.hero h1 { font-size: 32px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; margin: 0 0 14px; }
+.lede { font-size: 16px; line-height: 1.55; color: var(--fg-muted); max-width: 720px; margin: 0 0 18px; }
+.meta { display: flex; flex-wrap: wrap; gap: 14px 28px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); }
+
+/* Filters */
+.filters { position: sticky; top: 0; z-index: 40; background: var(--bg); padding: 12px 0 14px; margin: 0 -24px 24px; padding-left: 24px; padding-right: 24px; border-bottom: 1px solid var(--hairline); }
+.filter-row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 6px; }
+.filter-row:last-child { margin-bottom: 0; }
+.filter-label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); margin-right: 6px; }
+.chip { font-size: 12px; padding: 6px 12px; border: 1px solid var(--hairline); border-radius: 100px; background: var(--bg-paper); cursor: pointer; color: var(--fg-muted); font-family: inherit; min-height: 30px; }
+.chip:hover { border-color: rgba(0,0,0,0.3); color: var(--fg); }
+.chip-active { background: var(--fg); color: #fff; border-color: var(--fg); }
+
+/* Topic strip */
+.topic-strip { margin-bottom: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.topic-strip-card { padding: 14px 16px; border: 1px solid var(--hairline); border-radius: 8px; background: var(--bg-paper); font-size: 13px; }
+.topic-strip-num { font-family: var(--mono); font-size: 10px; color: var(--fg-soft); letter-spacing: 0.06em; }
+.topic-strip-name { font-weight: 600; margin-top: 2px; font-size: 14px; }
+.topic-strip-status { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600; margin-top: 6px; display: inline-block; }
+.topic-strip-status.done { background: var(--dot); color: #fff; }
+.topic-strip-status.pending { background: var(--pending); color: var(--fg-soft); }
+
+/* Cards grid */
+.cards-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.card { background: var(--bg-paper); border: 1px solid var(--hairline); border-radius: 10px; padding: 22px 20px; }
+.card.hidden { display: none; }
+.card.status-ready { border-color: rgba(10,109,47,0.25); }
+.card-head { margin-bottom: 18px; padding-bottom: 14px; border-bottom: 1px solid var(--hairline-soft); }
+.card-meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
+.card-id { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); font-weight: 600; letter-spacing: 0.03em; }
+.card-fmt, .card-pillar, .card-topic, .card-status { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.05em; }
+.card-fmt.fmt-lf { background: rgba(148,97,0,0.08); color: #946100; }
+.card-fmt.fmt-sf { background: rgba(10,109,47,0.08); color: var(--dot); }
+.card-fmt.fmt-kol { background: rgba(107,58,160,0.08); color: #6b3aa0; }
+.card-pillar, .card-topic { border: 1px solid var(--hairline); color: var(--fg-muted); }
+.card-status { background: var(--pending); color: var(--fg-soft); font-weight: 600; }
+.card.status-ready .card-status { background: var(--dot); color: #fff; }
+.card-title { margin: 6px 0 6px; font-size: 18px; font-weight: 600; line-height: 1.35; letter-spacing: -0.01em; }
+.card-format-spec { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.04em; }
+
+.card-section { padding: 14px 0 4px; border-top: 1px solid var(--hairline-soft); margin-top: 12px; }
+.card-section:first-of-type { border-top: none; padding-top: 4px; margin-top: 0; }
+.section-h { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-soft); margin: 0 0 10px; font-weight: 600; }
+
+.hooks, .findings { padding-left: 22px; margin: 0; }
+.hooks li, .findings li { font-size: 13px; color: var(--fg); line-height: 1.55; margin-bottom: 6px; }
+.findings li { color: var(--fg-muted); }
+
+.angles { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.angle { padding: 10px 12px; background: rgba(0,0,0,0.025); border-radius: 6px; }
+.angle-name { font-size: 13px; font-weight: 600; color: var(--fg); margin-bottom: 3px; }
+.angle-blurb { font-size: 12px; color: var(--fg-muted); line-height: 1.5; }
+
+.pending-note { font-size: 12px; color: var(--fg-soft); font-style: italic; margin: 4px 0 0; line-height: 1.5; padding: 8px 12px; background: rgba(0,0,0,0.02); border-radius: 6px; border-left: 2px dashed var(--hairline); }
+
+.card-foot { padding-top: 16px; margin-top: 14px; border-top: 1px solid var(--hairline-soft); }
+.draft-btn { padding: 9px 16px; font-size: 13px; font-family: inherit; background: var(--fg); color: #fff; border: none; border-radius: 8px; cursor: pointer; min-height: 38px; font-weight: 500; }
+.draft-btn:hover { background: #333; }
+.draft-btn:disabled, .draft-btn.disabled { background: var(--pending); color: var(--fg-soft); cursor: not-allowed; }
+
+/* TEMPLATES SECTION */
+.templates { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--hairline); }
+.templates h2 { font-size: 24px; font-weight: 600; margin: 0 0 8px; letter-spacing: -0.015em; }
+.templates p { font-size: 14px; color: var(--fg-muted); margin: 0 0 22px; max-width: 640px; line-height: 1.55; }
+.templates-grid { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.template-card { background: var(--bg-paper); border: 1px solid var(--hairline); border-radius: 10px; padding: 22px 20px; }
+.template-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.template-head h4 { margin: 0; font-size: 15px; font-weight: 600; }
+.template-tag { font-family: var(--mono); font-size: 10px; padding: 3px 8px; border-radius: 100px; letter-spacing: 0.05em; font-weight: 600; }
+.template-tag.fmt-lf { background: rgba(148,97,0,0.12); color: #946100; }
+.template-tag.fmt-sf { background: rgba(10,109,47,0.12); color: var(--dot); }
+.template-body { border: 1px solid var(--hairline-soft); border-radius: 6px; overflow: hidden; }
+.template-row { display: grid; grid-template-columns: 100px 1fr; gap: 14px; padding: 10px 14px; border-bottom: 1px solid var(--hairline-soft); }
+.template-row:last-child { border-bottom: none; }
+.template-time { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); padding-top: 2px; }
+.template-beat { font-size: 13px; line-height: 1.5; }
+.template-extras { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--hairline); display: grid; grid-template-columns: 1fr; gap: 6px; }
+.template-extra { font-size: 12px; color: var(--fg-muted); }
+.template-extra strong { color: var(--fg); }
+
+/* FOOT */
+.foot { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--hairline); font-family: var(--mono); font-size: 11px; color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.06em; }
+.foot p { margin: 4px 0; }
+
+@media (min-width: 720px) {
+  .layout { padding: 40px 32px 140px; }
+  .hero h1 { font-size: 38px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .topic-strip { grid-template-columns: repeat(4, 1fr); }
+  .templates-grid { grid-template-columns: 1fr 1fr; }
+  .angles { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .topic-strip { grid-template-columns: repeat(7, 1fr); }
+}
+</style>
+</head>
+<body>
+<div class="layout">
+
+  <header class="hero">
+    <div class="eyebrow">Sparkloop · production cards · SEA v4</div>
+    <h1>SEA brand channel — production cards</h1>
+    <p class="lede">All 30 banked pieces in one place. Each card has its hooks (from brainstorm), research findings (from /spark_listen), writing angles (suggested approaches), and a draft button. When research lands for a topic, every card in that topic unlocks. Two script templates at the bottom — Long-form and Short-form drafting paths.</p>
+    <div class="meta">
+      <span>2026-05-13</span>
+      <span>28 pieces</span>
+      <span>7 ready · 21 awaiting research</span>
+    </div>
+  </header>
+
+  <div class="topic-strip">
+    
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 01</div>
+  <div class="topic-strip-name">CNY rails + money flow</div>
+  <div class="topic-strip-status done">DONE</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">7 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 02</div>
+  <div class="topic-strip-name">FX margin + hidden costs</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">9 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 03</div>
+  <div class="topic-strip-name">WorldFirst product mechanics</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">3 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 04</div>
+  <div class="topic-strip-name">Personal vs business tools</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">5 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 05</div>
+  <div class="topic-strip-name">Paying in CNY economics</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">1 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 06</div>
+  <div class="topic-strip-name">Wire rejection failure modes</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">2 cards</div>
+</div>
+
+<div class="topic-strip-card">
+  <div class="topic-strip-num">TOPIC 07</div>
+  <div class="topic-strip-name">Switch-point math (KOL)</div>
+  <div class="topic-strip-status pending">PENDING</div>
+  <div style="font-size: 11px; color: var(--fg-soft); margin-top: 4px; font-family: var(--mono);">1 cards</div>
+</div>
+  </div>
+
+  <div class="filters">
+    <div class="filter-row">
+      <span class="filter-label">Status</span>
+      <button class="chip chip-active" data-filter-status="all">All (28)</button>
+      <button class="chip" data-filter-status="ready">Ready (7)</button>
+      <button class="chip" data-filter-status="pending">Pending (21)</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Format</span>
+      <button class="chip chip-active" data-filter-format="all">All</button>
+      <button class="chip" data-filter-format="lf">Long-form</button>
+      <button class="chip" data-filter-format="sf">Short-form</button>
+      <button class="chip" data-filter-format="kol">KOL</button>
+    </div>
+    <div class="filter-row">
+      <span class="filter-label">Topic</span>
+      <button class="chip chip-active" data-filter-topic="all">All</button>
+      <button class="chip" data-filter-topic="01">01</button>
+      <button class="chip" data-filter-topic="02">02</button>
+      <button class="chip" data-filter-topic="03">03</button>
+      <button class="chip" data-filter-topic="04">04</button>
+      <button class="chip" data-filter-topic="05">05</button>
+      <button class="chip" data-filter-topic="06">06</button>
+      <button class="chip" data-filter-topic="07">07</button>
+    </div>
+  </div>
+
+  <div class="cards-grid">
+    
+<article class="card status-ready" id="P1-A1" data-format="lf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A1</span>
+      <span class="card-fmt fmt-lf">LF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">Money in and out of China: the operator&#x27;s full picture</h3>
+    <div class="card-format-spec">Long-form 15-20 min · bilingual EN + Mandarin · Hui Mei lead</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>How money actually enters and leaves China when you&#x27;re an operator. The full picture, end to end.</li>
+<li>Most explainers cover one direction. Operators need both: paying in, getting paid out.</li>
+<li>China money flow for operators: 4 inbound channels, 3 outbound, and the rules for each.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>CIPS processed ¥175.49 trillion in 2024 (+42.6% YoY). The CNY rail is now real-scale infrastructure, not theoretical.</li>
+<li>80% of CIPS transactions still use SWIFT for messaging — mixed-rail reality, not a clean replacement.</li>
+<li>ASEAN remittance used to cost &gt;6% in fees; PromptPay-PayNow now seconds at fraction of cost. The SEA backdrop has shifted.</li>
+<li>Bidirectional flow (in + out) is rarely covered as one piece — SEO + audience gap.</li>
+<li>WF SG public page does NOT name MYbank partnership. Script around this. Use &#x27;dedicated CNY rail&#x27; / &#x27;specialised cross-border infrastructure&#x27; framing.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Sequential — in then out</div>
+              <div class="angle-blurb">Pay suppliers (8 min) → marketplace payouts (6 min) → synthesis (2 min). Best for SEO; ranks for both directions.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Problem-led — 3 things break</div>
+              <div class="angle-blurb">Wire rejections, FX gaps, routing delays. Each as an act. Strongest emotional pull.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Day-in-the-life — 24 hours</div>
+              <div class="angle-blurb">9am marketplace payout, 10am supplier wire, 11am FX check, 2pm bulk transfer, 4pm receivables. Most relatable; needs an operator case.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Cost-decomposition — $100K/month leaks</div>
+              <div class="angle-blurb">Leak 1 ($1,800 FX margin), leak 2 ($150-400 wire+intermediary), leak 3 ($1,500 payout conversion). Total $3,500-5,000/month.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Question-led — 5 operator questions</div>
+              <div class="angle-blurb">How to pay, why supplier asks for more, how fast, marketplace payouts in CNY, when to switch off your bank. Each Q = one SF cut.</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (LF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A2" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A2</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">3 ways CNY actually reaches your supplier</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>There are 3 ways your CNY reaches a Chinese supplier. Only one is same-day.</li>
+<li>Same wire, three possible paths, three different speeds.</li>
+<li>Three definitions of &#x27;CNY transfer&#x27; in banking. Only one means CNY actually moves CNY.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>The 3 ways: SWIFT-routed via correspondent banks; CIPS direct clearing; MYbank/Alipay corporate (for 1688).</li>
+<li>Most operators treat all three as one mechanism. The differences are speed, cost, and supplier-side amount received.</li>
+<li>1688&#x27;s bank-transfer route uses MYbank cooperation for &#x27;large-amount fund collection.&#x27;</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Curiosity-led</div>
+              <div class="angle-blurb">Open with &#x27;There are 3 ways...&#x27;. Reveal each. Best hook for TikTok.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Pain-led</div>
+              <div class="angle-blurb">Open with &#x27;Your supplier received USD when you sent CNY.&#x27; Then explain it&#x27;s the rail.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Mechanism-led demo</div>
+              <div class="angle-blurb">Visual: trace a $10K CNY payment through each of the 3 rails. Strongest for IG carousel + reel.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Comparison-led</div>
+              <div class="angle-blurb">Two banks, same &#x27;CNY transfer&#x27; label, two different outcomes.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;CIPS processed $24T in 2024. Here&#x27;s what it actually does.&#x27; Numbers-first.</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A7" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A7</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">Two banks offer &#x27;CNY transfer&#x27;. Only one moves CNY.</h3>
+    <div class="card-format-spec">Short-form 45s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Two banks both say &#x27;CNY transfer&#x27;. Only one actually sends CNY. Your supplier knows the difference.</li>
+<li>Your bank said &#x27;CNY transfer&#x27;. Your supplier received USD. Here&#x27;s what went wrong.</li>
+<li>Two definitions of &#x27;CNY transfer&#x27; in banking. Only one matches what your supplier needs.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>Bank A: routes via SWIFT to USD-clearing correspondent; conversion happens at correspondent end → supplier receives USD.</li>
+<li>Bank B: routes via CIPS or MYbank direct; supplier receives true CNY.</li>
+<li>Same label, different infrastructure. Marketing claims don&#x27;t match operational reality.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Pain-first</div>
+              <div class="angle-blurb">Open with &#x27;You sent CNY. Your supplier got USD. Both banks called it CNY transfer.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Comparison split-screen</div>
+              <div class="angle-blurb">Visual: same wire animated through both bank flows. End frame: supplier-side amounts differ.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Curiosity-led</div>
+              <div class="angle-blurb">&#x27;There are two definitions of CNY transfer floating around in banking.&#x27; Reveal each.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;What a supplier&#x27;s bank actually sees when you send CNY.&#x27; Banking-insider tone.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Demo-led</div>
+              <div class="angle-blurb">Live screen-share: same wire, two banks, supplier-side receipt comparison.</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A8" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A8</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">The 3-letter code that decides if your wire is same-day</h3>
+    <div class="card-format-spec">Short-form 45s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>There&#x27;s a 3-letter code on your wire that decides if it clears same-day or in 5 business days.</li>
+<li>Your wire&#x27;s SWIFT message has a routing code 99% of senders never see.</li>
+<li>One field on your wire confirmation predicts whether your supplier sees the money today or Friday.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>Field 71A of SWIFT MT103 holds the OUR/SHA/BEN code.</li>
+<li>OUR = sender pays all; supplier gets full amount. SHA = shared; intermediaries deduct. BEN = beneficiary pays.</li>
+<li>Each intermediary bank can charge $15-50. Multiple intermediaries possible per wire.</li>
+<li>Priority SWIFT before 14:00 GMT can clear same-day; otherwise 1-5 days.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Curiosity-led</div>
+              <div class="angle-blurb">&#x27;There&#x27;s a 3-letter code...&#x27;. Reveal it. Show how to find it on your confirmation.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Pain-led</div>
+              <div class="angle-blurb">&#x27;Your supplier got $200 less. The reason is a code you didn&#x27;t choose.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Tutorial-led</div>
+              <div class="angle-blurb">How to switch from SHA to OUR — supplier receives full amount. Step by step.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Comparison-led</div>
+              <div class="angle-blurb">OUR vs SHA vs BEN on a real $50K wire to Shenzhen. Three outcomes, three amounts.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;Field 71A of SWIFT MT103.&#x27; Banking literacy framing. Builds trust.</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A9" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A9</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">Supplier said wire didn&#x27;t arrive. Bank says it did.</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your supplier says the wire didn&#x27;t arrive. Your bank&#x27;s confirmation says it did. Both can be true. Here&#x27;s why.</li>
+<li>Three places your wire can sit between &#x27;sent&#x27; and &#x27;received&#x27;. Most operators check none of them.</li>
+<li>When your supplier and your bank disagree on whether the money arrived, here&#x27;s where to actually look.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>Wires can sit between intermediary correspondents for hours to days.</li>
+<li>Currency conversion windows add up to 2 working days.</li>
+<li>Local bank holidays in CN or SEA cause silent delays.</li>
+<li>AML/fraud thresholds can hold wires above certain amounts without notifying sender.</li>
+<li>Sender confirmation ≠ supplier receipt. The bank confirms when it sent. Receiving bank confirms when it received.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Pain-first</div>
+              <div class="angle-blurb">Open with &#x27;Your bank says sent. Your supplier says nothing. Both right.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Mechanism-led</div>
+              <div class="angle-blurb">Three places your wire can sit. Walk through each.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Tutorial-led</div>
+              <div class="angle-blurb">How to track a missing wire to China step by step.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Story-led</div>
+              <div class="angle-blurb">&#x27;I sent $42K Friday. Supplier got nothing by Monday. Here&#x27;s what I found.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;What sent actually means on a SWIFT wire.&#x27;</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A10" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A10</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">The routing decision that quietly changes your fee 1%</h3>
+    <div class="card-format-spec">Short-form 45s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your bank makes one decision on every China wire that changes your fee by up to 1%. They don&#x27;t tell you.</li>
+<li>There&#x27;s a routing fork on every cross-border wire. Wrong fork = 1% more.</li>
+<li>One silent backend choice can cost you $1,000 on a $100K wire to China.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>Banks choose correspondent routing path per wire, silently.</li>
+<li>Wrong correspondent = extra intermediary = extra fee.</li>
+<li>1% on $100K = $1,000 silently extracted.</li>
+<li>Each intermediary in the chain can charge $15-50; multiple intermediaries compound.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Curiosity-led</div>
+              <div class="angle-blurb">&#x27;Your bank makes one silent decision...&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Pain-led</div>
+              <div class="angle-blurb">&#x27;Where did $1,000 go on your $100K wire?&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;The correspondent banks your money passes through. Most banks won&#x27;t show you.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Mechanism-led</div>
+              <div class="angle-blurb">Animation: wire routes through correspondents; fees deduct in real time.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Comparison-led</div>
+              <div class="angle-blurb">Same $100K wire, two routing paths, $1,000 difference at the supplier end.</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-ready" id="P1-A11" data-format="sf" data-status="ready" data-topic="01">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A11</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 01</span>
+      <span class="card-status">READY</span>
+    </div>
+    <h3 class="card-title">Why your CNY payment sometimes arrives in USD</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>You sent CNY. Your supplier received USD. The bank quietly converted at their rate.</li>
+<li>Sending CNY doesn&#x27;t always mean your supplier gets CNY. There&#x27;s a rail dependency most operators miss.</li>
+<li>When &#x27;CNY transfer&#x27; becomes &#x27;USD transfer&#x27; mid-flight: the routing trap.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-block">
+          <h4 class="section-h">Research findings</h4>
+          <ul class="findings"><li>Conversion can happen at sender side, correspondent, or beneficiary bank.</li>
+<li>If no CNY-direct correspondent in chain, USD conversion happens by default.</li>
+<li>Supplier ends up holding USD when expecting CNY.</li>
+<li>Supplier then converts USD → CNY at their bank → double conversion cost.</li>
+<li>Cost gets pushed back to the operator on the next quote.</li></ul>
+        </div>
+  
+        <div class="card-section angles-block">
+          <h4 class="section-h">Writing angles (5)</h4>
+          <div class="angles"><div class="angle">
+              <div class="angle-name">Pain-first</div>
+              <div class="angle-blurb">&#x27;You sent CNY. Your supplier got USD. Their bank converted at their rate.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Mechanism-led</div>
+              <div class="angle-blurb">Three places where your CNY can become USD. Visual: trace the conversion points.</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Curiosity-led</div>
+              <div class="angle-blurb">&#x27;When CNY transfer becomes USD transfer mid-flight.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Cost-led</div>
+              <div class="angle-blurb">&#x27;Double conversion: who pays? Spoiler: your supplier, then you on the next order.&#x27;</div>
+            </div>
+<div class="angle">
+              <div class="angle-name">Authority-led</div>
+              <div class="angle-blurb">&#x27;Why CIPS exists — to keep CNY as CNY end-to-end.&#x27;</div>
+            </div></div>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn">Draft script (SF)</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A12" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A12</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">$1,200 gone from a $50K supplier wire. Where.</h3>
+    <div class="card-format-spec">Short-form 45s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>You sent $50,000. Your supplier received $48,800. The $1,200 wasn&#x27;t on the wire confirmation.</li>
+<li>$1,200 silently extracted from a $50K supplier payment. Not as a fee. As FX margin.</li>
+<li>The &#x27;no fee&#x27; wire that cost $1,200.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A13" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A13</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Bank says no fee. You still paid $300.</h3>
+    <div class="card-format-spec">Short-form 30s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your bank confirmed &#x27;no transfer fee&#x27;. Your statement shows $300 less than expected.</li>
+<li>&#x27;No fee&#x27; is one of the most expensive phrases in international banking.</li>
+<li>Fee-free transfers cost more than fee-included ones, in most cases.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A14" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A14</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Three operators, same $50K wire, three different supplier-end amounts</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Same supplier, same $50K send, three providers. Supplier received $48,800, $49,100, $49,650.</li>
+<li>We ran the same supplier payment with three banks. The difference at the supplier end was $850.</li>
+<li>How three providers process the same wire and produce three different totals.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A15" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A15</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">What &#x27;no fee&#x27; costs you per $10K to China</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>&#x27;No transfer fee&#x27; on a $10K wire to China typically costs $80-$120 in FX margin.</li>
+<li>The cost of free: what &#x27;no fee&#x27; wires actually take from you per $10K.</li>
+<li>Three banks all market &#x27;no fee&#x27; on China transfers. None are free.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A16" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A16</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Receipt says $50K. Statement says $51.2K.</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your wire receipt says you sent $50,000. Your account statement says $51,200 left. The $1,200 isn&#x27;t a fee.</li>
+<li>When wire receipt and statement disagree by $1,200, here&#x27;s which is closer to the truth.</li>
+<li>Why your wire confirmation and account statement don&#x27;t match.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A1" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A1</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">How a 2% bank-to-rail gap compounds over a year</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your local bank vs a dedicated cross-border rail: 2% gap per transaction. Run it 12 times.</li>
+<li>2% sounds small. Annual compounding on $1M of cross-border payments makes it $24K.</li>
+<li>Bank-to-rail FX gap of 2% means: a year of imports costs you a hire.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A7" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A7</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Your sourcing budget shrinks 4% a year (silent compound)</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>If you import $500K/year on a 0.4% FX margin, you&#x27;re losing $2,000 silently. Per year.</li>
+<li>Three FX margin levels, same import volume. Year 3 = a holiday. Year 5 = a hire.</li>
+<li>Why every Chinese-sourcing SME should run the FX-margin math once a year.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A8" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A8</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">How to read FX margin off your wire confirmation</h3>
+    <div class="card-format-spec">Short-form 60s tutorial</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your bank&#x27;s FX margin is hidden in plain sight on every wire confirmation.</li>
+<li>Two numbers on your wire confirmation can be combined to reveal your bank&#x27;s FX margin.</li>
+<li>The 60-second test to see if your bank is making 0.5% or 2% on your wire FX.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A9" data-format="sf" data-status="pending" data-topic="02">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A9</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 02</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Good rate quoted vs real interbank rate</h3>
+    <div class="card-format-spec">Short-form 45s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your bank quoted you a &#x27;competitive rate&#x27;. The real rate was 1.4% better.</li>
+<li>How to check your bank&#x27;s FX quote against the real interbank rate.</li>
+<li>The free tool that tells you if your bank&#x27;s &#x27;good rate&#x27; is actually good.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 02 (FX margin + hidden costs) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P3-A2" data-format="lf" data-status="pending" data-topic="03">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P3-A2</span>
+      <span class="card-fmt fmt-lf">LF</span>
+      <span class="card-pillar">P3</span>
+      <span class="card-topic">Topic 03</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">World Account setup, end-to-end in 8 minutes</h3>
+    <div class="card-format-spec">Long-form 8-10 min tutorial · Hui Mei lead</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>How to set up your World Account for cross-border payouts. 8 minutes, end-to-end.</li>
+<li>From sign-up to first payout: every step, in order.</li>
+<li>Set this up once and your marketplace payouts stop costing you 2.5%.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 03 (WorldFirst product mechanics) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P3-A10" data-format="sf" data-status="pending" data-topic="03">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P3-A10</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P3</span>
+      <span class="card-topic">Topic 03</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Why SMEs are building a financial stack (not relying on one bank)</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Modern SMEs don&#x27;t have one bank. They have a financial stack. Here&#x27;s what&#x27;s in it.</li>
+<li>Local bank + cross-border specialist + marketplace tool + hedging instrument = standard 2026 setup.</li>
+<li>The 5-piece financial stack every cross-border SME should have.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 03 (WorldFirst product mechanics) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A3" data-format="sf" data-status="pending" data-topic="03">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A3</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 03</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Bank wire vs WorldFirst on the same $50K payment</h3>
+    <div class="card-format-spec">Short-form 60s comparison</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Bank wire vs WorldFirst on the same $50K supplier payment. Apples to apples.</li>
+<li>Two operators, same $50K payment, two providers. Side by side.</li>
+<li>We ran the same payment with three providers. Where each one extracts cost.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 03 (WorldFirst product mechanics) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A12" data-format="sf" data-status="pending" data-topic="04">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A12</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 04</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Personal cross-border tools weren&#x27;t built for business</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Cross-border money apps were built for travellers and freelancers. Once you&#x27;re paying suppliers weekly, the design gaps show.</li>
+<li>Personal-tier FX tools work fine when you send money abroad sometimes.</li>
+<li>Three categories of features your business cross-border setup needs that personal tools don&#x27;t offer.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 04 (Personal vs business tools) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A13" data-format="sf" data-status="pending" data-topic="04">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A13</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 04</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">How much PayPal actually costs you on a $20K supplier payment</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>PayPal&#x27;s &#x27;flat fee&#x27; on a $20K supplier payment is closer to 5% once you add cross-border and FX.</li>
+<li>Use PayPal for B2B and you pay three times: visible fee, cross-border surcharge, FX margin.</li>
+<li>PayPal for collecting client payments: fine. PayPal for paying suppliers: expensive.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 04 (Personal vs business tools) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A14" data-format="sf" data-status="pending" data-topic="04">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A14</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 04</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Credit cards for international supplier payments: the gap</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Why your credit card mostly doesn&#x27;t work for paying Chinese suppliers.</li>
+<li>3% credit card fee on a $20K supplier order = $600. Before FX.</li>
+<li>The credit card workaround SEA importers use, and the better path.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 04 (Personal vs business tools) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A18" data-format="sf" data-status="pending" data-topic="04">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A18</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 04</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Personal vs business FX rate: the spread</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Personal cross-border tools quote retail rates. Business tools quote near-interbank. The spread can be 1.5%.</li>
+<li>Why the FX rate on a personal app is different from what your business should expect.</li>
+<li>1.5% spread × $500K cross-border = $7,500/year.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 04 (Personal vs business tools) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A24" data-format="sf" data-status="pending" data-topic="04">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A24</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 04</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">When CAN you pay a Chinese supplier by card?</h3>
+    <div class="card-format-spec">Short-form 60s</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>There are 4 scenarios where a credit card actually works for paying a Chinese supplier.</li>
+<li>Card payment to China: small set of cases where it&#x27;s an option.</li>
+<li>Trading companies that accept cards: a checklist.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 04 (Personal vs business tools) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A6" data-format="sf" data-status="pending" data-topic="05">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A6</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 05</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Why paying your supplier in CNY actually wins</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Paying in USD feels safer. Paying in CNY costs less and lands faster.</li>
+<li>Three reasons your supplier prefers CNY. One quietly lowers your unit cost.</li>
+<li>USD to your supplier means two conversions. CNY means one.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 05 (Paying in CNY economics) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A4" data-format="sf" data-status="pending" data-topic="06">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A4</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 06</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">Your supplier asked you to pay the $200 they didn&#x27;t receive</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>Your supplier received $200 less than you sent. They&#x27;re asking you to pay the difference.</li>
+<li>Sent $10K. Supplier got $9,800. The bank took fee on both ends of the same payment.</li>
+<li>Why does anyone pay the bank&#x27;s FX margin in the first place?</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 06 (Wire rejection failure modes) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P1-A5" data-format="sf" data-status="pending" data-topic="06">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P1-A5</span>
+      <span class="card-fmt fmt-sf">SF</span>
+      <span class="card-pillar">P1</span>
+      <span class="card-topic">Topic 06</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">SWIFT vs the alternatives: which actually pays your supplier faster</h3>
+    <div class="card-format-spec">Short-form 60s · bilingual</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>SWIFT is the bank&#x27;s default for international payments. Here&#x27;s how it works, then here&#x27;s what beats it.</li>
+<li>Your bank sends through SWIFT. That&#x27;s why your payment takes 3-5 days.</li>
+<li>First, what SWIFT actually does. Then, why faster rails exist.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 06 (Wire rejection failure modes) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+
+<article class="card status-pending" id="P2-A6" data-format="kol" data-status="pending" data-topic="07">
+  <header class="card-head">
+    <div class="card-meta">
+      <span class="card-id">P2-A6</span>
+      <span class="card-fmt fmt-kol">KOL</span>
+      <span class="card-pillar">P2</span>
+      <span class="card-topic">Topic 07</span>
+      <span class="card-status">PENDING</span>
+    </div>
+    <h3 class="card-title">The break-even: when should you switch providers?</h3>
+    <div class="card-format-spec">KOL distributed · math/decision-led</div>
+  </header>
+
+  <div class="card-section hooks-block">
+    <h4 class="section-h">Hook variants (3)</h4>
+    <ul class="hooks"><li>At what monthly import volume does staying with your bank cost more than switching?</li>
+<li>Below $X/month in supplier payments, your bank is fine. Above $X, you&#x27;re paying for sticking.</li>
+<li>The break-even point where &#x27;inconvenience of switching&#x27; costs more than &#x27;price of staying&#x27;.</li></ul>
+  </div>
+
+  
+        <div class="card-section findings-pending">
+          <h4 class="section-h">Research findings</h4>
+          <p class="pending-note">Pending — research run for Topic 07 (Switch-point math (KOL)) not yet executed. Findings will appear here when the topic batch completes.</p>
+        </div>
+  
+        <div class="card-section angles-pending">
+          <h4 class="section-h">Writing angles</h4>
+          <p class="pending-note">Generated after research run.</p>
+        </div>
+
+  <footer class="card-foot">
+    <button class="draft-btn disabled">Awaiting research</button>
+  </footer>
+</article>
+
+  </div>
+
+  <section class="templates">
+    <h2>Script templates</h2>
+    <p>When you click "Draft script" on a card, it routes into one of these two templates. Long-form needs structural acts, pacing, B-roll. Short-form needs tight hook + body + payoff. Different drafting flows for each.</p>
+    <div class="templates-grid">
+      
+<div class="template-card">
+  <div class="template-head"><span class="template-tag fmt-lf">LF</span><h4>Long-form script template</h4></div>
+  <div class="template-body">
+    <div class="template-row"><span class="template-time">0:00-0:30</span><span class="template-beat"><strong>Hook</strong> — opening line, frame the piece, why watch</span></div>
+    <div class="template-row"><span class="template-time">0:30-X:XX</span><span class="template-beat"><strong>Act 1</strong> — section name · 3-4 beats · transition</span></div>
+    <div class="template-row"><span class="template-time">X:XX-X:XX</span><span class="template-beat"><strong>Act 2</strong> — section name · 3-4 beats · transition</span></div>
+    <div class="template-row"><span class="template-time">X:XX-X:XX</span><span class="template-beat"><strong>Act 3 / Synthesis</strong> — section name · bring it together</span></div>
+    <div class="template-row"><span class="template-time">X:XX-end</span><span class="template-beat"><strong>Close + CTA</strong> — final takeaway · subscribe / follow</span></div>
+  </div>
+  <div class="template-extras">
+    <div class="template-extra"><strong>B-roll cues:</strong> per beat</div>
+    <div class="template-extra"><strong>On-screen text:</strong> per beat</div>
+    <div class="template-extra"><strong>Bilingual notes:</strong> EN + Mandarin same-day record where flagged</div>
+  </div>
+</div>
+      
+<div class="template-card">
+  <div class="template-head"><span class="template-tag fmt-sf">SF</span><h4>Short-form script template</h4></div>
+  <div class="template-body">
+    <div class="template-row"><span class="template-time">0-5s</span><span class="template-beat"><strong>Hook</strong> — opening line · scroll-stop visual</span></div>
+    <div class="template-row"><span class="template-time">5-50s</span><span class="template-beat"><strong>Body</strong> — beat 1 · beat 2 · beat 3 (max) · payoff</span></div>
+    <div class="template-row"><span class="template-time">50-60s</span><span class="template-beat"><strong>Close</strong> — one-line tag · CTA</span></div>
+  </div>
+  <div class="template-extras">
+    <div class="template-extra"><strong>Hook variants:</strong> 3 alternatives drafted, pick on test</div>
+    <div class="template-extra"><strong>Visual direction:</strong> shot list, on-screen text moments</div>
+    <div class="template-extra"><strong>Caption:</strong> platform-native variants (TikTok / IG / FB)</div>
+  </div>
+</div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>SEA brand channel · production cards · v0</p>
+    <p>Generated 2026-05-13 · Hooks from brainstorm · Findings + angles from /spark_listen runs</p>
+  </footer>
+
+</div>
+
+<script>
+  const statusChips = document.querySelectorAll('[data-filter-status]');
+  const formatChips = document.querySelectorAll('[data-filter-format]');
+  const topicChips = document.querySelectorAll('[data-filter-topic]');
+  let activeStatus = 'all', activeFormat = 'all', activeTopic = 'all';
+  function apply() {
+    document.querySelectorAll('.card').forEach(card => {
+      let show = true;
+      if (activeStatus !== 'all' && card.dataset.status !== activeStatus) show = false;
+      if (activeFormat !== 'all' && card.dataset.format !== activeFormat) show = false;
+      if (activeTopic !== 'all' && card.dataset.topic !== activeTopic) show = false;
+      card.classList.toggle('hidden', !show);
+    });
+  }
+  function attach(chips, key) {
+    chips.forEach(c => c.addEventListener('click', () => {
+      chips.forEach(x => x.classList.remove('chip-active'));
+      c.classList.add('chip-active');
+      const val = c.dataset[key];
+      if (key === 'filterStatus') activeStatus = val;
+      else if (key === 'filterFormat') activeFormat = val;
+      else if (key === 'filterTopic') activeTopic = val;
+      apply();
+    }));
+  }
+  attach(statusChips, 'filterStatus');
+  attach(formatChips, 'filterFormat');
+  attach(topicChips, 'filterTopic');
+</script>
+
+</body>
+</html>
