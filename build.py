@@ -643,11 +643,68 @@ a { color: var(--fg); }
 .rating-pill.audience { background: rgba(148,97,0,0.13); color: var(--audience); }
 .rating-pill.sales { background: rgba(176,48,96,0.13); color: var(--product); }
 
-@media (max-width: 560px) {
-  .angle-top { flex-direction: column; }
-  .rating-cluster { flex-direction: row; align-items: center; gap: 8px; align-self: flex-start; }
-  .rating-overall-big { flex-direction: row; gap: 6px; padding: 4px 10px; align-items: baseline; }
-  .rating-overall-big .rv { font-size: 16px; }
+@media (max-width: 720px) {
+  /* Overall layout */
+  .layout { padding: 22px 14px 140px; }
+  .hero { padding-bottom: 18px; margin-bottom: 22px; }
+  .hero h1 { font-size: 24px; line-height: 1.2; margin-bottom: 10px; }
+  .lede { font-size: 14px; line-height: 1.5; margin-bottom: 14px; }
+  .meta { font-size: 10px; gap: 6px 14px; }
+
+  /* Topic strip — full width on mobile */
+  .topic-strip { grid-template-columns: 1fr; gap: 8px; margin-bottom: 20px; }
+  .topic-strip-card { padding: 10px 12px; }
+
+  /* Filters — wider tap targets, edge-to-edge */
+  .filters { margin: 0 -14px 18px; padding: 10px 14px 12px; }
+  .filter-row { gap: 5px; }
+  .chip { padding: 8px 12px; font-size: 12px; min-height: 36px; }
+
+  /* Cards */
+  .card { padding: 16px 14px; border-radius: 10px; }
+  .card-section { padding: 14px 0 4px; }
+  .card-title { font-size: 14px; }
+  .card-format-spec { font-size: 10px; }
+
+  /* Angle row */
+  .angle { grid-template-columns: 26px 1fr; gap: 10px; padding: 14px 12px; }
+  .checkmark { width: 20px; height: 20px; }
+  .angle-check input:checked ~ .checkmark::after { font-size: 13px; line-height: 16px; }
+  .video-title { font-size: 17px; line-height: 1.3; }
+
+  /* Stack title block + ratings; ratings flow as one inline row */
+  .angle-top { flex-direction: column; gap: 8px; }
+  .rating-cluster { flex-direction: row; align-items: baseline; gap: 8px; align-self: flex-start; flex-wrap: wrap; }
+  .overall-num { gap: 4px; }
+  .overall-val { font-size: 18px; }
+  .rating-subs { gap: 4px; }
+  .rating-pill { padding: 2px 7px; }
+  .rating-pill .rl { font-size: 9px; }
+  .rating-pill .rv { font-size: 10px; }
+
+  /* Mini-script: stack label above text — much more readable on narrow screens */
+  .mini-row { grid-template-columns: 1fr; gap: 2px; padding: 8px 10px; }
+  .mini-label { padding-top: 0; }
+  .mini-text { font-size: 14px; line-height: 1.5; }
+
+  /* Comment — fatter on mobile, touch keyboard ergonomics */
+  .card-comment { font-size: 14px; min-height: 72px; padding: 11px 12px; }
+
+  /* Findings — bigger tap area */
+  .findings-summary { padding: 8px 0; font-size: 12px; }
+  .findings { padding-left: 18px; }
+  .findings li { font-size: 13px; }
+
+  /* Pending */
+  .pending-msg { padding: 14px 14px; }
+
+  /* Bottom panel — touch-friendly, taller body */
+  .panel-bar { padding: 14px 14px; min-height: 56px; }
+  .panel-count { font-size: 13px; }
+  .panel-toggle { font-size: 10px; }
+  .panel-body { padding: 6px 14px 16px; max-height: 70vh; }
+  .panel-btn { padding: 12px 18px; min-height: 44px; font-size: 14px; }
+  .panel-prompt { font-size: 12px; min-height: 180px; }
 }
 
 .mini-script { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--hairline-soft); border-radius: 6px; overflow: hidden; }
