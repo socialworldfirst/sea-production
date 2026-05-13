@@ -1,0 +1,71 @@
+[
+  {
+    "id": "P2-A6",
+    "findings": [
+      "Bank wire fees to China typically run $25-$75 per outbound wire, plus intermediary bank fees of $15-$50 per hop (often 2-3 hops on a SWIFT route). Source: Wise wire transfer fees guide, Tipalti.",
+      "Bank FX margin on CNY conversion sits at 2-5% of the payment value (commonly 3-3.5%). Fintech providers like WorldFirst, Wise, Airwallex run 0.33-1% all-in. On $50K, that delta is $1,000-$1,500 saved per single transfer.",
+      "Kasikornbank charges 250 THB special fee per CNY transfer via KBank Partner or SWIFT. Maybank charges RM10 base + 8% SST on Foreign Telegraphic Transfer plus agent and beneficiary bank deductions, and FX markup is layered on top.",
+      "Real switching cost is 2-3 hours of setup, a first low-value test transfer for trust calibration, and an accounting reflow week. Not 50 hours, not a quarter-long project. Mr Yum case study cited C$12K annual savings post-switch.",
+      "Volume thresholds that hold up: under ~$5K/month supplier payments, savings rarely justify the friction. $5K-$50K/month, savings sit at $50-$1,500/month. $50K+/month, the switch pays back in 1-2 months, often the first transfer.",
+      "Hidden cost of staying with your bank is not just the wire fee. It's the FX margin (the biggest line), intermediary deductions that arrive as a shortfall to the supplier (your supplier asks why they got short), and 3-5 day clearance dragging your cashflow.",
+      "Operators who actually do the math usually discover their bank costs them 4-6x what they thought, because the FX markup is hidden inside the rate they never compare to mid-market."
+    ],
+    "angles": [
+      {
+        "video_title": "I did the math on my bank vs WorldFirst. Here is the line.",
+        "approach": "Math-led",
+        "rating_social": 4.1,
+        "rating_audience": 4.8,
+        "rating_product": 4.5,
+        "hook": "I spent a Sunday running my last 12 months of supplier payments through a calculator. I want to show you exactly where switching pays back.",
+        "body": "Here is my math. I pay roughly 30,000 USD a month to Chinese suppliers. My old bank charged me a 45 dollar wire fee, plus what I later figured out was about a 3 percent FX margin baked into the rate. That FX margin alone was 900 USD a month. Then add 45 for the wire, plus the 25 the intermediary bank took on the way, plus the bit my supplier said was missing on his end. Call it 990 USD a month. I switched to a fintech provider, FX margin dropped to about half a percent, no wire fee on local rails. That same 30K month costs me about 165 USD now. Difference: 825 USD a month, just under 10,000 a year. Setup took me one afternoon. Break-even on switching cost was literally the first transfer.",
+        "close": "If you are paying suppliers under 5K a month, ignore me, you have bigger problems to solve. Above 5K, run your own math. Above 30K, you are leaving real money on the table every week you wait.",
+        "visual": "Whiteboard or notepad style, KOL talking to camera, real numbers written out by hand mid-shot. Cut to actual bank statement (blurred account number) showing a wire fee line item. Calculator on phone showing the FX margin maths."
+      },
+      {
+        "video_title": "The break-even on switching banks is not what you think",
+        "approach": "Decision-tree",
+        "rating_social": 4.0,
+        "rating_audience": 4.7,
+        "rating_product": 4.2,
+        "hook": "Everyone asks me, at what volume does it make sense to switch? Here is the three-tier answer.",
+        "body": "Tier one. Under 5K USD a month in supplier payments. Stay where you are. Your bank wire fee plus FX margin is real money, but the time you spend on switching costs you more right now. Tier two. 5 to 50K a month. This is the grey zone. You will save somewhere between 50 and 1,500 a month depending on how bad your bank is. Switch if you have a quiet weekend, do not switch if you are in launch mode. Tier three. 50K plus a month. Stop reading this and switch today. The first transfer you do on a fintech pays back the setup. By month three you are up multiple thousand dollars. I waited too long on this one and I will not lie about it.",
+        "close": "Three tiers. Find yours. Then do the math, not the vibes.",
+        "visual": "Three horizontal bars on screen as KOL talks: red, amber, green. Volume range on the left, savings range on the right. Real numbers, no logos. Closing shot, KOL pointing at the green tier saying the line."
+      },
+      {
+        "video_title": "Where my old bank was actually robbing me",
+        "approach": "Story",
+        "rating_social": 4.3,
+        "rating_audience": 4.6,
+        "rating_product": 4.4,
+        "hook": "My supplier in Shenzhen messaged me. Hey, you sent 20,000 USD, I got 19,440. Where is the rest. I checked. The wire fee was 45 dollars. So where did the other 515 go.",
+        "body": "Three places. First, the intermediary bank. SWIFT payments route through correspondent banks, sometimes two or three of them. Each one took a cut on the way. That was about 75 dollars I never saw. Second, my bank rate. I assumed I was getting market FX. I was not. I compared the rate they gave me to the mid-market rate that day. Difference was 2.4 percent. On 20K, that was 480 USD gone before the money even left my country. Third, my supplier's bank charged a small inbound fee, which is normal. So out of 560 USD that vanished, 480 was the FX margin. Not the wire fee. Not the SWIFT. The exchange rate. That is what they were charging me. After I figured that out, I ran the same payment through a fintech provider. Supplier got 19,910 of 20,000. The 470 I got back per transfer adds up fast when you are paying weekly.",
+        "close": "Check your last wire. Compare the rate you got to the mid-market rate that day. You will not like what you find.",
+        "visual": "KOL on camera with a phone screenshot of the supplier WeChat message visible. Cut to a side-by-side rate comparison, mid-market vs bank rate. Cut to the 'shortfall' arrow pointing at the FX margin slice."
+      },
+      {
+        "video_title": "Switch costs vs stay costs. Build the table with me.",
+        "approach": "Comparison",
+        "rating_social": 3.9,
+        "rating_audience": 4.7,
+        "rating_product": 4.3,
+        "hook": "Let me build a comparison table live. Bank wire vs fintech. Real numbers from my own account. You decide where you land.",
+        "body": "Top of the table, monthly volume. Left column, bank. Right column, fintech. Row one, sending fee per transfer. Bank: 45 dollars. Fintech: zero on local rails or 7 on SWIFT. Row two, FX margin. Bank: 2 to 5 percent, call it 3. Fintech: 0.4 to 0.7 percent, call it 0.5. Row three, intermediary deductions. Bank: 15 to 50 per hop, often 2 hops. Fintech: none, money lands full amount. Row four, clearance time. Bank: 3 to 5 working days. Fintech: same day to 24 hours. Row five, setup time. Bank: already done. Fintech: one afternoon, first time only. Run this for a 25K monthly volume. Bank costs you 800 to 1,200 a month all-in. Fintech costs you 130 to 180. Annual delta: roughly 8,000 to 12,000. Setup pays back the first week.",
+        "close": "If your table looks different, screenshot yours and tag me. I want to see where your bank is robbing you.",
+        "visual": "Screen recording of a Notion or Excel doc being built live. Numbers typed in. Highlight cells in red as the deltas show up. End with the annual delta cell pulsing."
+      },
+      {
+        "video_title": "The volume threshold for switching your supplier payment provider",
+        "approach": "Whiteboard",
+        "rating_social": 4.2,
+        "rating_audience": 4.8,
+        "rating_product": 4.4,
+        "hook": "There is a number. Above it, switching is obvious. Below it, you are wasting your weekend. Let me draw it out.",
+        "body": "I am writing two columns on this whiteboard. Left, monthly supplier payment volume. Right, what happens if you switch. At 1,000 a month, you save maybe 8 dollars. Not worth it. At 5,000 a month, you save about 40. Maybe. At 15,000 a month, savings get serious, about 200 to 300. Setup pays back in two to three months. At 30,000 a month, you save 700 to 1,000. Setup pays back in week one. At 50,000 plus, switching is a no-brainer. You are paying for the inconvenience of staying. The line in the sand for me is around 10,000 USD a month. Above it, switch. Below it, the math is too tight, focus on growing first. The compounding kicker, FX rate-lock forwards. Once you are at 30K plus, you can lock rates 3 to 12 months out, which saves you another 1 to 2 percent on top. That is the part nobody talks about.",
+        "close": "10K is the line for me. Find yours. Then act on it. Nothing changes if you do not.",
+        "visual": "Whiteboard with two columns hand-drawn. KOL writes the volume numbers and savings live. Big circle around 10,000 with arrow saying THE LINE. End frame, the whiteboard fully filled out with savings ladder."
+      }
+    ]
+  }
+]
