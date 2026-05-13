@@ -402,14 +402,8 @@ PENDING_CARDS = [
 CARDS = SF_TOPIC_01 + [c for c in PENDING_CARDS if c['format'] != 'LF']
 
 
-def render_rating_bar(label, value, color_class):
-    pct = (value / 5.0) * 100
-    return f'''
-<div class="rating-bar {color_class}">
-  <span class="rating-label">{label}</span>
-  <div class="rating-track"><div class="rating-fill" style="width: {pct}%"></div></div>
-  <span class="rating-value">{value}</span>
-</div>'''
+def render_rating_chip(label, value, color_class):
+    return f'''<span class="rating-chip {color_class}"><span class="rl">{label}</span><span class="rv">{value}</span></span>'''
 
 
 def render_angle(card_id, idx, a, is_lf=False):
@@ -433,10 +427,10 @@ def render_angle(card_id, idx, a, is_lf=False):
     <div class="approach">{escape(a['approach'])}</div>
 
     <div class="ratings">
-      {render_rating_bar('Social', a['rating_social'], 'rating-social')}
-      {render_rating_bar('Audience', a['rating_audience'], 'rating-audience')}
-      {render_rating_bar('Product', a['rating_product'], 'rating-product')}
-      <div class="rating-overall">Overall <strong>{overall}</strong></div>
+      {render_rating_chip('Soc', a['rating_social'], 'social')}
+      {render_rating_chip('Aud', a['rating_audience'], 'audience')}
+      {render_rating_chip('Prod', a['rating_product'], 'product')}
+      <span class="rating-overall">Overall <strong>{overall}</strong></span>
     </div>
 
     <div class="mini-script">
@@ -464,7 +458,10 @@ def render_card(c):
           </div>
         </div>'''
     else:
-        angles_html = "\n".join(render_angle(c['id'], i, a, is_lf=is_lf) for i, a in enumerate(c.get('angles', [])))
+        sorted_angles = sorted(c.get('angles', []),
+                                key=lambda a: _overall(a['rating_social'], a['rating_audience'], a['rating_product']),
+                                reverse=True)
+        angles_html = "\n".join(render_angle(c['id'], i, a, is_lf=is_lf) for i, a in enumerate(sorted_angles))
         findings_list = "\n".join(f'<li>{escape(f)}</li>' for f in c.get('findings', []))
         body = f'''
         <div class="card-section">
@@ -601,17 +598,15 @@ a { color: var(--fg); }
 .video-title { margin: 0 0 4px; font-size: 17px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); }
 .approach { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.04em; margin-bottom: 14px; text-transform: uppercase; }
 
-.ratings { display: flex; flex-wrap: wrap; gap: 14px 18px; padding: 10px 14px; background: rgba(0,0,0,0.025); border-radius: 6px; margin-bottom: 14px; align-items: center; }
-.rating-bar { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--mono); flex: 1; min-width: 160px; }
-.rating-label { color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.05em; min-width: 56px; font-size: 10px; }
-.rating-track { flex: 1; height: 6px; background: rgba(0,0,0,0.06); border-radius: 100px; overflow: hidden; min-width: 50px; }
-.rating-fill { height: 100%; border-radius: 100px; transition: width 0.3s; }
-.rating-social .rating-fill { background: var(--social); }
-.rating-audience .rating-fill { background: var(--audience); }
-.rating-product .rating-fill { background: var(--product); }
-.rating-value { color: var(--fg); font-weight: 600; min-width: 22px; text-align: right; }
-.rating-overall { font-size: 12px; color: var(--fg); font-family: var(--mono); margin-left: auto; padding-left: 14px; border-left: 1px solid var(--hairline); }
-.rating-overall strong { font-size: 14px; font-weight: 700; margin-left: 4px; }
+.ratings { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; margin-bottom: 14px; font-family: var(--mono); font-size: 11px; }
+.rating-chip { display: inline-flex; align-items: baseline; gap: 4px; }
+.rating-chip .rl { text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; color: var(--fg-soft); }
+.rating-chip .rv { color: var(--fg); font-weight: 600; }
+.rating-chip.social .rl { color: var(--social); }
+.rating-chip.audience .rl { color: var(--audience); }
+.rating-chip.product .rl { color: var(--product); }
+.rating-overall { padding-left: 10px; margin-left: 2px; border-left: 1px solid var(--hairline); color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; }
+.rating-overall strong { font-size: 12px; font-weight: 700; margin-left: 4px; color: var(--fg); letter-spacing: 0; }
 
 .mini-script { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--hairline-soft); border-radius: 6px; overflow: hidden; }
 .mini-row { display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 8px 12px; align-items: start; }

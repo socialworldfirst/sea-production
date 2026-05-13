@@ -87,17 +87,15 @@ a { color: var(--fg); }
 .video-title { margin: 0 0 4px; font-size: 17px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); }
 .approach { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.04em; margin-bottom: 14px; text-transform: uppercase; }
 
-.ratings { display: flex; flex-wrap: wrap; gap: 14px 18px; padding: 10px 14px; background: rgba(0,0,0,0.025); border-radius: 6px; margin-bottom: 14px; align-items: center; }
-.rating-bar { display: flex; align-items: center; gap: 8px; font-size: 11px; font-family: var(--mono); flex: 1; min-width: 160px; }
-.rating-label { color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.05em; min-width: 56px; font-size: 10px; }
-.rating-track { flex: 1; height: 6px; background: rgba(0,0,0,0.06); border-radius: 100px; overflow: hidden; min-width: 50px; }
-.rating-fill { height: 100%; border-radius: 100px; transition: width 0.3s; }
-.rating-social .rating-fill { background: var(--social); }
-.rating-audience .rating-fill { background: var(--audience); }
-.rating-product .rating-fill { background: var(--product); }
-.rating-value { color: var(--fg); font-weight: 600; min-width: 22px; text-align: right; }
-.rating-overall { font-size: 12px; color: var(--fg); font-family: var(--mono); margin-left: auto; padding-left: 14px; border-left: 1px solid var(--hairline); }
-.rating-overall strong { font-size: 14px; font-weight: 700; margin-left: 4px; }
+.ratings { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: baseline; margin-bottom: 14px; font-family: var(--mono); font-size: 11px; }
+.rating-chip { display: inline-flex; align-items: baseline; gap: 4px; }
+.rating-chip .rl { text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; color: var(--fg-soft); }
+.rating-chip .rv { color: var(--fg); font-weight: 600; }
+.rating-chip.social .rl { color: var(--social); }
+.rating-chip.audience .rl { color: var(--audience); }
+.rating-chip.product .rl { color: var(--product); }
+.rating-overall { padding-left: 10px; margin-left: 2px; border-left: 1px solid var(--hairline); color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.06em; font-size: 10px; }
+.rating-overall strong { font-size: 12px; font-weight: 700; margin-left: 4px; color: var(--fg); letter-spacing: 0; }
 
 .mini-script { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--hairline-soft); border-radius: 6px; overflow: hidden; }
 .mini-row { display: grid; grid-template-columns: 100px 1fr; gap: 12px; padding: 8px 12px; align-items: start; }
@@ -251,48 +249,7 @@ a { color: var(--fg); }
           
 <div class="angle" data-angle-id="P1-A2-a1">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A2" data-idx="1" data-title="The 3 paths your CNY takes to China (most operators only know one)">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">The 3 paths your CNY takes to China (most operators only know one)</h4>
-    <div class="approach">Curiosity-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Your CNY can take three different paths to reach a Chinese supplier. Only one is same-day.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Path one: SWIFT through correspondent banks — 3 to 5 days. Path two: CIPS, China&#x27;s own clearing system — 1 to 2 days. Path three: MYbank routing for 1688 — same-day when set up right. Most banks don&#x27;t tell you which one you&#x27;re on.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Check your wire confirmation. The routing&#x27;s on it.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Animated 3-rail diagram, money moving on each at different speeds</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A2-a2">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A2" data-idx="2" data-title="I sent CNY. My supplier got USD. This is why.">
+    <input type="checkbox" class="angle-pick" data-card="P1-A2" data-idx="1" data-title="I sent CNY. My supplier got USD. This is why.">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -300,25 +257,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 96.0%"></div></div>
-  <span class="rating-value">4.8</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.8</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.7</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.3</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
     </div>
 
     <div class="mini-script">
@@ -326,6 +268,32 @@ a { color: var(--fg); }
       <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">This happens because not every bank labelled &#x27;CNY transfer&#x27; uses a CNY-direct rail. Some route through SWIFT to a USD-clearing correspondent. Conversion happens mid-flight. Your supplier gets USD. Same wire, different bank, different outcome.</span></div>
       <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Check the routing before you send.</span></div>
       <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Split screen — sent CNY (clean) vs received USD (red highlight)</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A2-a2">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A2" data-idx="2" data-title="The 3 paths your CNY takes to China (most operators only know one)">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">The 3 paths your CNY takes to China (most operators only know one)</h4>
+    <div class="approach">Curiosity-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.5</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.0</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Your CNY can take three different paths to reach a Chinese supplier. Only one is same-day.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Path one: SWIFT through correspondent banks — 3 to 5 days. Path two: CIPS, China&#x27;s own clearing system — 1 to 2 days. Path three: MYbank routing for 1688 — same-day when set up right. Most banks don&#x27;t tell you which one you&#x27;re on.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Check your wire confirmation. The routing&#x27;s on it.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Animated 3-rail diagram, money moving on each at different speeds</span></div>
     </div>
   </div>
 </div>
@@ -341,25 +309,10 @@ a { color: var(--fg); }
     <div class="approach">Demo-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.2</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.3</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
     </div>
 
     <div class="mini-script">
@@ -382,25 +335,10 @@ a { color: var(--fg); }
     <div class="approach">Comparison-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.1</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.0</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.2</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.1</strong></span>
     </div>
 
     <div class="mini-script">
@@ -423,25 +361,10 @@ a { color: var(--fg); }
     <div class="approach">Authority-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 76.0%"></div></div>
-  <span class="rating-value">3.8</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 70.0%"></div></div>
-  <span class="rating-value">3.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>3.8</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.8</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">3.5</span></span>
+      <span class="rating-overall">Overall <strong>3.8</strong></span>
     </div>
 
     <div class="mini-script">
@@ -495,25 +418,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-first</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.7</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.6</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
     </div>
 
     <div class="mini-script">
@@ -536,25 +444,10 @@ a { color: var(--fg); }
     <div class="approach">Comparison split-screen</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.5</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.5</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.5</strong></span>
     </div>
 
     <div class="mini-script">
@@ -577,25 +470,10 @@ a { color: var(--fg); }
     <div class="approach">Curiosity-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.3</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.3</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
     </div>
 
     <div class="mini-script">
@@ -610,48 +488,7 @@ a { color: var(--fg); }
 
 <div class="angle" data-angle-id="P1-A7-a4">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A7" data-idx="4" data-title="What your supplier&#x27;s bank actually sees on a &#x27;CNY&#x27; wire">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">What your supplier&#x27;s bank actually sees on a &#x27;CNY&#x27; wire</h4>
-    <div class="approach">Authority-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 76.0%"></div></div>
-  <span class="rating-value">3.8</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      <div class="rating-overall">Overall <strong>3.9</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">What a supplier&#x27;s bank actually sees when you send &#x27;CNY&#x27;.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">On the supplier side, an incoming SWIFT message may show CNY or may show USD with a CNY conversion request. CIPS-routed transfers always arrive as CNY. SWIFT-routed CNY may arrive as USD if the correspondent doesn&#x27;t hold CNY. Banker-side view explains the gap.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Insider literacy on cross-border CNY.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Mock bank-side admin screen showing incoming message details</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A7-a5">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A7" data-idx="5" data-title="Live: $20K wire, two banks, supplier-side notifications">
+    <input type="checkbox" class="angle-pick" data-card="P1-A7" data-idx="4" data-title="Live: $20K wire, two banks, supplier-side notifications">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -659,25 +496,10 @@ a { color: var(--fg); }
     <div class="approach">Demo-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 76.0%"></div></div>
-  <span class="rating-value">3.8</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.0</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.2</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">3.8</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.0</span></span>
+      <span class="rating-overall">Overall <strong>4.0</strong></span>
     </div>
 
     <div class="mini-script">
@@ -685,6 +507,32 @@ a { color: var(--fg); }
       <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">I&#x27;m sending $20K-equivalent CNY via Bank A and Bank B simultaneously. Same supplier, same amount, same currency instruction. In two minutes, two notifications hit the supplier&#x27;s phone. One says CNY 140,000. One says USD 19,400.</span></div>
       <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">The rail decided this, not the label.</span></div>
       <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Live screen recording on two banking apps + supplier WeChat notifications</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A7-a5">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A7" data-idx="5" data-title="What your supplier&#x27;s bank actually sees on a &#x27;CNY&#x27; wire">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">What your supplier&#x27;s bank actually sees on a &#x27;CNY&#x27; wire</h4>
+    <div class="approach">Authority-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.8</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.0</span></span>
+      <span class="rating-overall">Overall <strong>3.9</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">What a supplier&#x27;s bank actually sees when you send &#x27;CNY&#x27;.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">On the supplier side, an incoming SWIFT message may show CNY or may show USD with a CNY conversion request. CIPS-routed transfers always arrive as CNY. SWIFT-routed CNY may arrive as USD if the correspondent doesn&#x27;t hold CNY. Banker-side view explains the gap.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Insider literacy on cross-border CNY.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Mock bank-side admin screen showing incoming message details</span></div>
     </div>
   </div>
 </div>
@@ -723,48 +571,7 @@ a { color: var(--fg); }
           
 <div class="angle" data-angle-id="P1-A8-a1">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A8" data-idx="1" data-title="The 3-letter code on every China wire (most operators never see it)">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">The 3-letter code on every China wire (most operators never see it)</h4>
-    <div class="approach">Curiosity-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 88.00000000000001%"></div></div>
-  <span class="rating-value">4.4</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 88.00000000000001%"></div></div>
-  <span class="rating-value">4.4</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">There&#x27;s a 3-letter code on every China wire. Your bank picks it for you.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Field 71A of SWIFT MT103. Three options. OUR — sender pays all intermediary fees, supplier gets full amount. SHA — shared, intermediaries deduct from amount, supplier gets less. BEN — beneficiary pays, supplier covers everything. Your bank&#x27;s default is usually SHA.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Change the code, change the outcome.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Zoom into a real SWIFT MT103 message, highlight field 71A</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A8-a2">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A8" data-idx="2" data-title="My supplier got $200 less. A code I didn&#x27;t choose did this.">
+    <input type="checkbox" class="angle-pick" data-card="P1-A8" data-idx="1" data-title="My supplier got $200 less. A code I didn&#x27;t choose did this.">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -772,25 +579,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.5</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.6</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.5</strong></span>
     </div>
 
     <div class="mini-script">
@@ -798,6 +590,32 @@ a { color: var(--fg); }
       <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">You sent $10,000. They got $9,800. The bank set Field 71A to SHA — shared fees. Two intermediary banks took $100 each in transit. If you&#x27;d set it to OUR, you&#x27;d have paid those fees upfront and your supplier would have received the full amount.</span></div>
       <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Ask your bank to set OUR on next China wire.</span></div>
       <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Wire confirmation zoom showing SHA, then supplier receipt showing shortfall</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A8-a2">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A8" data-idx="2" data-title="The 3-letter code on every China wire (most operators never see it)">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">The 3-letter code on every China wire (most operators never see it)</h4>
+    <div class="approach">Curiosity-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.4</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.4</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">There&#x27;s a 3-letter code on every China wire. Your bank picks it for you.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Field 71A of SWIFT MT103. Three options. OUR — sender pays all intermediary fees, supplier gets full amount. SHA — shared, intermediaries deduct from amount, supplier gets less. BEN — beneficiary pays, supplier covers everything. Your bank&#x27;s default is usually SHA.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Change the code, change the outcome.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Zoom into a real SWIFT MT103 message, highlight field 71A</span></div>
     </div>
   </div>
 </div>
@@ -813,25 +631,10 @@ a { color: var(--fg); }
     <div class="approach">Tutorial-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.2</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.0</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.2</strong></span>
     </div>
 
     <div class="mini-script">
@@ -854,25 +657,10 @@ a { color: var(--fg); }
     <div class="approach">Comparison-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.2</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.2</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.2</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.2</strong></span>
     </div>
 
     <div class="mini-script">
@@ -895,25 +683,10 @@ a { color: var(--fg); }
     <div class="approach">Authority-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 72.0%"></div></div>
-  <span class="rating-value">3.6</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      <div class="rating-overall">Overall <strong>3.9</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.6</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.0</span></span>
+      <span class="rating-overall">Overall <strong>3.9</strong></span>
     </div>
 
     <div class="mini-script">
@@ -968,25 +741,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-first</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.7</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.7</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1001,7 +759,33 @@ a { color: var(--fg); }
 
 <div class="angle" data-angle-id="P1-A9-a2">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="2" data-title="3 places your China wire can sit before it arrives">
+    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="2" data-title="I sent $42K Friday. Supplier got nothing Monday. Here&#x27;s what I found.">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">I sent $42K Friday. Supplier got nothing Monday. Here&#x27;s what I found.</h4>
+    <div class="approach">Story-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.7</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">I sent $42K Friday. Supplier got nothing by Monday. Here&#x27;s what I found.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Friday 3pm Sydney time: I hit send. Bank confirmed sent at 3:02pm. Monday 9am Shenzhen: supplier said nothing arrived. I called my bank — they showed sent. I asked for the correspondent chain. The wire was sitting at an intermediary in Singapore on AML hold over the weekend. Released Tuesday. Supplier received Wednesday.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Wires don&#x27;t follow your calendar.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Timeline animation: Friday → Monday → Tuesday → Wednesday</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A9-a3">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="3" data-title="3 places your China wire can sit before it arrives">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -1009,25 +793,10 @@ a { color: var(--fg); }
     <div class="approach">Mechanism-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 88.00000000000001%"></div></div>
-  <span class="rating-value">4.4</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.4</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.2</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.4</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.4</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1040,9 +809,9 @@ a { color: var(--fg); }
 </div>
 
 
-<div class="angle" data-angle-id="P1-A9-a3">
+<div class="angle" data-angle-id="P1-A9-a4">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="3" data-title="How to track a missing wire to China (step by step)">
+    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="4" data-title="How to track a missing wire to China (step by step)">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -1050,25 +819,10 @@ a { color: var(--fg); }
     <div class="approach">Tutorial-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 88.00000000000001%"></div></div>
-  <span class="rating-value">4.4</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.2</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.0</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.2</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.4</span></span>
+      <span class="rating-overall">Overall <strong>4.2</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1076,47 +830,6 @@ a { color: var(--fg); }
       <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Step one: get the SWIFT reference number from your bank. Step two: ask for an MT199 status request — banks can query intermediaries. Step three: check correspondent bank list, see which one has the holdup. Step four: ask receiving bank to confirm arrival.</span></div>
       <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Don&#x27;t wait for the bank to chase. Drive it.</span></div>
       <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Phone screen overlay showing each tracking step</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A9-a4">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A9" data-idx="4" data-title="I sent $42K Friday. Supplier got nothing Monday. Here&#x27;s what I found.">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">I sent $42K Friday. Supplier got nothing Monday. Here&#x27;s what I found.</h4>
-    <div class="approach">Story-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">I sent $42K Friday. Supplier got nothing by Monday. Here&#x27;s what I found.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Friday 3pm Sydney time: I hit send. Bank confirmed sent at 3:02pm. Monday 9am Shenzhen: supplier said nothing arrived. I called my bank — they showed sent. I asked for the correspondent chain. The wire was sitting at an intermediary in Singapore on AML hold over the weekend. Released Tuesday. Supplier received Wednesday.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Wires don&#x27;t follow your calendar.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Timeline animation: Friday → Monday → Tuesday → Wednesday</span></div>
     </div>
   </div>
 </div>
@@ -1132,25 +845,10 @@ a { color: var(--fg); }
     <div class="approach">Authority-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 70.0%"></div></div>
-  <span class="rating-value">3.5</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 78.0%"></div></div>
-  <span class="rating-value">3.9</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      <div class="rating-overall">Overall <strong>3.8</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.5</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">3.9</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.0</span></span>
+      <span class="rating-overall">Overall <strong>3.8</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1196,48 +894,7 @@ a { color: var(--fg); }
           
 <div class="angle" data-angle-id="P1-A10-a1">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="1" data-title="The 1% routing decision your bank makes silently on every China wire">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">The 1% routing decision your bank makes silently on every China wire</h4>
-    <div class="approach">Curiosity-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.5</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Your bank makes one silent decision on every China wire. It changes your fee 1%.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">When you initiate a wire, your bank picks the correspondent path. Sometimes one intermediary. Sometimes three. Each intermediary takes $15-50. On a $100K wire, the difference between one and three intermediaries is roughly $100. Add FX correspondent spread, and you&#x27;re at 1%.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Ask your bank for the correspondent chain.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Wire flow diagram, highlight the routing fork</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A10-a2">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="2" data-title="Where did $1,000 go on my $100K China wire?">
+    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="1" data-title="Where did $1,000 go on my $100K China wire?">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -1245,25 +902,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.6</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.6</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.7</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1276,42 +918,53 @@ a { color: var(--fg); }
 </div>
 
 
-<div class="angle" data-angle-id="P1-A10-a3">
+<div class="angle" data-angle-id="P1-A10-a2">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="3" data-title="Your bank knows the correspondent chain. They won&#x27;t show you.">
+    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="2" data-title="The 1% routing decision your bank makes silently on every China wire">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
-    <h4 class="video-title">Your bank knows the correspondent chain. They won&#x27;t show you.</h4>
-    <div class="approach">Authority-led</div>
+    <h4 class="video-title">The 1% routing decision your bank makes silently on every China wire</h4>
+    <div class="approach">Curiosity-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 76.0%"></div></div>
-  <span class="rating-value">3.8</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.0</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.5</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.5</strong></span>
     </div>
 
     <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">The correspondent banks your money passes through. Most banks won&#x27;t show you.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Every SWIFT wire generates an audit trail of intermediary correspondents. Your bank has it. Compliance teams use it. But customer-facing banking apps don&#x27;t surface it. Operators are flying blind on cost. Specialised cross-border rails publish the routing chain upfront.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Banker information asymmetry. Close it.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Mock compliance dashboard vs customer app showing the gap</span></div>
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Your bank makes one silent decision on every China wire. It changes your fee 1%.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">When you initiate a wire, your bank picks the correspondent path. Sometimes one intermediary. Sometimes three. Each intermediary takes $15-50. On a $100K wire, the difference between one and three intermediaries is roughly $100. Add FX correspondent spread, and you&#x27;re at 1%.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Ask your bank for the correspondent chain.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Wire flow diagram, highlight the routing fork</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A10-a3">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="3" data-title="Same $100K wire, 2 routing paths. $950 difference.">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">Same $100K wire, 2 routing paths. $950 difference.</h4>
+    <div class="approach">Comparison-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.2</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.2</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.5</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Same wire, two routing paths, $1,000 difference at the end.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Path one: 3 intermediaries, multiple correspondent spreads, supplier receives $99,000. Path two: 1 direct correspondent, single spread, supplier receives $99,950. Same wire instruction. Different chain. $950 lost or kept depending on routing.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Cross-border rail vs SWIFT chain. The difference is in the chain.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Two routing paths side by side, end totals highlighted</span></div>
     </div>
   </div>
 </div>
@@ -1327,25 +980,10 @@ a { color: var(--fg); }
     <div class="approach">Mechanism-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 82.0%"></div></div>
-  <span class="rating-value">4.1</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 82.0%"></div></div>
-  <span class="rating-value">4.1</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.1</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.1</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.1</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.1</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1360,40 +998,25 @@ a { color: var(--fg); }
 
 <div class="angle" data-angle-id="P1-A10-a5">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="5" data-title="Same $100K wire, 2 routing paths. $950 difference.">
+    <input type="checkbox" class="angle-pick" data-card="P1-A10" data-idx="5" data-title="Your bank knows the correspondent chain. They won&#x27;t show you.">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
-    <h4 class="video-title">Same $100K wire, 2 routing paths. $950 difference.</h4>
-    <div class="approach">Comparison-led</div>
+    <h4 class="video-title">Your bank knows the correspondent chain. They won&#x27;t show you.</h4>
+    <div class="approach">Authority-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.8</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.0</strong></span>
     </div>
 
     <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Same wire, two routing paths, $1,000 difference at the end.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Path one: 3 intermediaries, multiple correspondent spreads, supplier receives $99,000. Path two: 1 direct correspondent, single spread, supplier receives $99,950. Same wire instruction. Different chain. $950 lost or kept depending on routing.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Cross-border rail vs SWIFT chain. The difference is in the chain.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Two routing paths side by side, end totals highlighted</span></div>
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">The correspondent banks your money passes through. Most banks won&#x27;t show you.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Every SWIFT wire generates an audit trail of intermediary correspondents. Your bank has it. Compliance teams use it. But customer-facing banking apps don&#x27;t surface it. Operators are flying blind on cost. Specialised cross-border rails publish the routing chain upfront.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Banker information asymmetry. Close it.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Mock compliance dashboard vs customer app showing the gap</span></div>
     </div>
   </div>
 </div>
@@ -1440,25 +1063,10 @@ a { color: var(--fg); }
     <div class="approach">Pain-first</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.7</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.7</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.7</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.6</span></span>
+      <span class="rating-overall">Overall <strong>4.7</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1473,7 +1081,33 @@ a { color: var(--fg); }
 
 <div class="angle" data-angle-id="P1-A11-a2">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="2" data-title="3 places where your CNY can become USD">
+    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="2" data-title="The double conversion no one talks about (and who pays for it)">
+    <span class="checkmark"></span>
+  </label>
+  <div class="angle-content">
+    <h4 class="video-title">The double conversion no one talks about (and who pays for it)</h4>
+    <div class="approach">Cost-led</div>
+
+    <div class="ratings">
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.6</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.6</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.7</span></span>
+      <span class="rating-overall">Overall <strong>4.6</strong></span>
+    </div>
+
+    <div class="mini-script">
+      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Double conversion: who pays? Spoiler: your supplier, then you on the next order.</span></div>
+      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Round one: your CNY converts to USD mid-flight (correspondent spread, ~0.3%). Round two: supplier converts USD back to CNY at their bank (~0.5%). Supplier ate 0.8% total. They factor it into the next price. You pay it on the second invoice. Then the next. Compounding.</span></div>
+      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Stop the loop. CNY-direct rail.</span></div>
+      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Cost accumulation animation across rounds</span></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="angle" data-angle-id="P1-A11-a3">
+  <label class="angle-check">
+    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="3" data-title="3 places where your CNY can become USD">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -1481,25 +1115,10 @@ a { color: var(--fg); }
     <div class="approach">Mechanism-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 90.0%"></div></div>
-  <span class="rating-value">4.5</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 88.00000000000001%"></div></div>
-  <span class="rating-value">4.4</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.4</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.3</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.5</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.4</span></span>
+      <span class="rating-overall">Overall <strong>4.4</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1512,9 +1131,9 @@ a { color: var(--fg); }
 </div>
 
 
-<div class="angle" data-angle-id="P1-A11-a3">
+<div class="angle" data-angle-id="P1-A11-a4">
   <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="3" data-title="When &#x27;CNY transfer&#x27; becomes &#x27;USD transfer&#x27; mid-flight">
+    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="4" data-title="When &#x27;CNY transfer&#x27; becomes &#x27;USD transfer&#x27; mid-flight">
     <span class="checkmark"></span>
   </label>
   <div class="angle-content">
@@ -1522,25 +1141,10 @@ a { color: var(--fg); }
     <div class="approach">Curiosity-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 86.0%"></div></div>
-  <span class="rating-value">4.3</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 84.00000000000001%"></div></div>
-  <span class="rating-value">4.2</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.3</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">4.3</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.3</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">4.2</span></span>
+      <span class="rating-overall">Overall <strong>4.3</strong></span>
     </div>
 
     <div class="mini-script">
@@ -1548,47 +1152,6 @@ a { color: var(--fg); }
       <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Your wire leaves marked CNY. Halfway through the correspondent chain, it hits a bank that doesn&#x27;t hold CNY. The bank converts to USD to keep the wire moving. The receiving end gets USD, even though the original instruction was CNY. Routing transparency exists; it&#x27;s just not customer-facing.</span></div>
       <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Routing transparency. Demand it.</span></div>
       <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Wire travelling, CNY label visible, then morphs into USD label at correspondent</span></div>
-    </div>
-  </div>
-</div>
-
-
-<div class="angle" data-angle-id="P1-A11-a4">
-  <label class="angle-check">
-    <input type="checkbox" class="angle-pick" data-card="P1-A11" data-idx="4" data-title="The double conversion no one talks about (and who pays for it)">
-    <span class="checkmark"></span>
-  </label>
-  <div class="angle-content">
-    <h4 class="video-title">The double conversion no one talks about (and who pays for it)</h4>
-    <div class="approach">Cost-led</div>
-
-    <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 92.0%"></div></div>
-  <span class="rating-value">4.6</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 94.0%"></div></div>
-  <span class="rating-value">4.7</span>
-</div>
-      <div class="rating-overall">Overall <strong>4.6</strong></div>
-    </div>
-
-    <div class="mini-script">
-      <div class="mini-row"><span class="mini-label">Hook</span><span class="mini-text">Double conversion: who pays? Spoiler: your supplier, then you on the next order.</span></div>
-      <div class="mini-row"><span class="mini-label">Body (5-50s)</span><span class="mini-text">Round one: your CNY converts to USD mid-flight (correspondent spread, ~0.3%). Round two: supplier converts USD back to CNY at their bank (~0.5%). Supplier ate 0.8% total. They factor it into the next price. You pay it on the second invoice. Then the next. Compounding.</span></div>
-      <div class="mini-row"><span class="mini-label">Close</span><span class="mini-text">Stop the loop. CNY-direct rail.</span></div>
-      <div class="mini-row"><span class="mini-label">Visual</span><span class="mini-text">Cost accumulation animation across rounds</span></div>
     </div>
   </div>
 </div>
@@ -1604,25 +1167,10 @@ a { color: var(--fg); }
     <div class="approach">Authority-led</div>
 
     <div class="ratings">
-      
-<div class="rating-bar rating-social">
-  <span class="rating-label">Social</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 74.0%"></div></div>
-  <span class="rating-value">3.7</span>
-</div>
-      
-<div class="rating-bar rating-audience">
-  <span class="rating-label">Audience</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 80.0%"></div></div>
-  <span class="rating-value">4.0</span>
-</div>
-      
-<div class="rating-bar rating-product">
-  <span class="rating-label">Product</span>
-  <div class="rating-track"><div class="rating-fill" style="width: 70.0%"></div></div>
-  <span class="rating-value">3.5</span>
-</div>
-      <div class="rating-overall">Overall <strong>3.7</strong></div>
+      <span class="rating-chip social"><span class="rl">Soc</span><span class="rv">3.7</span></span>
+      <span class="rating-chip audience"><span class="rl">Aud</span><span class="rv">4.0</span></span>
+      <span class="rating-chip product"><span class="rl">Prod</span><span class="rv">3.5</span></span>
+      <span class="rating-overall">Overall <strong>3.7</strong></span>
     </div>
 
     <div class="mini-script">
