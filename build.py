@@ -429,9 +429,9 @@ def render_angle(card_id, idx, a, is_lf=False):
         <div class="approach">{escape(a['approach'])}</div>
       </div>
       <div class="rating-cluster">
-        <div class="rating-overall-big">
-          <div class="rl">Overall</div>
-          <div class="rv">{overall}</div>
+        <div class="overall-num">
+          <span class="overall-label">Overall</span>
+          <span class="overall-val">{overall}</span>
         </div>
         <div class="rating-subs">
           <span class="rating-pill social"><span class="rl">Soc</span><span class="rv">{a['rating_social']}</span></span>
@@ -605,13 +605,13 @@ a { color: var(--fg); }
 
 .angle-top { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
 .angle-title-block { flex: 1; min-width: 0; }
-.video-title { margin: 0 0 4px; font-size: 17px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; color: var(--fg); }
+.video-title { margin: 0 0 4px; font-size: 19px; font-weight: 600; line-height: 1.28; letter-spacing: -0.01em; color: var(--fg); }
 .approach { font-family: var(--mono); font-size: 11px; color: var(--fg-soft); letter-spacing: 0.04em; text-transform: uppercase; }
 
-.rating-cluster { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
-.rating-overall-big { display: flex; flex-direction: column; align-items: center; background: var(--fg); color: #fff; padding: 7px 14px 8px; border-radius: 8px; min-width: 72px; }
-.rating-overall-big .rl { font-family: var(--mono); font-size: 9px; color: rgba(255,255,255,0.72); text-transform: uppercase; letter-spacing: 0.1em; }
-.rating-overall-big .rv { font-size: 22px; font-weight: 700; line-height: 1.05; margin-top: 1px; letter-spacing: -0.02em; }
+.rating-cluster { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+.overall-num { display: inline-flex; align-items: baseline; gap: 5px; }
+.overall-label { font-family: var(--mono); font-size: 9px; color: var(--fg-soft); text-transform: uppercase; letter-spacing: 0.1em; }
+.overall-val { font-size: 22px; font-weight: 700; color: var(--fg); line-height: 1; letter-spacing: -0.02em; }
 
 .rating-subs { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
 .rating-pill { display: inline-flex; align-items: baseline; gap: 4px; padding: 3px 8px; border-radius: 100px; font-family: var(--mono); font-weight: 600; }
