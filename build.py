@@ -399,7 +399,29 @@ PENDING_CARDS = [
     pending("P2-A6", "P2", "07", "The break-even: when should you switch providers?", "KOL distributed · math/decision-led", fmt="KOL"),
 ]
 
-CARDS = SF_TOPIC_01 + [c for c in PENDING_CARDS if c['format'] != 'LF']
+_pending_filtered = [c for c in PENDING_CARDS if c['format'] != 'LF']
+
+# Auto-merge any topic_data/topic_XX.json that exists into the matching pending cards
+import json as _json, os as _os
+_TOPIC_DATA_DIR = _os.path.join(_os.path.dirname(__file__), 'topic_data')
+if _os.path.isdir(_TOPIC_DATA_DIR):
+    for _fn in sorted(_os.listdir(_TOPIC_DATA_DIR)):
+        if not _fn.startswith('topic_') or not _fn.endswith('.json'):
+            continue
+        try:
+            with open(_os.path.join(_TOPIC_DATA_DIR, _fn)) as _fh:
+                _topic_data = _json.load(_fh)
+        except Exception:
+            continue
+        _by_id = {c['id']: c for c in _topic_data}
+        for _card in _pending_filtered:
+            if _card['id'] in _by_id:
+                _src = _by_id[_card['id']]
+                _card['findings'] = _src.get('findings', [])
+                _card['angles'] = _src.get('angles', [])
+                _card['status'] = 'ready'
+
+CARDS = SF_TOPIC_01 + _pending_filtered
 
 
 def render_rating_chip(label, value, color_class):

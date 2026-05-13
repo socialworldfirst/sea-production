@@ -1,0 +1,69 @@
+[
+  {
+    "id": "P1-A6",
+    "findings": [
+      "USD route stacks two FX margins: your bank converts local currency to USD (0.5 to 1.5%), then your supplier's Chinese bank converts USD to CNY on receipt (0.3 to 0.8%). Combined hidden cost is 0.8 to 2.3% on top of the visible invoice.",
+      "CIPS and MYbank route direct CNY payments at roughly 0.3 to 0.5% all-in. 80% land same-day, 90% next-day. SWIFT USD wires take 3 to 5 business days and can stall for SAFE compliance review at the supplier's bank.",
+      "Most Chinese suppliers prefer receiving CNY. They skip a 7 to 10 day wait for USD-to-RMB conversion at their bank, avoid an inbound forex fee, and remove their own currency risk on the order.",
+      "Paying in CNY often unlocks a 1 to 3% supplier discount on a fresh quote. Suppliers pad USD quotes by 2 to 5% to cover FX swings between PI and payment. Ask for the CNY price and that padding comes off.",
+      "USD price is not 'locked in'. It floats with your bank's daily FX rate when the wire executes. The PI says USD 10,000 but your bank settles it at their card-rate, not the rate you saw on Google."
+    ],
+    "angles": [
+      {
+        "video_title": "USD feels safer. It costs you 2% more.",
+        "approach": "Reframe",
+        "rating_social": 4.5,
+        "rating_audience": 4.7,
+        "rating_product": 4.7,
+        "hook": "USD feels safer. You're paying 2% extra for that feeling.",
+        "body": "Your USD wire to a Chinese factory goes through two FX conversions. Your bank takes 0.5 to 1.5% turning your local currency into USD. Your supplier's bank takes another 0.3 to 0.8% turning that USD back into CNY. That stack is invisible because it's baked into the rate, not the fee line. On a USD 20,000 order, you've quietly given up 160 to 460 dollars before anything ships. Pay in CNY directly, one conversion, 0.3 to 0.5% total.",
+        "close": "Same payment. Half the cost. Same destination bank account.",
+        "visual": "Split screen: USD route shows two FX boxes with red dollar signs, CNY route shows one clean line ending at supplier's bank"
+      },
+      {
+        "video_title": "Why your supplier secretly wants CNY",
+        "approach": "Supplier-perspective",
+        "rating_social": 4.6,
+        "rating_audience": 4.5,
+        "rating_product": 4.4,
+        "hook": "Your supplier doesn't want your USD. They just don't say it.",
+        "body": "When USD lands in a Chinese supplier's bank, three things happen. They wait 7 to 10 days for the bank to clear it. They pay a forex fee to convert it to CNY. They take the currency risk if the rate moves before settlement. None of that is your problem on paper, but it is on the next quote. So they pad the USD price by 2 to 5% to protect themselves. Offer to pay in CNY and that padding has no reason to exist.",
+        "close": "Ask for the CNY price. Watch what they quote.",
+        "visual": "Factory cashier opens USD wire receipt, sighs, ticks calendar 7 days forward. Cut to clean CNY arrival, instant smile"
+      },
+      {
+        "video_title": "The math on USD vs CNY for a $20,000 supplier payment",
+        "approach": "Math-led",
+        "rating_social": 4.3,
+        "rating_audience": 4.7,
+        "rating_product": 4.6,
+        "hook": "Same supplier. Same order. USD costs 460 dollars more than CNY. Here's the math.",
+        "body": "Order: USD 20,000. Route A, USD wire: your bank's FX margin 1%, that's 200 dollars. Supplier's bank converts USD to CNY at 0.5%, another 100 dollars hidden in the rate. SWIFT and intermediary fees, around 60 dollars. Total leakage: 360 dollars and 4 days. Route B, CNY direct via CIPS or MYbank: one conversion at 0.4%, 80 dollars, settled same day. Difference: 280 dollars on one order. Run 12 orders a year and that's 3,360 dollars sitting in someone else's pocket.",
+        "close": "Run the numbers on your last 10 invoices. You'll see it.",
+        "visual": "Calculator overlay running both routes side by side, with running cost totals and a final delta number that grows as orders multiply"
+      },
+      {
+        "video_title": "Your USD price isn't locked. It's floating.",
+        "approach": "Reframe",
+        "rating_social": 4.4,
+        "rating_audience": 4.6,
+        "rating_product": 4.5,
+        "hook": "You think your USD invoice locks in the price. It doesn't.",
+        "body": "The PI says USD 10,000. You read that as a fixed number. It isn't. The day you wire, your bank settles at their FX rate, not the rate you saw on Google or in the deal. If the rate has moved 1.2% since the PI, you just paid 120 dollars more without anyone telling you. CNY does the opposite. You agree on a CNY price, you send CNY, the supplier gets exactly that. The number on the PI is the number that lands.",
+        "close": "USD invoice is a moving target. CNY is the actual price.",
+        "visual": "USD invoice number shown on screen, then overlay shows it 'wobbling' between bid/ask spreads. Cut to CNY invoice frozen rock-solid"
+      },
+      {
+        "video_title": "Ask for the CNY price. Get 1 to 3% off.",
+        "approach": "Negotiation-angle",
+        "rating_social": 4.7,
+        "rating_audience": 4.6,
+        "rating_product": 4.4,
+        "hook": "Want a 1 to 3% discount on your next order? Ask in CNY.",
+        "body": "Here's a negotiation lever almost no one uses. When suppliers quote you in USD, they bake in a buffer for currency risk, usually 2 to 5%. It's protection against the rate moving between quote and payment. Take that risk off the table by saying: I'll pay in CNY. Suddenly they don't need the buffer. Most will pass back 1 to 3% in a fresh quote. Same product, same factory, same shipment. You just removed a tax you didn't know you were paying.",
+        "close": "One line in your next email: 'Can you re-quote in CNY?' That's it.",
+        "visual": "Side by side WhatsApp chat: USD quote $10,200 on left, CNY re-quote equivalent of $9,950 on right, with the delta circled"
+      }
+    ]
+  }
+]
